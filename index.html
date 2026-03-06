@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSWD 4Ps DMIS – CAR Field Office | Baguio City</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root{
+  --blue:#003087;--blue-mid:#0057B7;--blue-light:#2979E0;
+  --red:#CE1126;--yellow:#FCD116;--dark:#0A1A3A;
+  --white:#fff;--gray-bg:#F0F4FA;--border:#D6E0F0;
+  --text-main:#1B2A4A;--text-soft:#6B7A9A;
+  --sidebar-w:230px;--header-h:62px;
+  --green:#1B7A3E;--orange:#D46B00;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);color:var(--text-main)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:var(--header-h);background:var(--blue);display:flex;align-items:center;padding:0 18px;box-shadow:0 3px 12px rgba(0,0,0,.35)}
+.tb-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.tb-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-4ps,.logo-dswd{height:44px;width:auto;object-fit:contain;background:transparent;border-radius:0;padding:0}
+.tb-divider{width:1px;height:36px;background:rgba(255,255,255,.22);margin:0 10px}
+.tb-titles .agency{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#fff;letter-spacing:.6px}
+.tb-titles .sub{font-size:10px;color:rgba(255,255,255,.72);letter-spacing:.4px;margin-top:1px}
+.tb-program{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--yellow);letter-spacing:.8px;text-transform:uppercase}
+.tb-icon-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.13);border:none;color:#fff;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .2s;position:relative}
+.tb-icon-btn:hover{background:rgba(255,255,255,.28)}
+.notif-badge-dot{position:absolute;top:-2px;right:-2px;width:16px;height:16px;background:var(--red);border-radius:50%;font-size:9px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:1.5px solid var(--blue)}
+.notif-dropdown{position:absolute;top:42px;right:-10px;width:320px;background:#fff;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.22);z-index:500;display:none;overflow:hidden}
+.notif-dropdown.open{display:block}
+.notif-head{background:var(--blue);color:#fff;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;font-family:'Barlow Condensed',sans-serif}
+.notif-head span{font-size:11px;background:var(--red);padding:1px 7px;border-radius:10px;font-weight:700}
+.notif-item{display:flex;gap:11px;padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
+.notif-item:hover{background:#F0F5FF}
+.notif-icon-box{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;margin-top:2px}
+.notif-text{flex:1;min-width:0}
+.notif-title{font-size:12.5px;font-weight:700;color:var(--text-main)}
+.notif-body{font-size:11.5px;color:var(--text-soft);margin-top:2px;line-height:1.4}
+.notif-time{font-size:10px;color:var(--text-soft);margin-top:3px}
+.notif-footer{padding:10px 14px;text-align:center;font-size:12px;color:var(--blue-mid);font-weight:600;cursor:pointer}
+.notif-footer:hover{background:#F0F5FF}
+.search-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,26,58,.7);z-index:400;display:none;align-items:flex-start;justify-content:center;padding-top:100px;backdrop-filter:blur(4px)}
+.search-overlay.open{display:flex}
+.search-box{background:#fff;border-radius:14px;width:100%;max-width:580px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.search-input-wrap{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border)}
+.search-input-wrap i{color:var(--text-soft);font-size:16px}
+.search-input{flex:1;border:none;outline:none;font-size:16px;font-family:'Barlow',sans-serif;color:var(--text-main)}
+.search-input::placeholder{color:#aaa}
+.search-close-btn{background:none;border:none;cursor:pointer;font-size:13px;color:var(--text-soft);padding:4px 8px;border-radius:5px;font-family:'Barlow',sans-serif}
+.search-close-btn:hover{background:#F0F5FF}
+.search-results{max-height:360px;overflow-y:auto}
+.search-result-item{display:flex;align-items:center;gap:12px;padding:11px 18px;cursor:pointer;transition:background .15s;border-bottom:1px solid var(--border)}
+.search-result-item:hover{background:#F0F5FF}
+.search-result-item:last-child{border-bottom:none}
+.sr-icon{width:32px;height:32px;border-radius:7px;background:#E8F0FB;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:13px;flex-shrink:0}
+.sr-title{font-size:13px;font-weight:700;color:var(--text-main)}
+.sr-desc{font-size:11.5px;color:var(--text-soft);margin-top:1px}
+.search-empty{padding:30px;text-align:center;color:var(--text-soft);font-size:13px}
+.search-section-label{padding:8px 18px 4px;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-soft);background:#FAFCFF}
+.layout{display:flex;margin-top:var(--header-h);min-height:calc(100vh - var(--header-h));position:relative}
+.sidebar{width:52px;flex-shrink:0;background:var(--dark);color:#fff;position:fixed;top:var(--header-h);left:0;bottom:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;z-index:200;transition:width .3s cubic-bezier(.4,0,.2,1)}
+.sidebar:hover{width:var(--sidebar-w);box-shadow:4px 0 24px rgba(0,0,0,.35)}
+.sidebar .nav-label,.sidebar .sidebar-label,.sidebar .sidebar-bottom-label{opacity:0;pointer-events:none;white-space:nowrap;transition:opacity .2s}
+.sidebar:hover .nav-label,.sidebar:hover .sidebar-label,.sidebar:hover .sidebar-bottom-label{opacity:1;pointer-events:auto}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:2px}
+.sidebar-section{padding:14px 0 4px}
+.sidebar-label{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.35);padding:0 16px 5px;white-space:nowrap;overflow:hidden}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;cursor:pointer;font-size:13px;font-weight:500;color:rgba(255,255,255,.68);border-left:3px solid transparent;transition:all .2s;text-decoration:none;user-select:none;white-space:nowrap;overflow:hidden}
+.nav-item i{width:20px;text-align:center;font-size:14px;flex-shrink:0}
+.nav-item:hover{background:rgba(255,255,255,.07);color:#fff;border-left-color:var(--yellow)}
+.nav-item.active{background:rgba(0,87,183,.55);color:#fff;border-left-color:var(--yellow);font-weight:600}
+.sidebar hr{border:none;border-top:1px solid rgba(255,255,255,.08);margin:5px 0}
+.sidebar-bottom{margin-top:auto;padding:10px 0;border-top:1px solid rgba(255,255,255,.08)}
+.main{margin-left:52px;flex:1;min-width:0;display:flex;flex-direction:column;transition:margin-left .3s cubic-bezier(.4,0,.2,1)}
+.sidebar:hover ~ .main{margin-left:var(--sidebar-w)}
+.page{display:none;padding:22px;flex:1;animation:fadeUp .35s ease both}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.ph-left h2{font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:9px}
+.ph-left h2 .ab{width:4px;height:24px;background:var(--red);border-radius:2px;flex-shrink:0}
+.ph-left .bc{font-size:11.5px;color:var(--text-soft);margin-top:3px}
+.btn-primary{background:var(--blue);color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;transition:background .2s}
+.btn-primary:hover{background:var(--blue-mid)}
+.looker-toolbar{background:#fff;border-bottom:1px solid var(--border);padding:7px 18px;display:flex;align-items:center;gap:9px;position:sticky;top:var(--header-h);z-index:90;margin:-22px -22px 22px;flex-wrap:wrap}
+.lt-label{font-size:11px;color:var(--text-soft);font-weight:600}
+.lt-filter{border:1px solid var(--border);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--text-main);background:#fff;cursor:pointer;font-family:'Barlow',sans-serif}
+.lt-btn{border:1px solid var(--border);border-radius:5px;padding:4px 11px;font-size:11.5px;background:#fff;cursor:pointer;color:var(--blue);font-weight:600;font-family:'Barlow',sans-serif;transition:all .15s;display:flex;align-items:center;gap:5px}
+.lt-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+.lt-sep{width:1px;height:18px;background:var(--border);margin:0 3px}
+.lt-export{margin-left:auto;background:var(--blue);color:#fff;border:none;padding:5px 13px;border-radius:5px;font-size:11.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:'Barlow',sans-serif}
+.card{background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);overflow:hidden;margin-bottom:16px}
+.card-head{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#FAFCFF;flex-wrap:wrap;gap:7px}
+.card-head h3{font-family:'Barlow Condensed',sans-serif;font-size:14.5px;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:7px}
+.card-head h3 i{color:var(--blue-light);font-size:13px}
+.card-body{padding:16px}
+.card-tag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:12px;background:#E8F0FB;color:var(--blue-mid)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}
+.kpi-card{background:#fff;border-radius:10px;padding:16px 18px;box-shadow:0 1px 5px rgba(0,0,0,.08);border-top:4px solid var(--blue);transition:transform .2s,box-shadow .2s}
+.kpi-card:hover{transform:translateY(-2px);box-shadow:0 5px 16px rgba(0,0,0,.12)}
+.kpi-top{display:flex;align-items:flex-start;justify-content:space-between}
+.kpi-label{font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--text-soft);font-weight:600}
+.kpi-icon{font-size:22px;opacity:.14}
+.kpi-value{font-family:'Barlow Condensed',sans-serif;font-size:34px;font-weight:800;line-height:1;margin-top:7px}
+.kpi-sub{font-size:11px;color:var(--text-soft);margin-top:4px}
+.kpi-trend{display:inline-flex;align-items:center;gap:3px;font-size:11px;font-weight:600}
+.kpi-trend.up{color:var(--green)}.kpi-trend.down{color:var(--red)}
+#car-map{height:390px;z-index:1}
+.leaflet-container{background:#aad3df !important}
+.leaflet-popup-content-wrapper{border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.2);padding:0;overflow:hidden}
+.leaflet-popup-content{margin:0;font-family:'Barlow',sans-serif;font-size:12px;line-height:1.5;min-width:180px}
+.leaflet-popup-tip-container{display:none}
+.leaflet-control-attribution{font-size:9px !important}
+.looker-wrap{width:100%;background:#f8f9ff;overflow:hidden}
+.looker-wrap iframe{display:block;width:100%;border:none}
+.data-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.data-table thead th{background:var(--blue);color:#fff;padding:9px 12px;text-align:left;font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+.data-table tbody tr:nth-child(even){background:#F4F8FF}
+.data-table tbody tr:hover{background:#E4EDFF}
+.data-table tbody td{padding:8px 12px;border-bottom:1px solid var(--border)}
+.sb{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:600}
+.sb.active{background:#E6F4EC;color:var(--green)}.sb.pending{background:#FFF4E0;color:var(--orange)}.sb.inactive{background:#FDEAEA;color:var(--red)}
+.sb.mc36{background:#FDEAEA;color:#B71C1C;font-weight:800}
+.sb.exemp1{background:#E8F5E9;color:#1B5E20}
+.sb.exemp2{background:#E3F2FD;color:#0D47A1}
+.sb.blank{background:#FFF8E1;color:#E65100}
+.two-col{display:grid;grid-template-columns:1.55fr 1fr;gap:15px;margin-bottom:16px}
+.gcal-section{background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);overflow:hidden;margin-top:18px}
+.gcal-head{background:var(--blue);color:#fff;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px}
+.gcal-head h3{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;gap:7px}
+.gcal-hint{font-size:10.5px;opacity:.7}
+.gcal-input-bar{background:#FAFCFF;border-bottom:1px solid var(--border);padding:9px 16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.gcal-input-bar label{font-size:11.5px;font-weight:600;color:var(--text-soft)}
+.gcal-url-input{flex:1;min-width:200px;border:1px solid var(--border);border-radius:5px;padding:6px 11px;font-size:11.5px;font-family:'Barlow',sans-serif;outline:none;transition:border-color .2s}
+.gcal-url-input:focus{border-color:var(--blue)}
+.gcal-load-btn{background:var(--blue);color:#fff;border:none;padding:6px 13px;border-radius:5px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:'Barlow',sans-serif;display:flex;align-items:center;gap:5px}
+.gcal-load-btn:hover{background:var(--blue-mid)}
+.gcal-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:280px;color:var(--text-soft);gap:9px;background:#F8FAFF}
+.gcal-ph i{font-size:40px;color:#C5D5EA}
+.gcal-ph p{font-size:13px;font-weight:600;color:var(--text-main)}
+.gcal-ph small{font-size:11px;text-align:center;max-width:300px;line-height:1.55}
+.faq-list{display:flex;flex-direction:column;gap:9px}
+.faq-item{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:3px solid var(--blue-light)}
+.faq-q{padding:13px 16px;font-weight:600;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .15s;user-select:none}
+.faq-q:hover{background:#F0F5FF}
+.faq-q i{color:var(--text-soft);font-size:11px;transition:transform .2s}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-a{display:none;padding:0 16px 13px;font-size:13px;color:var(--text-soft);line-height:1.65;border-top:1px solid var(--border)}
+.faq-item.open .faq-a{display:block}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.contact-card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 1px 5px rgba(0,0,0,.08);display:flex;gap:13px;align-items:flex-start}
+.contact-icon-box{width:42px;height:42px;border-radius:9px;background:#E8F0FB;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--blue)}
+.contact-title{font-weight:700;font-size:13.5px;margin-bottom:4px}
+.officers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
+.officer-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 5px rgba(0,0,0,.08);text-align:center;transition:transform .2s,box-shadow .2s}
+.officer-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.13)}
+.officer-banner{height:50px;background:var(--blue)}
+.officer-avatar-wrap{margin-top:-25px;display:flex;justify-content:center}
+.officer-avatar{width:50px;height:50px;border-radius:50%;background:var(--blue-mid);color:#fff;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;display:flex;align-items:center;justify-content:center;border:3px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.officer-info{padding:7px 10px 14px}
+.officer-name{font-weight:700;font-size:13px;color:var(--text-main);margin-bottom:2px}
+.officer-role{font-size:10.5px;color:var(--text-soft);line-height:1.3}
+.officer-badge{display:inline-block;margin-top:6px;font-size:9.5px;padding:2px 8px;border-radius:10px;font-weight:700;background:#E8F0FB;color:var(--blue)}
+.module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:18px}
+.module-card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 1px 5px rgba(0,0,0,.08);border-top:4px solid var(--blue);transition:transform .2s,box-shadow .2s;cursor:pointer}
+.module-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,.13)}
+.module-icon{font-size:26px;margin-bottom:8px}
+.module-title{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:800;color:var(--blue);margin-bottom:3px}
+.module-desc{font-size:12px;color:var(--text-soft);line-height:1.5}
+.module-count{font-size:26px;font-weight:800;margin-top:9px;font-family:'Barlow Condensed',sans-serif}
+.module-count-lbl{font-size:10.5px;color:var(--text-soft)}
+.cvs-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:16px}
+.cvs-3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:15px;margin-bottom:16px}
+canvas{display:block;max-width:100%}
+.prog-row{display:flex;align-items:center;gap:8px;font-size:12px;margin-bottom:8px}
+.prog-label{width:85px;font-weight:600;flex-shrink:0}
+.prog-bar{flex:1;background:#eee;border-radius:4px;height:9px;overflow:hidden}
+.prog-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.prog-val{font-weight:700;width:32px;text-align:right;flex-shrink:0}
+/* MC36 specific */
+.mc36-divider{display:flex;align-items:center;gap:10px;margin:24px 0 16px}
+.mc36-divider-line{flex:1;height:2px;background:linear-gradient(to right,var(--red),transparent)}
+.mc36-divider-label{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;color:var(--red);letter-spacing:.5px;white-space:nowrap;padding:4px 12px;background:#FFF5F5;border:1px solid #FFCDD2;border-radius:20px}
+.mc36-badge-mc36{background:#FFEBEE;color:#C62828;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700}
+.mc36-badge-ex1{background:#E8F5E9;color:#1B5E20;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700}
+.mc36-badge-ex2{background:#E3F2FD;color:#0D47A1;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700}
+.mc36-badge-pend{background:#FFF8E1;color:#E65100;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700}
+.footer{background:var(--blue);color:rgba(255,255,255,.9)}
+.footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:28px;padding:28px 32px 22px}
+.gov-seal-ft{width:46px;height:46px;background:#fff;border-radius:50%;border:2.5px solid var(--yellow);display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:900;font-size:13px;font-family:'Barlow Condensed',sans-serif;margin-bottom:9px}
+.footer-logo{height:46px;width:auto;object-fit:contain;display:block;margin-bottom:9px}
+.footer-brand h4{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;letter-spacing:.5px;margin-bottom:4px}
+.footer-brand p{font-size:11.5px;opacity:.72;line-height:1.6}
+.footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:12.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);margin-bottom:9px}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:6px}
+.footer-col ul li a{color:rgba(255,255,255,.72);font-size:12px;text-decoration:none;transition:color .15s;cursor:pointer}
+.footer-col ul li a:hover{color:#fff}
+.footer-contact p{font-size:12px;opacity:.8;margin-bottom:6px;line-height:1.5;display:flex;gap:6px;align-items:flex-start}
+.footer-contact p i{margin-top:2px;opacity:.7;font-size:11px}
+.footer-bottom{background:rgba(0,0,0,.25);padding:11px 32px;display:flex;align-items:center;justify-content:space-between;font-size:11px;opacity:.75;flex-wrap:wrap;gap:7px}
+.footer-bottom a{color:rgba(255,255,255,.8);text-decoration:none}
+.footer-bottom a:hover{color:var(--yellow)}
+@media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.officers-grid{grid-template-columns:repeat(2,1fr)}.footer-main{grid-template-columns:1fr 1fr}.cvs-grid{grid-template-columns:1fr}.cvs-3col{grid-template-columns:1fr}}
+@media(max-width:768px){.module-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}}
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="search-overlay" onclick="closeSearchBg(event)">
+  <div class="search-box">
+    <div class="search-input-wrap">
+      <i class="fa fa-search"></i>
+      <input class="search-input" id="search-input" type="text" placeholder="Search pages, modules, beneficiaries..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()">
+      <button class="search-close-btn" onclick="closeSearch()"><i class="fa fa-times"></i> ESC</button>
+    </div>
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <div class="tb-left">
+    <img class="logo-4ps" id="logo4ps" alt="4Ps Logo" src="4Ps-DMIS-Dashboardd/4pslogo.png">
+    <div class="tb-divider"></div>
+    <div class="tb-titles">
+      <div class="agency">DSWD Field Office – CAR</div>
+      <div class="sub">Baguio City, Benguet &nbsp;|&nbsp; DMIS Dashboard</div>
+    </div>
+    <div class="tb-divider"></div>
+    <div class="tb-program">Data Management Information System</div>
+  </div>
+  <div class="tb-right">
+    <div style="position:relative">
+      <button class="tb-icon-btn" id="notif-btn" onclick="toggleNotif(event)">
+        <i class="fa fa-bell"></i>
+        <span class="notif-badge-dot" id="notif-badge">4</span>
+      </button>
+      <div class="notif-dropdown" id="notif-dropdown">
+        <div class="notif-head">Notifications <span id="notif-count-label">4 new</span></div>
+        <div class="notif-item" onclick="markRead(this)">
+          <div class="notif-icon-box" style="background:#FFF4E0;color:var(--orange)"><i class="fa fa-exclamation-triangle"></i></div>
+          <div class="notif-text"><div class="notif-title">71 HHs For MC No. 36 Processing</div><div class="notif-body">CAR Region: 71 households tagged For MC No. 36 – P1 2025.</div><div class="notif-time">Today, 8:14 AM</div></div>
+        </div>
+        <div class="notif-item" onclick="markRead(this)">
+          <div class="notif-icon-box" style="background:#FDEAEA;color:var(--red)"><i class="fa fa-hand-holding-heart"></i></div>
+          <div class="notif-text"><div class="notif-title">142 Grievances Still Pending</div><div class="notif-body">GRS: 142 cases unresolved, 18 escalated to RO.</div><div class="notif-time">Yesterday, 4:32 PM</div></div>
+        </div>
+        <div class="notif-item" onclick="markRead(this)">
+          <div class="notif-icon-box" style="background:#E6F4EC;color:var(--green)"><i class="fa fa-check-circle"></i></div>
+          <div class="notif-text"><div class="notif-title">177 HHs Qualified for Exemption</div><div class="notif-body">MC36 Tracking: 13 Exemption 1, 164 Exemption 2 across CAR.</div><div class="notif-time">Mar 1, 2026</div></div>
+        </div>
+        <div class="notif-item" onclick="markRead(this)">
+          <div class="notif-icon-box" style="background:#E8F0FB;color:var(--blue)"><i class="fa fa-database"></i></div>
+          <div class="notif-text"><div class="notif-title">94 Benguet Records Pending Validation</div><div class="notif-body">MC36 Tracking: Benguet has 87 #REF! entries needing resolution.</div><div class="notif-time">Feb 28, 2026</div></div>
+        </div>
+        <div class="notif-footer" onclick="clearAllNotifs()">Mark all as read</div>
+      </div>
+    </div>
+    <button class="tb-icon-btn" onclick="openSearch()"><i class="fa fa-search"></i></button>
+    <div class="tb-divider"></div>
+    <img class="logo-dswd" id="logoDswd" alt="DSWD Logo" src="4Ps-DMIS-Dashboardd/Screenshot 2026-03-05 084849.png">
+  </div>
+</header>
+
+<div class="layout">
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Main</div>
+    <a class="nav-item active" onclick="showPage('dashboard',this)"><i class="fa fa-chart-line"></i><span class="nav-label"> Dashboard</span></a>
+  </div>
+  <hr>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Modules</div>
+    <a class="nav-item" onclick="showPage('ict',this)"><i class="fa fa-laptop-code"></i><span class="nav-label"> ICT</span></a>
+    <a class="nav-item" onclick="showPage('bdmu',this)"><i class="fa fa-database"></i><span class="nav-label"> BDMU</span></a>
+    <a class="nav-item" onclick="showPage('cvs',this)"><i class="fa fa-check-double"></i><span class="nav-label"> CVS</span></a>
+    <a class="nav-item" onclick="showPage('grs',this)"><i class="fa fa-hand-holding-heart"></i><span class="nav-label"> GRS</span></a>
+  </div>
+  <hr>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Tools</div>
+    <a class="nav-item" onclick="showPage('calendar',this)"><i class="fa fa-calendar-alt"></i><span class="nav-label"> Main Calendar</span></a>
+    <a class="nav-item" onclick="showPage('officers',this)"><i class="fa fa-users"></i><span class="nav-label"> DMIS Officers</span></a>
+  </div>
+  <hr>
+  <div class="sidebar-section">
+    <div class="sidebar-label">Support</div>
+    <a class="nav-item" onclick="showPage('faqs',this)"><i class="fa fa-question-circle"></i><span class="nav-label"> FAQs</span></a>
+    <a class="nav-item" onclick="showPage('contact',this)"><i class="fa fa-envelope"></i><span class="nav-label"> Contact Us</span></a>
+  </div>
+  <div class="sidebar-bottom">
+    <div class="nav-item" style="opacity:.45;font-size:11px;cursor:default"><i class="fa fa-code-branch"></i><span class="nav-label sidebar-bottom-label"> v2.2.0 · FO-CAR</span></div>
+  </div>
+</nav>
+
+<main class="main" id="main-content">
+
+<!-- ═══════════════════ DASHBOARD PAGE ═══════════════════ -->
+<div id="page-dashboard" class="page active">
+  <div class="looker-toolbar">
+    <span class="lt-label">Period:</span>
+    <select class="lt-filter" id="dash-period"><option>Jan–Dec 2025</option><option>Q1 2025</option><option>Q2 2025</option></select>
+    <div class="lt-sep"></div>
+    <span class="lt-label">Region:</span>
+    <select class="lt-filter"><option>CAR – Cordillera Administrative Region</option></select>
+    <button class="lt-btn" id="filter-btn" onclick="applyFilter()"><i class="fa fa-filter"></i> Filter</button>
+    <button class="lt-btn" id="refresh-btn" onclick="refreshDash()"><i class="fa fa-sync-alt" id="refresh-icon"></i> Refresh</button>
+    <button class="lt-export"><i class="fa fa-download"></i> Export</button>
+  </div>
+  <div class="page-header">
+    <div class="ph-left">
+      <h2><span class="ab"></span> 4Ps DMIS Dashboard – CAR Region</h2>
+      <div class="bc" id="dash-bc">Home › Dashboard › CAR Overview &nbsp;|&nbsp; March 5, 2026</div>
+    </div>
+    <button class="btn-primary"><i class="fa fa-print"></i> Print Report</button>
+  </div>
+  <div class="kpi-grid">
+    <div class="kpi-card" style="border-top-color:var(--blue)"><div class="kpi-top"><div class="kpi-label">Registered HHs</div><div class="kpi-icon" style="color:var(--blue)"><i class="fa fa-house-user"></i></div></div><div class="kpi-value">143,872</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +2.3%</span> vs last year</div></div>
+    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">Active Beneficiaries</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-users"></i></div></div><div class="kpi-value" style="color:var(--red)">127,450</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +1.8%</span> vs last quarter</div></div>
+    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Compliance Rate</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-chart-bar"></i></div></div><div class="kpi-value" style="color:var(--green)">91.4%</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +0.6%</span> this period</div></div>
+    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">Grievances Resolved</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-check-circle"></i></div></div><div class="kpi-value" style="color:var(--orange)">3,218</div><div class="kpi-sub"><span class="kpi-trend down"><i class="fa fa-arrow-down"></i> 142 pending</span></div></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3><i class="fa fa-chart-line"></i> Looker Studio – 4Ps CAR Analytics Report</h3><span class="card-tag">Live</span></div>
+    <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/50206683-91c0-493b-a06c-2b9e92683acc/page/BIGpF" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
+  </div>
+  <div class="two-col">
+    <div class="card" style="overflow:hidden">
+      <div class="card-head"><h3><i class="fa fa-map-marked-alt"></i> CAR Bubble Map – Beneficiary Distribution</h3><span class="card-tag">CAR Only</span></div>
+      <div id="car-map"></div>
+      <div style="padding:7px 14px;background:#fff;display:flex;gap:12px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--border);font-size:10.5px;">
+        <div style="display:flex;align-items:center;gap:4px;"><div style="width:11px;height:11px;border-radius:50%;background:rgba(206,17,38,.7);"></div> Bubble size = HH count</div>
+        <div style="color:var(--text-soft);">Click for details · Scroll to zoom</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3><i class="fa fa-chart-bar"></i> Compliance Rate by Province</h3></div>
+      <div class="card-body">
+        <div style="font-size:10px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">2025 – CAR Region</div>
+        <div class="prog-row"><span class="prog-label">Baguio City</span><div class="prog-bar"><div class="prog-fill" style="width:95%;background:var(--red)"></div></div><span class="prog-val" style="color:var(--red)">95%</span></div>
+        <div class="prog-row"><span class="prog-label">Ifugao</span><div class="prog-bar"><div class="prog-fill" style="width:94%;background:var(--green)"></div></div><span class="prog-val" style="color:var(--green)">94%</span></div>
+        <div class="prog-row"><span class="prog-label">Mt. Province</span><div class="prog-bar"><div class="prog-fill" style="width:93%;background:var(--blue)"></div></div><span class="prog-val" style="color:var(--blue)">93%</span></div>
+        <div class="prog-row"><span class="prog-label">Benguet</span><div class="prog-bar"><div class="prog-fill" style="width:92%;background:var(--blue-mid)"></div></div><span class="prog-val">92%</span></div>
+        <div class="prog-row"><span class="prog-label">Kalinga</span><div class="prog-bar"><div class="prog-fill" style="width:90%;background:var(--blue-light)"></div></div><span class="prog-val">90%</span></div>
+        <div class="prog-row"><span class="prog-label">Abra</span><div class="prog-bar"><div class="prog-fill" style="width:89%;background:#64B5F6"></div></div><span class="prog-val">89%</span></div>
+        <div class="prog-row"><span class="prog-label">Apayao</span><div class="prog-bar"><div class="prog-fill" style="width:87%;background:#90CAF9"></div></div><span class="prog-val">87%</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3><i class="fa fa-table"></i> Recent Beneficiary Updates – CAR</h3><button class="btn-primary" style="font-size:11px;padding:5px 13px"><i class="fa fa-plus"></i> Add Record</button></div>
+    <div style="overflow-x:auto"><table class="data-table"><thead><tr><th>#</th><th>HH ID</th><th>Beneficiary Name</th><th>Province</th><th>Municipality</th><th>Status</th><th>Updated</th></tr></thead><tbody>
+      <tr><td>1</td><td>CAR-2025-0001</td><td>Maria Santos</td><td>Baguio City</td><td>Baguio City</td><td><span class="sb active">Active</span></td><td>Mar 1, 2026</td></tr>
+      <tr><td>2</td><td>CAR-2025-0042</td><td>Jose Bugan</td><td>Benguet</td><td>La Trinidad</td><td><span class="sb active">Active</span></td><td>Feb 28, 2026</td></tr>
+      <tr><td>3</td><td>CAR-2025-0118</td><td>Rosario Dulnuan</td><td>Ifugao</td><td>Lagawe</td><td><span class="sb pending">Pending</span></td><td>Feb 26, 2026</td></tr>
+      <tr><td>4</td><td>CAR-2025-0230</td><td>Pedro Cariño</td><td>Abra</td><td>Bangued</td><td><span class="sb active">Active</span></td><td>Feb 25, 2026</td></tr>
+      <tr><td>5</td><td>CAR-2025-0389</td><td>Lourdes Bannayan</td><td>Kalinga</td><td>Tabuk</td><td><span class="sb inactive">Suspended</span></td><td>Feb 20, 2026</td></tr>
+    </tbody></table></div>
+  </div>
+</div>
+
+<!-- ═══════════════════ CALENDAR PAGE ═══════════════════ -->
+<div id="page-calendar" class="page">
+  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> Main DMIS Calendar</h2><div class="bc">Home › Calendar</div></div></div>
+  <div class="gcal-section">
+    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> Google Calendar – DMIS FO-CAR</h3><span class="gcal-hint">Paste embed URL from Google Calendar settings</span></div>
+    <div class="gcal-input-bar"><label>Embed URL:</label><input class="gcal-url-input" id="gcal-main-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=...&ctz=Asia%2FManila"><button class="gcal-load-btn" onclick="loadCal('gcal-main-frame','gcal-main-url','gcal-main-ph')"><i class="fa fa-check"></i> Load</button></div>
+    <div id="gcal-main-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>No Calendar Loaded</p><small>Go to Google Calendar → Settings → Integrate calendar → copy embed URL → paste above.</small></div>
+    <iframe id="gcal-main-frame" src="" height="560" style="display:none;width:100%;border:none"></iframe>
+  </div>
+</div>
+
+<!-- ═══════════════════ ICT PAGE ═══════════════════ -->
+<div id="page-ict" class="page">
+  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> ICT – Information &amp; Communications Technology</h2><div class="bc">Home › ICT</div></div></div>
+  <div class="module-grid">
+    <div class="module-card" style="border-top-color:var(--blue)"><div class="module-icon">🖥️</div><div class="module-title">System Status</div><div class="module-desc">Monitor DMIS servers, uptime, and infrastructure health across CAR region.</div><div class="module-count" style="color:var(--green)">99.8%</div><div class="module-count-lbl">Uptime</div></div>
+    <div class="module-card" style="border-top-color:var(--red)"><div class="module-icon">🔒</div><div class="module-title">Security &amp; Access</div><div class="module-desc">User account management, role-based permissions, and incident tracking.</div><div class="module-count">148</div><div class="module-count-lbl">Active Users</div></div>
+    <div class="module-card" style="border-top-color:var(--green)"><div class="module-icon">🌐</div><div class="module-title">Network</div><div class="module-desc">Internet connectivity status for all FO-CAR offices and provincial units.</div><div class="module-count">7/7</div><div class="module-count-lbl">Offices Online</div></div>
+    <div class="module-card" style="border-top-color:var(--orange)"><div class="module-icon">💾</div><div class="module-title">Data Backup</div><div class="module-desc">Automated daily backups. Last backup: March 2, 2026 at 2:00 AM.</div><div class="module-count" style="color:var(--green)">OK</div><div class="module-count-lbl">Status</div></div>
+    <div class="module-card"><div class="module-icon">📋</div><div class="module-title">IT Help Desk</div><div class="module-desc">Ticket management for ICT support requests from DMIS officers and staff.</div><div class="module-count" style="color:var(--orange)">12</div><div class="module-count-lbl">Open Tickets</div></div>
+    <div class="module-card" style="border-top-color:var(--blue-light)"><div class="module-icon">📡</div><div class="module-title">API Integration</div><div class="module-desc">Data exchange between DMIS and national 4Ps systems (NHTS-PR, Listahanan).</div><div class="module-count">Active</div><div class="module-count-lbl">API Status</div></div>
+  </div>
+  <div class="gcal-section">
+    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> ICT Team – Google Calendar</h3></div>
+    <div class="gcal-input-bar"><label>ICT Calendar:</label><input class="gcal-url-input" id="gcal-ict-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-ict-frame','gcal-ict-url','gcal-ict-ph')"><i class="fa fa-check"></i> Load</button></div>
+    <div id="gcal-ict-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>ICT Calendar Not Loaded</p></div>
+    <iframe id="gcal-ict-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  </div>
+</div>
+
+<!-- ═══════════════════ BDMU PAGE ═══════════════════ -->
+<div id="page-bdmu" class="page">
+  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> BDMU – Beneficiary Data Management Unit</h2><div class="bc">Home › BDMU</div></div><button class="btn-primary"><i class="fa fa-file-export"></i> Export Data</button></div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Total Records</div><div class="kpi-icon"><i class="fa fa-database"></i></div></div><div class="kpi-value">143,872</div><div class="kpi-sub">All provinces – CAR</div></div>
+    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">Pending Validation</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-hourglass-half"></i></div></div><div class="kpi-value" style="color:var(--red)">2,340</div><div class="kpi-sub">Awaiting BDMU review</div></div>
+    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Validated This Month</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-check-circle"></i></div></div><div class="kpi-value" style="color:var(--green)">1,820</div><div class="kpi-sub">March 2026</div></div>
+    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">Duplicate Flags</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-exclamation-triangle"></i></div></div><div class="kpi-value" style="color:var(--orange)">47</div><div class="kpi-sub">Needs resolution</div></div>
+  </div>
+  <div class="gcal-section">
+    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> BDMU Team – Google Calendar</h3></div>
+    <div class="gcal-input-bar"><label>BDMU Calendar:</label><input class="gcal-url-input" id="gcal-bdmu-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-bdmu-frame','gcal-bdmu-url','gcal-bdmu-ph')"><i class="fa fa-check"></i> Load</button></div>
+    <div id="gcal-bdmu-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>BDMU Calendar Not Loaded</p></div>
+    <iframe id="gcal-bdmu-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  </div>
+</div>
+
+<!-- ═══════════════════ CVS PAGE ═══════════════════ -->
+<div id="page-cvs" class="page">
+  <div class="page-header">
+    <div class="ph-left">
+      <h2><span class="ab"></span> CVS – Compliance Verification System</h2>
+      <div class="bc">Home › CVS &nbsp;|&nbsp; NAS/NASH Tracking + MC No. 36 Consolidated Validation</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <select class="lt-filter" id="cvs-province-filter" onchange="updateCVSCharts()">
+        <option value="ALL">All Provinces</option>
+        <option value="ABRA">Abra</option>
+        <option value="APAYAO">Apayao</option>
+        <option value="BENGUET">Benguet</option>
+        <option value="IFUGAO">Ifugao</option>
+        <option value="KALINGA">Kalinga</option>
+        <option value="MOUNTAIN PROVINCE">Mountain Province</option>
+        <option value="BAGUIO">Baguio City</option>
+      </select>
+      <button class="btn-primary" style="font-size:11px;padding:5px 13px"><i class="fa fa-download"></i> Export</button>
+    </div>
+  </div>
+
+  <!-- ── NAS/NASH KPIs ── -->
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Total NAS/NASH Records</div><div class="kpi-icon"><i class="fa fa-users"></i></div></div><div class="kpi-value" id="cvs-total">—</div><div class="kpi-sub">CAR Region – P1 2026</div></div>
+    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">With Validated Reason</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-exclamation-circle"></i></div></div><div class="kpi-value" style="color:var(--red)" id="cvs-validated">—</div><div class="kpi-sub">Identified reason for non-attendance</div></div>
+    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">No Validated Reason</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-question-circle"></i></div></div><div class="kpi-value" style="color:var(--orange)" id="cvs-novalidated">—</div><div class="kpi-sub">Not yet validated/monitored</div></div>
+    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">For Case Management</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-clipboard-list"></i></div></div><div class="kpi-value" style="color:var(--green)" id="cvs-casemgmt">—</div><div class="kpi-sub">Referred for intervention</div></div>
+  </div>
+  <div class="cvs-grid">
+    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-chart-bar"></i> Top Validated Reasons (NAS/NASH)</h3></div><div class="card-body" style="padding:12px"><canvas id="chartReasons" height="220"></canvas></div></div>
+    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-chart-pie"></i> Intervention Category Breakdown</h3></div><div class="card-body" style="padding:12px"><canvas id="chartIntervention" height="220"></canvas></div></div>
+  </div>
+  <div style="height:15px"></div>
+  <div class="cvs-3col">
+    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-venus-mars"></i> Sex Distribution</h3></div><div class="card-body" style="padding:12px"><canvas id="chartSex" height="200"></canvas></div></div>
+    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-graduation-cap"></i> Grade Group</h3></div><div class="card-body" style="padding:12px"><canvas id="chartGrade" height="200"></canvas></div></div>
+    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-birthday-cake"></i> Age Group</h3></div><div class="card-body" style="padding:12px"><canvas id="chartAge" height="200"></canvas></div></div>
+  </div>
+  <div style="height:15px"></div>
+  <div class="card">
+    <div class="card-head"><h3><i class="fa fa-map"></i> NAS/NASH Records by Province</h3><span class="card-tag" id="cvs-last-update">CAR Region · P1 2026</span></div>
+    <div style="overflow-x:auto"><table class="data-table">
+      <thead><tr><th>Province</th><th>City/Municipality</th><th>Total Records</th><th>Has Reason</th><th>No Reason</th><th>For Case Mgmt</th><th>IP Count</th></tr></thead>
+      <tbody id="cvs-province-tbody"></tbody>
+    </table></div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════
+       MC No. 36 CONSOLIDATED VALIDATION RESULT TRACKING
+  ══════════════════════════════════════════════════ -->
+  <div class="mc36-divider">
+    <div class="mc36-divider-line"></div>
+    <div class="mc36-divider-label"><i class="fa fa-shield-halved"></i> &nbsp;MC No. 36 – Consolidated Validation Result Tracking</div>
+    <div class="mc36-divider-line" style="background:linear-gradient(to left,var(--red),transparent)"></div>
+  </div>
+
+  <div style="background:#FFF5F5;border:1px solid #FFCDD2;border-radius:8px;padding:11px 16px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px">
+    <i class="fa fa-circle-info" style="color:var(--red);margin-top:2px;font-size:14px"></i>
+    <div style="font-size:12px;color:#5D0000;line-height:1.6">
+      <strong>Source:</strong> 2025 MC No. 36 Consolidated Validation Result Tracking Sheet &nbsp;|&nbsp; <strong>Reference Period:</strong> P1 2025 &nbsp;|&nbsp; <strong>As of:</strong> July 25, 2025 &nbsp;|&nbsp; <strong>CAR Total Records:</strong> 342 HHs &nbsp;|&nbsp; Benguet has 87 records with #REF! (formula errors) pending encoding resolution.
+    </div>
+  </div>
+
+  <!-- MC36 KPI ROWS -->
+  <div class="kpi-grid">
+    <div class="kpi-card" style="border-top-color:#7B1FA2">
+      <div class="kpi-top"><div class="kpi-label">Total HH Records (CAR)</div><div class="kpi-icon" style="color:#7B1FA2"><i class="fa fa-house-chimney-user"></i></div></div>
+      <div class="kpi-value" style="color:#7B1FA2">342</div>
+      <div class="kpi-sub">6 CAR Provinces · P1 2025</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:var(--red)">
+      <div class="kpi-top"><div class="kpi-label">For MC No. 36</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-triangle-exclamation"></i></div></div>
+      <div class="kpi-value" style="color:var(--red)">71</div>
+      <div class="kpi-sub"><span class="kpi-trend down"><i class="fa fa-percent"></i> 20.8%</span> of total records</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:var(--green)">
+      <div class="kpi-top"><div class="kpi-label">For Exemption (1 &amp; 2)</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-circle-check"></i></div></div>
+      <div class="kpi-value" style="color:var(--green)">177</div>
+      <div class="kpi-sub">Exemption 1: 13 &nbsp;·&nbsp; Exemption 2: 164</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:var(--orange)">
+      <div class="kpi-top"><div class="kpi-label">Pending / No Result</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-hourglass-half"></i></div></div>
+      <div class="kpi-value" style="color:var(--orange)">94</div>
+      <div class="kpi-sub">#REF! (87) + Blank (7) entries</div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px">
+    <div class="kpi-card" style="border-top-color:#1565C0;padding:14px 15px">
+      <div class="kpi-top"><div class="kpi-label">With Notice of Failure</div><div class="kpi-icon" style="color:#1565C0;font-size:18px"><i class="fa fa-file-circle-exclamation"></i></div></div>
+      <div class="kpi-value" style="font-size:28px;color:#1565C0">134</div>
+      <div class="kpi-sub">Without Notice: 208</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:#6A1B9A;padding:14px 15px">
+      <div class="kpi-top"><div class="kpi-label">With Encouragement Letter</div><div class="kpi-icon" style="color:#6A1B9A;font-size:18px"><i class="fa fa-envelope-open-text"></i></div></div>
+      <div class="kpi-value" style="font-size:28px;color:#6A1B9A">61</div>
+      <div class="kpi-sub">Without Letter: 281</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:#00695C;padding:14px 15px">
+      <div class="kpi-top"><div class="kpi-label">NFC Facilitated</div><div class="kpi-icon" style="color:#00695C;font-size:18px"><i class="fa fa-handshake"></i></div></div>
+      <div class="kpi-value" style="font-size:28px;color:#00695C">61</div>
+      <div class="kpi-sub">NFC Not Facilitated: 281</div>
+    </div>
+    <div class="kpi-card" style="border-top-color:#BF360C;padding:14px 15px">
+      <div class="kpi-top"><div class="kpi-label">With Validation</div><div class="kpi-icon" style="color:#BF360C;font-size:18px"><i class="fa fa-clipboard-check"></i></div></div>
+      <div class="kpi-value" style="font-size:28px;color:#BF360C">248</div>
+      <div class="kpi-sub">Without: 16 &nbsp;|&nbsp; #REF!: 78</div>
+    </div>
+  </div>
+
+  <!-- MC36 CHARTS -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:16px">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-head"><h3><i class="fa fa-chart-pie"></i> Validation Result Distribution – CAR</h3><span class="card-tag">342 HHs · P1 2025</span></div>
+      <div class="card-body" style="padding:14px"><canvas id="mc36ChartResult" height="220"></canvas></div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="card-head"><h3><i class="fa fa-chart-bar"></i> For MC No. 36 by Province</h3></div>
+      <div class="card-body" style="padding:14px"><canvas id="mc36ChartProvince" height="220"></canvas></div>
+    </div>
+  </div>
+
+  <!-- MC36 PROCESS CHART -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-head"><h3><i class="fa fa-bars-progress"></i> MC No. 36 Process Compliance by Province</h3><span class="card-tag">Notice · Letter · NFC</span></div>
+    <div class="card-body" style="padding:14px"><canvas id="mc36ChartProcess" height="170"></canvas></div>
+  </div>
+
+  <!-- HH STATUS + PROVINCE TABLE -->
+  <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:15px;margin-bottom:16px">
+    <div class="card" style="margin-bottom:0">
+      <div class="card-head"><h3><i class="fa fa-users"></i> HH Status as of Jan 31, 2026</h3></div>
+      <div class="card-body" style="padding:14px"><canvas id="mc36ChartStatus" height="240"></canvas></div>
+    </div>
+    <div class="card" style="margin-bottom:0">
+      <div class="card-head">
+        <h3><i class="fa fa-table-list"></i> Province Summary</h3>
+        <select class="lt-filter" id="mc36-prov-filter" onchange="filterMC36ProvTable()" style="font-size:11px">
+          <option value="ALL">All Provinces</option>
+          <option value="Abra">Abra</option>
+          <option value="Apayao">Apayao</option>
+          <option value="Benguet">Benguet</option>
+          <option value="Ifugao">Ifugao</option>
+          <option value="Kalinga">Kalinga</option>
+          <option value="Mountain Province">Mountain Province</option>
+        </select>
+      </div>
+      <div style="overflow-x:auto;max-height:320px;overflow-y:auto">
+        <table class="data-table">
+          <thead style="position:sticky;top:0;z-index:2">
+            <tr>
+              <th>Province</th><th>Total</th>
+              <th style="background:#B71C1C">MC No.36</th>
+              <th style="background:#1B5E20">Exemp. 1</th>
+              <th style="background:#0D47A1">Exemp. 2</th>
+              <th style="background:#E65100">Pending</th>
+              <th>Active</th><th>Graduated</th><th>W/ Notice</th><th>NFC</th>
+            </tr>
+          </thead>
+          <tbody id="mc36-prov-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MUNICIPALITY DETAIL TABLE -->
+  <div class="card">
+    <div class="card-head">
+      <h3><i class="fa fa-map-pin"></i> Municipality-Level Detail – MC No. 36 Tracking</h3>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">
+        <select class="lt-filter" id="mc36-muni-prov-filter" onchange="filterMC36MuniTable()" style="font-size:11px">
+          <option value="ALL">All Provinces</option>
+          <option value="Abra">Abra</option>
+          <option value="Apayao">Apayao</option>
+          <option value="Benguet">Benguet</option>
+          <option value="Ifugao">Ifugao</option>
+          <option value="Kalinga">Kalinga</option>
+          <option value="Mountain Province">Mountain Province</option>
+        </select>
+        <button class="btn-primary" style="font-size:11px;padding:4px 11px" onclick="exportMC36CSV()"><i class="fa fa-download"></i> Export CSV</button>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Province</th><th>Municipality</th><th>Total HHs</th>
+            <th style="background:#B71C1C">For MC No.36</th>
+            <th style="background:#1B5E20">Exemption 1</th>
+            <th style="background:#0D47A1">Exemption 2</th>
+            <th style="background:#E65100">Pending</th>
+            <th>Active</th><th>Graduated</th><th>W/ Notice</th><th>W/ Letter</th><th>NFC</th><th>W/ Validation</th>
+          </tr>
+        </thead>
+        <tbody id="mc36-muni-tbody"></tbody>
+      </table>
+    </div>
+    <div style="padding:8px 14px;font-size:10.5px;color:var(--text-soft);background:#FAFCFF;border-top:1px solid var(--border)">
+      Total: <strong id="mc36-muni-total-label">50 municipalities</strong> shown &nbsp;·&nbsp; Source: MC No. 36 Consolidated Validation Result Tracking – CAR Region, P1 2025
+    </div>
+  </div>
+
+  <!-- CVS CALENDAR -->
+  <div class="gcal-section">
+    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> CVS Team – Google Calendar</h3></div>
+    <div class="gcal-input-bar"><label>CVS Calendar:</label><input class="gcal-url-input" id="gcal-cvs-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-cvs-frame','gcal-cvs-url','gcal-cvs-ph')"><i class="fa fa-check"></i> Load</button></div>
+    <div id="gcal-cvs-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>CVS Calendar Not Loaded</p></div>
+    <iframe id="gcal-cvs-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  </div>
+</div>
+
+<!-- ═══════════════════ GRS PAGE ═══════════════════ -->
+<div id="page-grs" class="page">
+  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> GRS – Grievance Redress System</h2><div class="bc">Home › GRS</div></div><button class="btn-primary"><i class="fa fa-plus"></i> File Grievance</button></div>
+  <div class="kpi-grid">
+    <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Total Filed</div></div><div class="kpi-value">3,360</div><div class="kpi-sub">CY 2025 – CAR</div></div>
+    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Resolved</div></div><div class="kpi-value" style="color:var(--green)">3,218</div><div class="kpi-sub">95.8% resolution rate</div></div>
+    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">Pending</div></div><div class="kpi-value" style="color:var(--orange)">142</div><div class="kpi-sub">Within 30-day SLA</div></div>
+    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">Escalated</div></div><div class="kpi-value" style="color:var(--red)">18</div><div class="kpi-sub">Elevated to RO</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head"><h3><i class="fa fa-chart-line"></i> GRS Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
+    <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/40669b4d-e21f-4093-9b15-d0e8a943e1ec/page/3DbND" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
+  </div>
+  <div class="gcal-section">
+    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> GRS Team – Google Calendar</h3></div>
+    <div class="gcal-input-bar"><label>GRS Calendar:</label><input class="gcal-url-input" id="gcal-grs-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-grs-frame','gcal-grs-url','gcal-grs-ph')"><i class="fa fa-check"></i> Load</button></div>
+    <div id="gcal-grs-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>GRS Calendar Not Loaded</p></div>
+    <iframe id="gcal-grs-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  </div>
+</div>
+
+<!-- FAQs -->
+<div id="page-faqs" class="page">
+  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> Frequently Asked Questions</h2><div class="bc">Home › FAQs</div></div></div>
+  <div class="faq-list">
+    <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)">What is the 4Ps DMIS? <i class="fa fa-chevron-down"></i></div><div class="faq-a">The DMIS for the Pantawid Pamilyang Pilipino Program (4Ps) is an online platform used by DSWD Field Office CAR to manage beneficiary data, compliance monitoring, grievance redress, and reporting for the Cordillera Administrative Region.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is MC No. 36 and why is it tracked here? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Memorandum Circular No. 36 governs the suspension and delisting of 4Ps beneficiaries who fail to comply with program conditions. The CVS module now includes the consolidated MC No. 36 Validation Result Tracking for P1 2025, showing which households are For MC No. 36 monitoring, qualified for Exemption 1 (beyond their control) or Exemption 2 (system-related issues), or are pending validation.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What do the three MC No. 36 validation results mean? <i class="fa fa-chevron-down"></i></div><div class="faq-a"><strong>For MC No. 36 Monitoring:</strong> HH failed to comply and is subject to the MC 36 process (Notice of Failure, Evaluation Period, Checkpoint). <br><strong>Exemption No. 1:</strong> HH failed due to reasons beyond their control (e.g., natural calamity, serious illness). <br><strong>Exemption No. 2:</strong> HH failed due to system-related issues (e.g., wrong facility tagging, data mismatch). These require facilitation of updates.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I file a grievance through GRS? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Navigate to the GRS module and click "File Grievance." Fill in the complainant's information, nature of grievance, and supporting documents. The system will assign a GRS ticket and route it to the appropriate DMIS officer for action within 30 days.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I add my Google Calendar to a module tab? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Go to calendar.google.com → Settings → select your calendar → scroll to "Integrate calendar" → copy the embed URL → paste it in the calendar input field of the relevant module tab, then click Load.</div></div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> Contact Us</h2><div class="bc">Home › Contact</div></div></div>
+  <div class="contact-grid">
+    <div class="contact-card"><div class="contact-icon-box"><i class="fa fa-building"></i></div><div><div class="contact-title">DSWD Field Office CAR</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">No. 23 General Luna Road, Baguio City 2600</p></div></div>
+    <div class="contact-card"><div class="contact-icon-box" style="background:#FDF4F4;color:var(--red)"><i class="fa fa-phone"></i></div><div><div class="contact-title">Telephone / Hotline</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">(074) 442-6401 &nbsp;|&nbsp; 4Ps Hotline: 1-800-10-654-0000</p></div></div>
+    <div class="contact-card"><div class="contact-icon-box" style="background:#F2FAF4;color:var(--green)"><i class="fa fa-envelope"></i></div><div><div class="contact-title">Email Addresses</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">fo-car@dswd.gov.ph &nbsp;|&nbsp; dmis-car@dswd.gov.ph</p></div></div>
+    <div class="contact-card"><div class="contact-icon-box" style="background:#FFF9EE;color:var(--orange)"><i class="fa fa-clock"></i></div><div><div class="contact-title">Office Hours</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Monday – Friday: 8:00 AM – 5:00 PM</p></div></div>
+  </div>
+</div>
+
+<!-- OFFICERS -->
+<div id="page-officers" class="page">
+  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> DMIS Officers – FO-CAR</h2><div class="bc">Home › DMIS Officers</div></div></div>
+  <div class="officers-grid">
+    <div class="officer-card"><div class="officer-banner" style="background:var(--blue)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--blue)">RC</div></div><div class="officer-info"><div class="officer-name">Rosario C. Cariño</div><div class="officer-role">Regional DMIS Coordinator</div><span class="officer-badge">FO-CAR HQ</span></div></div>
+    <div class="officer-card"><div class="officer-banner" style="background:var(--red)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--red)">JB</div></div><div class="officer-info"><div class="officer-name">Juan B. Buagan</div><div class="officer-role">BDMU Chief / Data Analyst</div><span class="officer-badge">BDMU</span></div></div>
+    <div class="officer-card"><div class="officer-banner" style="background:var(--green)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--green)">MP</div></div><div class="officer-info"><div class="officer-name">Maria D. Pagapong</div><div class="officer-role">CVS Officer – Health &amp; Education</div><span class="officer-badge">CVS</span></div></div>
+    <div class="officer-card"><div class="officer-banner" style="background:var(--orange)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--orange)">AL</div></div><div class="officer-info"><div class="officer-name">Andres L. Laoyan</div><div class="officer-role">GRS Focal Person</div><span class="officer-badge">GRS</span></div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <img class="footer-logo" src="4Ps-DMIS-Dashboardd/4pslogo.png" alt="4Ps Logo">
+      <h4>DSWD Field Office – Cordillera Administrative Region</h4>
+      <p>Pantawid Pamilyang Pilipino Program<br>Data Management Information System · v2.2.0<br>23 General Luna Road, Baguio City 2600</p>
+    </div>
+    <div class="footer-col"><h5>Quick Links</h5><ul>
+      <li><a onclick="showPage('dashboard',null)">Dashboard</a></li>
+      <li><a onclick="showPage('ict',null)">ICT</a></li>
+      <li><a onclick="showPage('bdmu',null)">BDMU</a></li>
+      <li><a onclick="showPage('cvs',null)">CVS</a></li>
+      <li><a onclick="showPage('grs',null)">GRS</a></li>
+    </ul></div>
+    <div class="footer-col"><h5>Support</h5><ul>
+      <li><a onclick="showPage('faqs',null)">FAQs</a></li>
+      <li><a onclick="showPage('contact',null)">Contact Us</a></li>
+      <li><a onclick="showPage('officers',null)">DMIS Officers</a></li>
+    </ul></div>
+    <div class="footer-col footer-contact"><h5>Contact</h5>
+      <p><i class="fa fa-phone"></i> (074) 442-6401</p>
+      <p><i class="fa fa-envelope"></i> fo-car@dswd.gov.ph</p>
+      <p><i class="fa fa-globe"></i> www.dswd.gov.ph</p>
+      <p style="margin-top:8px"><i class="fa fa-shield-halved"></i> Protected under RA 10173</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Department of Social Welfare and Development – Field Office CAR. All rights reserved.</span>
+    <span>DMIS v2.2.0 &nbsp;|&nbsp; MC No. 36 Tracking Integrated</span>
+  </div>
+</footer>
+</main>
+</div>
+
+<script>
+// ── NAVIGATION ──
+function showPage(id, navEl) {
+  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  var t = document.getElementById('page-' + id);
+  if(t) t.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
+  if(navEl) navEl.classList.add('active');
+  window.scrollTo(0,0);
+  if(id==='dashboard') setTimeout(initMap,150);
+  if(id==='cvs'){setTimeout(initCVSCharts,100);setTimeout(initMC36Charts,200);}
+}
+function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}
+function loadCal(fId,iId,pId){
+  var url=document.getElementById(iId).value.trim();
+  if(!url){alert('Paste a Google Calendar embed URL first.');return;}
+  var f=document.getElementById(fId),p=document.getElementById(pId);
+  f.src=url;f.style.display='block';p.style.display='none';
+}
+
+// ── NOTIFICATIONS ──
+var notifCount=4;
+function toggleNotif(e){e.stopPropagation();document.getElementById('notif-dropdown').classList.toggle('open');}
+function markRead(item){if(item.dataset.read)return;item.dataset.read='1';item.style.opacity='.5';notifCount=Math.max(0,notifCount-1);updateNotifBadge();}
+function clearAllNotifs(){document.querySelectorAll('.notif-item').forEach(function(i){i.dataset.read='1';i.style.opacity='.5';});notifCount=0;updateNotifBadge();document.getElementById('notif-dropdown').classList.remove('open');}
+function updateNotifBadge(){var b=document.getElementById('notif-badge'),l=document.getElementById('notif-count-label');if(notifCount===0){b.style.display='none';l.textContent='All read';}else{b.style.display='flex';b.textContent=notifCount;l.textContent=notifCount+' new';}}
+document.addEventListener('click',function(e){if(!e.target.closest('#notif-btn')&&!e.target.closest('#notif-dropdown'))document.getElementById('notif-dropdown').classList.remove('open');});
+
+// ── SEARCH ──
+var SEARCH_PAGES=[
+  {id:'dashboard',icon:'fa-chart-line',title:'Dashboard',desc:'KPIs, map, beneficiary overview'},
+  {id:'ict',icon:'fa-laptop-code',title:'ICT',desc:'System status, network, help desk'},
+  {id:'bdmu',icon:'fa-database',title:'BDMU',desc:'Beneficiary data management, validation'},
+  {id:'cvs',icon:'fa-check-double',title:'CVS / MC No. 36',desc:'Compliance verification, NAS/NASH, MC No. 36 tracking'},
+  {id:'grs',icon:'fa-hand-holding-heart',title:'GRS',desc:'Grievance redress system, complaints'},
+  {id:'calendar',icon:'fa-calendar-alt',title:'Calendar',desc:'DMIS main Google Calendar'},
+  {id:'officers',icon:'fa-users',title:'DMIS Officers',desc:'FO-CAR officer directory'},
+  {id:'faqs',icon:'fa-question-circle',title:'FAQs',desc:'Frequently asked questions'},
+  {id:'contact',icon:'fa-envelope',title:'Contact Us',desc:'Office address, phone, email, hotline'},
+];
+function openSearch(){document.getElementById('search-overlay').classList.add('open');setTimeout(function(){document.getElementById('search-input').focus();},50);doSearch('');}
+function closeSearch(){document.getElementById('search-overlay').classList.remove('open');document.getElementById('search-input').value='';}
+function closeSearchBg(e){if(e.target===document.getElementById('search-overlay'))closeSearch();}
+function doSearch(q){
+  var r=document.getElementById('search-results');q=q.toLowerCase().trim();
+  var filtered=q===''?SEARCH_PAGES:SEARCH_PAGES.filter(function(p){return p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.id.includes(q);});
+  if(filtered.length===0){r.innerHTML='<div class="search-empty">No results for "'+q+'"</div>';return;}
+  var label='<div class="search-section-label">'+(q?'Search Results':'All Pages')+'</div>';
+  var items=filtered.map(function(p){return '<div class="search-result-item" onclick="goSearch(\''+p.id+'\')"><div class="sr-icon"><i class="fa '+p.icon+'"></i></div><div><div class="sr-title">'+p.title+'</div><div class="sr-desc">'+p.desc+'</div></div></div>';}).join('');
+  r.innerHTML=label+items;
+}
+function goSearch(id){closeSearch();var found=null;document.querySelectorAll('.nav-item').forEach(function(n){if(n.getAttribute('onclick')&&n.getAttribute('onclick').indexOf("'"+id+"'")!==-1)found=n;});showPage(id,found);}
+
+// ── FILTER & REFRESH ──
+function applyFilter(){var period=document.getElementById('dash-period').value;document.getElementById('dash-bc').innerHTML='Home &rsaquo; Dashboard &rsaquo; CAR Overview &nbsp;|&nbsp; Period: '+period;var btn=document.getElementById('filter-btn');btn.style.background='var(--green)';btn.style.color='#fff';btn.style.borderColor='var(--green)';btn.innerHTML='<i class="fa fa-check"></i> Applied';setTimeout(function(){btn.style.background='';btn.style.color='';btn.style.borderColor='';btn.innerHTML='<i class="fa fa-filter"></i> Filter';},1600);}
+function refreshDash(){var icon=document.getElementById('refresh-icon');var btn=document.getElementById('refresh-btn');icon.style.animation='spin 0.8s linear infinite';btn.disabled=true;setTimeout(function(){icon.style.animation='';btn.disabled=false;btn.innerHTML='<i class="fa fa-sync-alt"></i> Refreshed!';setTimeout(function(){btn.innerHTML='<i class="fa fa-sync-alt" id="refresh-icon"></i> Refresh';},1500);},1200);}
+
+// ── MAP ──
+var CAR_PROV=[
+  {name:'Abra',lat:17.597,lng:120.772,hh:29440,comp:89,active:26214,gr:54},
+  {name:'Apayao',lat:18.015,lng:121.115,hh:14820,comp:87,active:12893,gr:23},
+  {name:'Kalinga',lat:17.473,lng:121.365,hh:21360,comp:90,active:19224,gr:31},
+  {name:'Mountain Province',lat:16.988,lng:121.018,hh:18910,comp:93,active:17586,gr:18},
+  {name:'Ifugao',lat:16.833,lng:121.200,hh:22510,comp:94,active:21159,gr:11},
+  {name:'Benguet',lat:16.532,lng:120.807,hh:24380,comp:92,active:22430,gr:28},
+  {name:'Baguio City',lat:16.409,lng:120.598,hh:12452,comp:95,active:11844,gr:8,hq:true},
+];
+var mapInit=false;
+function initMap(){
+  if(mapInit)return;
+  var el=document.getElementById('car-map');
+  if(!el||el.offsetWidth===0||typeof L==='undefined')return;
+  mapInit=true;
+  var map=L.map('car-map',{center:[17.1,121.0],zoom:8,minZoom:7,maxZoom:12});
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:18}).addTo(map);
+  var maxHH=Math.max.apply(null,CAR_PROV.map(function(p){return p.hh;}));
+  function rad(hh){return 8000+(hh/maxHH)*12000;}
+  CAR_PROV.forEach(function(p){
+    var fc=p.hq?'#8B0000':'#CE1126';var fo=p.hq?0.82:0.68;
+    var c=L.circle([p.lat,p.lng],{radius:rad(p.hh),color:p.hq?'rgba(139,0,0,.8)':'rgba(206,17,38,.5)',weight:p.hq?3:1.5,fillColor:fc,fillOpacity:fo}).addTo(map);
+    var hqB=p.hq?'<span style="background:#FCD116;color:#003087;font-size:8px;font-weight:800;padding:1px 6px;border-radius:8px;margin-left:5px">HQ</span>':'';
+    c.bindPopup('<div style="font-family:Barlow,sans-serif;min-width:175px"><div style="background:#003087;color:#fff;padding:8px 12px;margin:-1px -1px 9px;font-weight:700;font-size:13px">'+p.name+hqB+'</div><div style="padding:0 12px 10px"><table style="width:100%;border-collapse:collapse;font-size:11.5px"><tr><td style="color:#666;padding:2px 0">Registered HHs</td><td style="font-weight:800;text-align:right">'+p.hh.toLocaleString()+'</td></tr><tr><td style="color:#666;padding:2px 0">Active</td><td style="font-weight:700;text-align:right">'+p.active.toLocaleString()+'</td></tr><tr><td style="color:#666;padding:2px 0">Compliance</td><td style="font-weight:800;text-align:right;color:#1B7A3E">'+p.comp+'%</td></tr><tr><td style="color:#666;padding:2px 0">Open Grievances</td><td style="font-weight:700;text-align:right;color:#D46B00">'+p.gr+'</td></tr></table></div></div>',{maxWidth:210,offset:[0,-8]});
+    c.on('mouseover',function(){this.setStyle({fillOpacity:Math.min(fo+.18,.95),weight:p.hq?4:2.5});});
+    c.on('mouseout',function(){this.setStyle({fillOpacity:fo,weight:p.hq?3:1.5});});
+    c.on('click',function(){this.openPopup();});
+    L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',html:'<div style="font-family:Barlow,sans-serif;font-size:9px;font-weight:700;color:#fff;background:rgba(0,48,135,.8);padding:2px 6px;border-radius:8px;white-space:nowrap;pointer-events:none;border:1px solid rgba(255,255,255,.2)">'+(p.hq?'★ ':'')+p.name+'</div>',iconAnchor:[35,5]})}).addTo(map);
+  });
+}
+
+// ── CVS CHARTS (NAS/NASH) ──
+var CVS_DATA={
+  ALL:{total:12847,validated:7340,novalidated:5507,casemgmt:6892,
+    reasons:{'22 - Emotionally Unprepared':1842,'10 - Financial':1654,'5 - Working':923,'39 - Another facility':812,'9 - Bullied':387,'13 - Parent Decision':342,'19 - Early Pregnancy':312,'20 - Early Marriage':298,'4 - Sickly':254,'Other':316},
+    intervention:{'For Case Management':6892,'Update Issues':1848,'No Validated Category':4107},
+    sex:{FEMALE:5940,MALE:6907},grade:{'Daycare/Kinder':380,'Elementary':2840,'Junior HS':6420,'Senior HS':2180,'Invalid':1027},age:{'3–5':410,'6–14':5820,'15–18':6617},
+    provinces:[
+      {prov:'Abra',city:'Multiple',total:3240,hasReason:1920,noReason:1320,casemgmt:1740,ip:210},
+      {prov:'Apayao',city:'Multiple',total:1420,hasReason:780,noReason:640,casemgmt:720,ip:340},
+      {prov:'Kalinga',city:'Multiple',total:1980,hasReason:1140,noReason:840,casemgmt:1020,ip:510},
+      {prov:'Mountain Province',city:'Multiple',total:1640,hasReason:940,noReason:700,casemgmt:860,ip:420},
+      {prov:'Ifugao',city:'Multiple',total:1920,hasReason:1120,noReason:800,casemgmt:1040,ip:680},
+      {prov:'Benguet',city:'Multiple',total:1820,hasReason:1060,noReason:760,casemgmt:980,ip:180},
+      {prov:'Baguio City',city:'Baguio City',total:827,hasReason:380,noReason:447,casemgmt:532,ip:12},
+    ]},
+};
+var cvsCharts={};
+function updateCVSCharts(){
+  var sel=document.getElementById('cvs-province-filter').value;
+  var d=CVS_DATA[sel]||CVS_DATA.ALL;
+  document.getElementById('cvs-total').textContent=(d.total||0).toLocaleString();
+  document.getElementById('cvs-validated').textContent=(d.validated||0).toLocaleString();
+  document.getElementById('cvs-novalidated').textContent=(d.novalidated||0).toLocaleString();
+  document.getElementById('cvs-casemgmt').textContent=(d.casemgmt||0).toLocaleString();
+  var reasons=d.reasons||CVS_DATA.ALL.reasons;
+  updateChart('chartReasons','bar',Object.keys(reasons).map(function(k){return k.length>26?k.substring(0,25)+'…':k;}),Object.values(reasons),['rgba(0,48,135,.8)']);
+  var iData=d.intervention||CVS_DATA.ALL.intervention;
+  updateChart('chartIntervention','doughnut',Object.keys(iData),Object.values(iData),['#003087','#CE1126','#FCD116']);
+  var sData=d.sex||CVS_DATA.ALL.sex;
+  updateChart('chartSex','bar',Object.keys(sData),Object.values(sData),['#CE1126','#003087']);
+  var gData=d.grade||CVS_DATA.ALL.grade;
+  updateChart('chartGrade','doughnut',Object.keys(gData),Object.values(gData),['#003087','#0057B7','#2979E0','#64B5F6','#BBDEFB']);
+  var aData=d.age||CVS_DATA.ALL.age;
+  updateChart('chartAge','bar',Object.keys(aData),Object.values(aData),['#1B7A3E','#D46B00','#CE1126']);
+  var tbody=document.getElementById('cvs-province-tbody');
+  var rows=sel==='ALL'?CVS_DATA.ALL.provinces:CVS_DATA.ALL.provinces.filter(function(r){return r.prov.toUpperCase().includes(sel);});
+  tbody.innerHTML=rows.map(function(r){return '<tr><td><strong>'+r.prov+'</strong></td><td>'+r.city+'</td><td>'+r.total.toLocaleString()+'</td><td>'+r.hasReason.toLocaleString()+'</td><td>'+r.noReason.toLocaleString()+'</td><td>'+r.casemgmt.toLocaleString()+'</td><td>'+r.ip.toLocaleString()+'</td></tr>';}).join('');
+}
+function updateChart(id,type,labels,data,colors){
+  var ctx=document.getElementById(id);if(!ctx)return;
+  if(cvsCharts[id]){cvsCharts[id].destroy();}
+  var isHoriz=(id==='chartReasons');
+  cvsCharts[id]=new Chart(ctx,{type:type,data:{labels:labels,datasets:[{data:data,backgroundColor:type==='bar'?colors[0]:colors,borderWidth:type==='doughnut'?2:0,borderColor:'#fff'}]},options:{indexAxis:isHoriz?'y':'x',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:type==='doughnut',position:'right',labels:{font:{size:10,family:'Barlow'},padding:8,boxWidth:12}},tooltip:{callbacks:{label:function(ctx){return ' '+(ctx.parsed.y!==undefined?ctx.parsed.y:ctx.parsed);}}}},scales:type==='bar'?{x:{grid:{display:false},ticks:{font:{size:9,family:'Barlow'}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}}:{}}});
+}
+function initCVSCharts(){updateCVSCharts();}
+
+// ══════════════════════════════════════════════════════
+//  MC No. 36 DATA & CHARTS
+// ══════════════════════════════════════════════════════
+var MC36_PROV_DATA=[
+  {province:"Abra",total:32,mc36:19,exemption1:0,exemption2:13,pending:0,active:12,graduated:13,delisted:1,withNotice:20,withLetter:19,nfcFacilitated:19},
+  {province:"Apayao",total:62,mc36:8,exemption1:0,exemption2:54,pending:0,active:36,graduated:14,delisted:0,withNotice:15,withLetter:6,nfcFacilitated:6},
+  {province:"Benguet",total:135,mc36:10,exemption1:0,exemption2:38,pending:87,active:51,graduated:58,delisted:0,withNotice:52,withLetter:6,nfcFacilitated:6},
+  {province:"Ifugao",total:41,mc36:7,exemption1:13,exemption2:21,pending:0,active:28,graduated:10,delisted:0,withNotice:15,withLetter:12,nfcFacilitated:12},
+  {province:"Kalinga",total:61,mc36:24,exemption1:0,exemption2:30,pending:7,active:27,graduated:25,delisted:0,withNotice:29,withLetter:18,nfcFacilitated:18},
+  {province:"Mountain Province",total:11,mc36:3,exemption1:0,exemption2:8,pending:0,active:3,graduated:5,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0},
+];
+
+var MC36_MUNI_DATA=[
+  {province:"Abra",municipality:"Bangued",total:5,mc36:5,exemption1:0,exemption2:0,pending:0,active:2,graduated:1,delisted:0,withNotice:5,withLetter:5,nfcFacilitated:5,withValidation:5},
+  {province:"Abra",municipality:"Bucay",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:0,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Abra",municipality:"Dolores",total:1,mc36:1,exemption1:0,exemption2:0,pending:0,active:1,graduated:0,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:1},
+  {province:"Abra",municipality:"La Paz",total:6,mc36:4,exemption1:0,exemption2:2,pending:0,active:1,graduated:3,delisted:1,withNotice:4,withLetter:4,nfcFacilitated:4,withValidation:6},
+  {province:"Abra",municipality:"Manabo",total:4,mc36:1,exemption1:0,exemption2:3,pending:0,active:0,graduated:4,delisted:0,withNotice:2,withLetter:1,nfcFacilitated:1,withValidation:4},
+  {province:"Abra",municipality:"Peñarrubia",total:5,mc36:3,exemption1:0,exemption2:2,pending:0,active:1,graduated:4,delisted:0,withNotice:3,withLetter:3,nfcFacilitated:3,withValidation:5},
+  {province:"Abra",municipality:"San Juan",total:3,mc36:2,exemption1:0,exemption2:1,pending:0,active:1,graduated:1,delisted:0,withNotice:2,withLetter:2,nfcFacilitated:2,withValidation:3},
+  {province:"Abra",municipality:"Tayum",total:2,mc36:0,exemption1:0,exemption2:2,pending:0,active:2,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:2},
+  {province:"Abra",municipality:"Tineg",total:4,mc36:3,exemption1:0,exemption2:1,pending:0,active:3,graduated:0,delisted:0,withNotice:3,withLetter:3,nfcFacilitated:3,withValidation:4},
+  {province:"Abra",municipality:"Tubo",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:1,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Apayao",municipality:"Calanasan",total:3,mc36:1,exemption1:0,exemption2:2,pending:0,active:1,graduated:0,delisted:0,withNotice:2,withLetter:1,nfcFacilitated:1,withValidation:3},
+  {province:"Apayao",municipality:"Conner",total:15,mc36:3,exemption1:0,exemption2:12,pending:0,active:8,graduated:4,delisted:0,withNotice:6,withLetter:2,nfcFacilitated:2,withValidation:15},
+  {province:"Apayao",municipality:"Flora",total:8,mc36:0,exemption1:0,exemption2:8,pending:0,active:5,graduated:2,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:8},
+  {province:"Apayao",municipality:"Kabugao",total:11,mc36:2,exemption1:0,exemption2:9,pending:0,active:1,graduated:7,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0,withValidation:11},
+  {province:"Apayao",municipality:"Luna",total:8,mc36:1,exemption1:0,exemption2:7,pending:0,active:8,graduated:0,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:8},
+  {province:"Apayao",municipality:"Pudtol",total:9,mc36:1,exemption1:0,exemption2:8,pending:0,active:7,graduated:0,delisted:0,withNotice:2,withLetter:1,nfcFacilitated:1,withValidation:9},
+  {province:"Apayao",municipality:"Santa Marcela",total:8,mc36:0,exemption1:0,exemption2:8,pending:0,active:6,graduated:1,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:8},
+  {province:"Benguet",municipality:"Atok",total:1,mc36:0,exemption1:0,exemption2:0,pending:1,active:0,graduated:1,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"Bakun",total:3,mc36:0,exemption1:0,exemption2:0,pending:3,active:1,graduated:2,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"Bokod",total:5,mc36:0,exemption1:0,exemption2:0,pending:5,active:2,graduated:3,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"Buguias",total:1,mc36:0,exemption1:0,exemption2:0,pending:1,active:0,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"City of Baguio",total:54,mc36:8,exemption1:0,exemption2:37,pending:9,active:22,graduated:18,delisted:0,withNotice:11,withLetter:5,nfcFacilitated:5,withValidation:45},
+  {province:"Benguet",municipality:"Itogon",total:20,mc36:0,exemption1:0,exemption2:0,pending:20,active:7,graduated:11,delisted:0,withNotice:10,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"Kabayan",total:8,mc36:0,exemption1:0,exemption2:1,pending:7,active:5,graduated:1,delisted:0,withNotice:6,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Benguet",municipality:"Kapangan",total:2,mc36:0,exemption1:0,exemption2:0,pending:2,active:2,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"Kibungan",total:10,mc36:0,exemption1:0,exemption2:0,pending:10,active:4,graduated:4,delisted:0,withNotice:4,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"La Trinidad",total:7,mc36:0,exemption1:0,exemption2:0,pending:7,active:1,graduated:5,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"Mankayan",total:5,mc36:0,exemption1:0,exemption2:0,pending:5,active:2,graduated:1,delisted:0,withNotice:4,withLetter:0,nfcFacilitated:0,withValidation:0},
+  {province:"Benguet",municipality:"Tuba",total:12,mc36:2,exemption1:0,exemption2:0,pending:10,active:4,graduated:8,delisted:0,withNotice:7,withLetter:0,nfcFacilitated:0,withValidation:2},
+  {province:"Benguet",municipality:"Tublay",total:7,mc36:0,exemption1:0,exemption2:0,pending:7,active:1,graduated:4,delisted:0,withNotice:4,withLetter:1,nfcFacilitated:1,withValidation:0},
+  {province:"Ifugao",municipality:"Aguinaldo",total:6,mc36:0,exemption1:0,exemption2:6,pending:0,active:3,graduated:3,delisted:0,withNotice:2,withLetter:2,nfcFacilitated:2,withValidation:6},
+  {province:"Ifugao",municipality:"Alfonso Lista",total:7,mc36:0,exemption1:4,exemption2:3,pending:0,active:7,graduated:0,delisted:0,withNotice:3,withLetter:1,nfcFacilitated:1,withValidation:7},
+  {province:"Ifugao",municipality:"Asipulo",total:10,mc36:0,exemption1:0,exemption2:10,pending:0,active:6,graduated:2,delisted:0,withNotice:2,withLetter:2,nfcFacilitated:2,withValidation:10},
+  {province:"Ifugao",municipality:"Banaue",total:1,mc36:0,exemption1:1,exemption2:0,pending:0,active:1,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Ifugao",municipality:"Hingyon",total:1,mc36:0,exemption1:1,exemption2:0,pending:0,active:1,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Ifugao",municipality:"Hungduan",total:1,mc36:1,exemption1:0,exemption2:0,pending:0,active:1,graduated:0,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:1},
+  {province:"Ifugao",municipality:"Kiangan",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:0,graduated:1,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Ifugao",municipality:"Lamut",total:7,mc36:6,exemption1:0,exemption2:1,pending:0,active:5,graduated:2,delisted:0,withNotice:6,withLetter:4,nfcFacilitated:4,withValidation:7},
+  {province:"Ifugao",municipality:"Tinoc",total:7,mc36:0,exemption1:7,exemption2:0,pending:0,active:4,graduated:2,delisted:0,withNotice:1,withLetter:2,nfcFacilitated:2,withValidation:7},
+  {province:"Kalinga",municipality:"Balbalan",total:1,mc36:1,exemption1:0,exemption2:0,pending:0,active:0,graduated:1,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:1},
+  {province:"Kalinga",municipality:"City of Tabuk",total:25,mc36:6,exemption1:0,exemption2:19,pending:0,active:12,graduated:7,delisted:0,withNotice:7,withLetter:4,nfcFacilitated:4,withValidation:25},
+  {province:"Kalinga",municipality:"Lubuagan",total:5,mc36:1,exemption1:0,exemption2:4,pending:0,active:3,graduated:2,delisted:0,withNotice:3,withLetter:3,nfcFacilitated:3,withValidation:5},
+  {province:"Kalinga",municipality:"Pasil",total:1,mc36:1,exemption1:0,exemption2:0,pending:0,active:0,graduated:0,delisted:0,withNotice:1,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Kalinga",municipality:"Pinukpuk",total:14,mc36:4,exemption1:0,exemption2:3,pending:7,active:6,graduated:7,delisted:0,withNotice:5,withLetter:2,nfcFacilitated:2,withValidation:7},
+  {province:"Kalinga",municipality:"Rizal",total:14,mc36:11,exemption1:0,exemption2:3,pending:0,active:6,graduated:7,delisted:0,withNotice:12,withLetter:8,nfcFacilitated:8,withValidation:14},
+  {province:"Kalinga",municipality:"Tinglayan",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:0,graduated:1,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Mountain Province",municipality:"Bauko",total:3,mc36:0,exemption1:0,exemption2:3,pending:0,active:0,graduated:1,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:3},
+  {province:"Mountain Province",municipality:"Bontoc",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:1,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
+  {province:"Mountain Province",municipality:"Sadanga",total:3,mc36:0,exemption1:0,exemption2:3,pending:0,active:2,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:3},
+  {province:"Mountain Province",municipality:"Tadian",total:4,mc36:3,exemption1:0,exemption2:1,pending:0,active:0,graduated:4,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0,withValidation:4},
+];
+
+var mc36Charts={};
+
+function initMC36Charts(){
+  // 1. Doughnut – Validation Result
+  var ctx1=document.getElementById('mc36ChartResult');
+  if(ctx1){
+    if(mc36Charts.result)mc36Charts.result.destroy();
+    mc36Charts.result=new Chart(ctx1,{type:'doughnut',data:{
+      labels:['For MC No. 36','Exemption No. 1','Exemption No. 2','Pending / #REF!'],
+      datasets:[{data:[71,13,164,94],backgroundColor:['#C62828','#2E7D32','#1565C0','#E65100'],borderWidth:3,borderColor:'#fff'}]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10,family:'Barlow'},padding:9,boxWidth:13}}}}});
+  }
+
+  // 2. Bar – MC36 by Province
+  var ctx2=document.getElementById('mc36ChartProvince');
+  if(ctx2){
+    if(mc36Charts.province)mc36Charts.province.destroy();
+    var provLabels=MC36_PROV_DATA.map(function(p){return p.province==='Mountain Province'?'Mt. Province':p.province;});
+    mc36Charts.province=new Chart(ctx2,{type:'bar',data:{
+      labels:provLabels,
+      datasets:[
+        {label:'For MC No.36',data:MC36_PROV_DATA.map(function(p){return p.mc36;}),backgroundColor:'#C62828',borderRadius:3},
+        {label:'Exemption 1',data:MC36_PROV_DATA.map(function(p){return p.exemption1;}),backgroundColor:'#2E7D32',borderRadius:3},
+        {label:'Exemption 2',data:MC36_PROV_DATA.map(function(p){return p.exemption2;}),backgroundColor:'#1565C0',borderRadius:3},
+        {label:'Pending',data:MC36_PROV_DATA.map(function(p){return p.pending;}),backgroundColor:'#E65100',borderRadius:3},
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:9,family:'Barlow'}}},y:{stacked:true,grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}},plugins:{legend:{position:'top',labels:{font:{size:10,family:'Barlow'},padding:8,boxWidth:11}}}}});
+  }
+
+  // 3. Grouped Bar – Process compliance
+  var ctx3=document.getElementById('mc36ChartProcess');
+  if(ctx3){
+    if(mc36Charts.process)mc36Charts.process.destroy();
+    var pl=MC36_PROV_DATA.map(function(p){return p.province==='Mountain Province'?'Mt. Province':p.province;});
+    mc36Charts.process=new Chart(ctx3,{type:'bar',data:{
+      labels:pl,
+      datasets:[
+        {label:'Total HHs',data:MC36_PROV_DATA.map(function(p){return p.total;}),backgroundColor:'rgba(0,48,135,.15)',borderColor:'#003087',borderWidth:1,borderRadius:3},
+        {label:'W/ Notice of Failure',data:MC36_PROV_DATA.map(function(p){return p.withNotice;}),backgroundColor:'rgba(198,40,40,.75)',borderRadius:3},
+        {label:'W/ Letter',data:MC36_PROV_DATA.map(function(p){return p.withLetter;}),backgroundColor:'rgba(106,27,154,.75)',borderRadius:3},
+        {label:'NFC Facilitated',data:MC36_PROV_DATA.map(function(p){return p.nfcFacilitated;}),backgroundColor:'rgba(0,105,92,.75)',borderRadius:3},
+      ]
+    },options:{responsive:true,maintainAspectRatio:false,scales:{x:{grid:{display:false},ticks:{font:{size:9,family:'Barlow'}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}},plugins:{legend:{position:'top',labels:{font:{size:10,family:'Barlow'},padding:8,boxWidth:11}}}}});
+  }
+
+  // 4. Doughnut – HH Status
+  var ctx4=document.getElementById('mc36ChartStatus');
+  if(ctx4){
+    if(mc36Charts.status)mc36Charts.status.destroy();
+    mc36Charts.status=new Chart(ctx4,{type:'doughnut',data:{
+      labels:['Active (1)','Graduated (3)','No Eligible CVS (14)','Moved Out (12)','No Eligible (15)','Waived (8)','Non-poor (33)','L3 Concerns (32)','Delisted (7)'],
+      datasets:[{data:[157,125,22,19,7,7,2,2,1],backgroundColor:['#1565C0','#2E7D32','#6A1B9A','#E65100','#00838F','#F9A825','#455A64','#AD1457','#B71C1C'],borderWidth:2,borderColor:'#fff'}]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9,family:'Barlow'},padding:6,boxWidth:11}}}}});
+  }
+
+  // Populate province table
+  filterMC36ProvTable();
+  // Populate muni table
+  filterMC36MuniTable();
+}
+
+function filterMC36ProvTable(){
+  var sel=document.getElementById('mc36-prov-filter').value;
+  var rows=sel==='ALL'?MC36_PROV_DATA:MC36_PROV_DATA.filter(function(r){return r.province===sel;});
+  var tbody=document.getElementById('mc36-prov-tbody');
+  tbody.innerHTML=rows.map(function(r){
+    var valBadge=r.mc36>0?'<span class="mc36-badge-mc36">'+r.mc36+'</span>':'<span style="color:#999">0</span>';
+    var ex1Badge=r.exemption1>0?'<span class="mc36-badge-ex1">'+r.exemption1+'</span>':'<span style="color:#999">0</span>';
+    var ex2Badge=r.exemption2>0?'<span class="mc36-badge-ex2">'+r.exemption2+'</span>':'<span style="color:#999">0</span>';
+    var pendBadge=r.pending>0?'<span class="mc36-badge-pend">'+r.pending+'</span>':'<span style="color:#999">0</span>';
+    return '<tr><td><strong>'+r.province+'</strong></td><td><strong>'+r.total+'</strong></td><td>'+valBadge+'</td><td>'+ex1Badge+'</td><td>'+ex2Badge+'</td><td>'+pendBadge+'</td><td>'+r.active+'</td><td>'+r.graduated+'</td><td>'+r.withNotice+'</td><td>'+r.nfcFacilitated+'</td></tr>';
+  }).join('');
+}
+
+function filterMC36MuniTable(){
+  var sel=document.getElementById('mc36-muni-prov-filter').value;
+  var rows=sel==='ALL'?MC36_MUNI_DATA:MC36_MUNI_DATA.filter(function(r){return r.province===sel;});
+  var tbody=document.getElementById('mc36-muni-tbody');
+  document.getElementById('mc36-muni-total-label').textContent=rows.length+' municipalities shown';
+  tbody.innerHTML=rows.map(function(r){
+    function badge(v,cls){return v>0?'<span class="mc36-badge-'+cls+'">'+v+'</span>':'<span style="color:#bbb;font-size:11px">—</span>';}
+    return '<tr>'
+      +'<td><strong>'+r.province+'</strong></td>'
+      +'<td>'+r.municipality+'</td>'
+      +'<td style="font-weight:700">'+r.total+'</td>'
+      +'<td>'+badge(r.mc36,'mc36')+'</td>'
+      +'<td>'+badge(r.exemption1,'ex1')+'</td>'
+      +'<td>'+badge(r.exemption2,'ex2')+'</td>'
+      +'<td>'+badge(r.pending,'pend')+'</td>'
+      +'<td>'+r.active+'</td>'
+      +'<td>'+r.graduated+'</td>'
+      +'<td>'+(r.withNotice>0?r.withNotice:'—')+'</td>'
+      +'<td>'+(r.withLetter>0?r.withLetter:'—')+'</td>'
+      +'<td>'+(r.nfcFacilitated>0?r.nfcFacilitated:'—')+'</td>'
+      +'<td>'+(r.withValidation>0?r.withValidation:'—')+'</td>'
+      +'</tr>';
+  }).join('');
+}
+
+function exportMC36CSV(){
+  var sel=document.getElementById('mc36-muni-prov-filter').value;
+  var rows=sel==='ALL'?MC36_MUNI_DATA:MC36_MUNI_DATA.filter(function(r){return r.province===sel;});
+  var header='Province,Municipality,Total HHs,For MC No.36,Exemption 1,Exemption 2,Pending,Active,Graduated,With Notice,With Letter,NFC Facilitated,With Validation\n';
+  var csv=header+rows.map(function(r){return [r.province,r.municipality,r.total,r.mc36,r.exemption1,r.exemption2,r.pending,r.active,r.graduated,r.withNotice,r.withLetter,r.nfcFacilitated,r.withValidation].join(',');}).join('\n');
+  var blob=new Blob([csv],{type:'text/csv'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='MC36_Tracking_CAR_P1_2025.csv';a.click();
+}
+
+window.addEventListener('load',function(){setTimeout(initMap,400);});
+</script>
+</body>
+</html>
