@@ -916,87 +916,7 @@ canvas{display:block;max-width:100%}
   </div>
 </div>
 
-  <!-- SHEET URL CARDS -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:16px">
 
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-laptop-code" style="color:var(--blue-light)"></i> ICT – Equipment Inventory</h3><span class="card-tag" id="ict-sheet-status">Not connected</span></div>
-      <div class="card-body">
-        <div style="font-size:11.5px;color:var(--text-soft);margin-bottom:8px">Sheet: <strong>Inventory of Serviced and Pre-Inspected IT Equipment</strong></div>
-        <input class="gcal-url-input" id="sheet-ict" type="text" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&sheet=..." style="width:100%;margin-bottom:8px">
-        <div style="font-size:10.5px;color:var(--text-soft)">Expected columns: No., Province, Municipality, Accountable Person, Serial No., Property No., Details, Type of Equipment, Defects/Complaint, Findings, Recommendation, Inspected By, Date Inspected</div>
-        <button class="gcal-load-btn" style="margin-top:10px" onclick="testAndLoadSheet('ict')"><i class="fa fa-rotate"></i> Test & Load Now</button>
-        <span id="ict-sheet-test" style="font-size:11px;margin-left:8px"></span>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-check-double" style="color:var(--blue-light)"></i> CVS – NAS/NASH Data</h3><span class="card-tag" id="cvs-sheet-status">Not connected</span></div>
-      <div class="card-body">
-        <div style="font-size:11.5px;color:var(--text-soft);margin-bottom:8px">Sheet: <strong>NAS/NASH Tracking Data</strong></div>
-        <input class="gcal-url-input" id="sheet-cvs" type="text" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&sheet=..." style="width:100%;margin-bottom:8px">
-        <div style="font-size:10.5px;color:var(--text-soft)">Expected columns: Province, Municipality, Total Records, Has Reason, No Reason, For Case Mgmt, IP Count</div>
-        <button class="gcal-load-btn" style="margin-top:10px" onclick="testAndLoadSheet('cvs')"><i class="fa fa-rotate"></i> Test & Load Now</button>
-        <span id="cvs-sheet-test" style="font-size:11px;margin-left:8px"></span>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-shield-halved" style="color:var(--red)"></i> CVS – MC No. 36 Tracking</h3><span class="card-tag" id="mc36-sheet-status">Not connected</span></div>
-      <div class="card-body">
-        <div style="font-size:11.5px;color:var(--text-soft);margin-bottom:8px">Sheet: <strong>MC No. 36 Consolidated Validation Result Tracking</strong></div>
-        <input class="gcal-url-input" id="sheet-mc36" type="text" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&sheet=..." style="width:100%;margin-bottom:8px">
-        <div style="font-size:10.5px;color:var(--text-soft)">Expected columns: Province, Municipality, Total HHs, For MC No.36, Exemption 1, Exemption 2, Pending, Active, Graduated, W/ Notice, W/ Letter, NFC, W/ Validation</div>
-        <button class="gcal-load-btn" style="margin-top:10px" onclick="testAndLoadSheet('mc36')"><i class="fa fa-rotate"></i> Test & Load Now</button>
-        <span id="mc36-sheet-test" style="font-size:11px;margin-left:8px"></span>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-database" style="color:var(--blue-light)"></i> BDMU – Beneficiary Records</h3><span class="card-tag" id="bdmu-sheet-status">Not connected</span></div>
-      <div class="card-body">
-        <div style="font-size:11.5px;color:var(--text-soft);margin-bottom:8px">Sheet: <strong>Beneficiary Data Management</strong></div>
-        <input class="gcal-url-input" id="sheet-bdmu" type="text" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&sheet=..." style="width:100%;margin-bottom:8px">
-        <div style="font-size:10.5px;color:var(--text-soft)">Expected columns: HH ID, Beneficiary Name, Province, Municipality, Status, Updated</div>
-        <button class="gcal-load-btn" style="margin-top:10px" onclick="testAndLoadSheet('bdmu')"><i class="fa fa-rotate"></i> Test & Load Now</button>
-        <span id="bdmu-sheet-test" style="font-size:11px;margin-left:8px"></span>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-chart-line" style="color:var(--green)"></i> Dashboard – KPI Numbers</h3><span class="card-tag" id="kpi-sheet-status">Not connected</span></div>
-      <div class="card-body">
-        <div style="font-size:11.5px;color:var(--text-soft);margin-bottom:8px">Sheet: <strong>Dashboard KPIs Summary</strong></div>
-        <input class="gcal-url-input" id="sheet-kpi" type="text" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&sheet=..." style="width:100%;margin-bottom:8px">
-        <div style="font-size:10.5px;color:var(--text-soft)">Expected columns: Metric, Value, Sub (e.g. "Registered HHs", "143,872", "+2.3% vs last year")</div>
-        <button class="gcal-load-btn" style="margin-top:10px" onclick="testAndLoadSheet('kpi')"><i class="fa fa-rotate"></i> Test & Load Now</button>
-        <span id="kpi-sheet-test" style="font-size:11px;margin-left:8px"></span>
-      </div>
-    </div>
-
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-hand-holding-heart" style="color:var(--orange)"></i> GRS – Grievance Records</h3><span class="card-tag" id="grs-sheet-status">Not connected</span></div>
-      <div class="card-body">
-        <div style="font-size:11.5px;color:var(--text-soft);margin-bottom:8px">Sheet: <strong>GRS Grievance Tracking</strong></div>
-        <input class="gcal-url-input" id="sheet-grs" type="text" placeholder="https://docs.google.com/spreadsheets/d/.../pub?output=csv&sheet=..." style="width:100%;margin-bottom:8px">
-        <div style="font-size:10.5px;color:var(--text-soft)">Expected columns: Ticket No., Beneficiary, Province, Nature, Status, Date Filed, Date Resolved</div>
-        <button class="gcal-load-btn" style="margin-top:10px" onclick="testAndLoadSheet('grs')"><i class="fa fa-rotate"></i> Test & Load Now</button>
-        <span id="grs-sheet-test" style="font-size:11px;margin-left:8px"></span>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- STATUS SUMMARY -->
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-circle-check"></i> Connection Status</h3><button class="btn-primary" style="font-size:11px;padding:5px 13px" onclick="clearAllSheetUrls()"><i class="fa fa-trash"></i> Clear All</button></div>
-    <div class="card-body">
-      <table class="data-table">
-        <thead><tr><th>Module</th><th>Sheet URL</th><th>Status</th><th>Last Loaded</th></tr></thead>
-        <tbody id="settings-status-tbody"></tbody>
-      </table>
-    </div>
-  </div>
 </div>
 
 <!-- FOOTER -->
@@ -1755,7 +1675,7 @@ function applyMc36Sheet(rows) {
   initMC36Charts();
   showToast('MC No.36 refreshed — ' + muni.length + ' municipalities', 'success');
 }
-
+//i was here
 // ── BDMU Grantee ──
 function applyBdmuGranteeSheet(rows) {
   var provs = ['Abra','Apayao','Benguet','Baguio City','Ifugao','Kalinga','Mountain Province'];
