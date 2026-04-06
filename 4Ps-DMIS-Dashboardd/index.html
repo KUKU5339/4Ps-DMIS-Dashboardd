@@ -300,13 +300,8 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
   </div>
   <hr>
   <div class="sidebar-section">
-    <div class="sidebar-label">Tools</div>
-    <a class="nav-item" onclick="showPage('calendar',this)"><i class="fa fa-calendar-alt"></i><span class="nav-label"> Main Calendar</span></a>
-    <a class="nav-item" onclick="showPage('officers',this)"><i class="fa fa-users"></i><span class="nav-label"> DMIS Officers</span></a>
-  </div>
-  <hr>
-  <div class="sidebar-section">
     <div class="sidebar-label">Support</div>
+    <a class="nav-item" onclick="showPage('officers',this)"><i class="fa fa-users"></i><span class="nav-label"> DMIS Officers</span></a>
     <a class="nav-item" onclick="showPage('faqs',this)"><i class="fa fa-question-circle"></i><span class="nav-label"> FAQs</span></a>
     <a class="nav-item" onclick="showPage('contact',this)"><i class="fa fa-envelope"></i><span class="nav-label"> Contact Us</span></a>
   </div>
@@ -393,16 +388,7 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
   </div>
 </div>
 
-<!-- CALENDAR -->
-<div id="page-calendar" class="page">
-  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> Main DMIS Calendar</h2><div class="bc">Home › Calendar</div></div></div>
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> Google Calendar – DMIS FO-CAR</h3><span class="gcal-hint">Paste embed URL from Google Calendar settings</span></div>
-    <div class="gcal-input-bar"><label>Embed URL:</label><input class="gcal-url-input" id="gcal-main-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=...&ctz=Asia%2FManila"><button class="gcal-load-btn" onclick="loadCal('gcal-main-frame','gcal-main-url','gcal-main-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-main-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>No Calendar Loaded</p><small>Go to Google Calendar → Settings → Integrate calendar → copy embed URL → paste above.</small></div>
-    <iframe id="gcal-main-frame" src="" height="560" style="display:none;width:100%;border:none"></iframe>
-  </div>
-</div>
+
 
 <!-- ═══════════════════ ICT PAGE ═══════════════════ -->
 <div id="page-ict" class="page">
@@ -411,14 +397,9 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <h2><span class="ab"></span> ICT – Information &amp; Communications Technology</h2>
       <div class="bc">Home › ICT &nbsp;|&nbsp; IT Equipment Inventory &amp; System Status</div>
     </div>
-  </div>
-
-  <!-- KPI Row -->
-  <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
-    <div class="kpi-card" style="border-top-color:var(--blue)"><div class="kpi-top"><div class="kpi-label">Total Equipment Records</div><div class="kpi-icon" style="color:var(--blue)"><i class="fa fa-database"></i></div></div><div class="kpi-value" style="color:var(--blue)">73</div><div class="kpi-sub">All provinces – CAR</div></div>
-    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">For Disposal</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-trash-can"></i></div></div><div class="kpi-value" style="color:var(--red)">47</div><div class="kpi-sub">Unserviceable units</div></div>
-    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">For Repair</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-screwdriver-wrench"></i></div></div><div class="kpi-value" style="color:var(--orange)">12</div><div class="kpi-sub">Pending repair action</div></div>
-    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Warranty / Return</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-rotate-left"></i></div></div><div class="kpi-value" style="color:var(--green)">14</div><div class="kpi-sub">Warranty claims &amp; returns</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
+    </div>
   </div>
 
   <div class="card">
@@ -427,11 +408,28 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/05bdb7cd-c9ae-4989-85c5-be380d8492dd/page/VVwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
     </div>
   </div>
+
+  <!-- ICT Calendar -->
+  <div class="gcal-section">
+    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> ICT Team – Google Calendar</h3></div>
+    <div class="gcal-input-bar"><label>ICT Calendar:</label><input class="gcal-url-input" id="gcal-ict-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-ict-frame','gcal-ict-url','gcal-ict-ph')"><i class="fa fa-check"></i> Load</button></div>
+    <div id="gcal-ict-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>ICT Calendar Not Loaded</p></div>
+    <iframe id="gcal-ict-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  </div>
 </div>
 
 <!-- BDMU -->
 <div id="page-bdmu" class="page">
-  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> BDMU – Beneficiary Data Management Unit</h2><div class="bc">Home › BDMU</div></div><button class="btn-primary" onclick="exportCSV()"><i class="fa fa-file-export"></i> Export Data</button></div>
+  <div class="page-header">
+    <div class="ph-left">
+      <h2><span class="ab"></span> BDMU – Beneficiary Data Management Unit</h2>
+      <div class="bc">Home › BDMU</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
+      <button class="btn-primary" onclick="exportCSV()"><i class="fa fa-file-export"></i> Export Data</button>
+    </div>
+  </div>
   <div class="kpi-grid">
     <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Total Records</div><div class="kpi-icon"><i class="fa fa-database"></i></div></div><div class="kpi-value">143,872</div><div class="kpi-sub">All provinces – CAR</div></div>
     <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">Pending Validation</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-hourglass-half"></i></div></div><div class="kpi-value" style="color:var(--red)">2,340</div><div class="kpi-sub">Awaiting BDMU review</div></div>
@@ -461,14 +459,9 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <h2><span class="ab"></span> CVS – Compliance Verification System</h2>
       <div class="bc">Home › CVS &nbsp;|&nbsp; NAS/NASH Tracking + MC No. 36 Consolidated Validation</div>
     </div>
-  </div>
-
-  <!-- ── NAS/NASH KPIs ── -->
-  <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Total NAS/NASH Records</div><div class="kpi-icon"><i class="fa fa-users"></i></div></div><div class="kpi-value" id="cvs-total">—</div><div class="kpi-sub">CAR Region – P1 2026</div></div>
-    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">With Validated Reason</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-exclamation-circle"></i></div></div><div class="kpi-value" style="color:var(--red)" id="cvs-validated">—</div><div class="kpi-sub">Identified reason for non-attendance</div></div>
-    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">No Validated Reason</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-question-circle"></i></div></div><div class="kpi-value" style="color:var(--orange)" id="cvs-novalidated">—</div><div class="kpi-sub">Not yet validated/monitored</div></div>
-    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">For Case Management</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-clipboard-list"></i></div></div><div class="kpi-value" style="color:var(--green)" id="cvs-casemgmt">—</div><div class="kpi-sub">Referred for intervention</div></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
+    </div>
   </div>
 
   <div class="card">
@@ -477,17 +470,29 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/0f5e720b-3175-44b5-91a4-c669e2384f18/page/lDwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
     </div>
   </div>
+
+  <!-- CVS Calendar -->
+  <div class="gcal-section">
+    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> CVS Team – Google Calendar</h3></div>
+    <div class="gcal-input-bar"><label>CVS Calendar:</label><input class="gcal-url-input" id="gcal-cvs-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-cvs-frame','gcal-cvs-url','gcal-cvs-ph')"><i class="fa fa-check"></i> Load</button></div>
+    <div id="gcal-cvs-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>CVS Calendar Not Loaded</p></div>
+    <iframe id="gcal-cvs-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  </div>
 </div>
 
 <!-- GRS -->
 <div id="page-grs" class="page">
-  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> GRS – Grievance Redress System</h2><div class="bc">Home › GRS</div></div><button class="btn-primary"><i class="fa fa-plus"></i> File Grievance</button></div>
-  <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Total Filed</div></div><div class="kpi-value">3,360</div><div class="kpi-sub">CY 2025 – CAR</div></div>
-    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Resolved</div></div><div class="kpi-value" style="color:var(--green)">3,218</div><div class="kpi-sub">95.8% resolution rate</div></div>
-    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">Pending</div></div><div class="kpi-value" style="color:var(--orange)">142</div><div class="kpi-sub">Within 30-day SLA</div></div>
-    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">Escalated</div></div><div class="kpi-value" style="color:var(--red)">18</div><div class="kpi-sub">Elevated to RO</div></div>
+  <div class="page-header">
+    <div class="ph-left">
+      <h2><span class="ab"></span> GRS – Grievance Redress System</h2>
+      <div class="bc">Home › GRS</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
+      <button class="btn-primary"><i class="fa fa-plus"></i> File Grievance</button>
+    </div>
   </div>
+
   <div class="card">
     <div class="card-head"><h3><i class="fa fa-chart-line"></i> GRS Analytics Report 1 – Looker Studio</h3><span class="card-tag">Live</span></div>
     <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/40669b4d-e21f-4093-9b15-d0e8a943e1ec/page/3DbND" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
@@ -496,25 +501,19 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
     <div class="card-head"><h3><i class="fa fa-chart-bar"></i> GRS Analytics Report 2 – Looker Studio</h3><span class="card-tag">Live</span></div>
     <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/49308f49-d071-4884-a2a6-f1dff822ced5/page/3DbND" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
   </div>
-  <div class="card"><div class="card-head"><h3><i class="fa fa-hand-holding-heart"></i> Recent Grievances</h3></div>
-    <div style="overflow-x:auto"><table class="data-table"><thead><tr><th>GRS #</th><th>Complainant</th><th>Province</th><th>Nature</th><th>Filed</th><th>Status</th></tr></thead><tbody>
-      <tr><td>GRS-2026-0142</td><td>A. Wacas</td><td>Benguet</td><td>Non-receipt of grant</td><td>Mar 1, 2026</td><td><span class="sb pending">Pending</span></td></tr>
-      <tr><td>GRS-2026-0141</td><td>F. Guinayon</td><td>Ifugao</td><td>Wrong compliance tag</td><td>Feb 28, 2026</td><td><span class="sb active">Resolved</span></td></tr>
-      <tr><td>GRS-2026-0140</td><td>L. Abance</td><td>Abra</td><td>Duplicate record</td><td>Feb 27, 2026</td><td><span class="sb inactive">Escalated</span></td></tr>
-      <tr><td>GRS-2026-0139</td><td>D. Tibayan</td><td>Kalinga</td><td>Denied enrollment</td><td>Feb 25, 2026</td><td><span class="sb active">Resolved</span></td></tr>
-    </tbody></table></div>
-  </div>
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> GRS Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>GRS Calendar:</label><input class="gcal-url-input" id="gcal-grs-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-grs-frame','gcal-grs-url','gcal-grs-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-grs-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>GRS Calendar Not Loaded</p><small>Paste your GRS team's Google Calendar embed URL here.</small></div>
-    <iframe id="gcal-grs-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
-  </div>
 </div>
 
 <!-- FAQs -->
 <div id="page-faqs" class="page">
-  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> Frequently Asked Questions</h2><div class="bc">Home › FAQs</div></div></div>
+  <div class="page-header">
+    <div class="ph-left">
+      <h2><span class="ab"></span> Frequently Asked Questions</h2>
+      <div class="bc">Home › FAQs</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
+    </div>
+  </div>
   <div class="faq-list">
     <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)">What is the 4Ps DMIS? <i class="fa fa-chevron-down"></i></div><div class="faq-a">The DMIS for the Pantawid Pamilyang Pilipino Program (4Ps) is an online platform used by DSWD Field Office CAR to manage beneficiary data, compliance monitoring, grievance redress, and reporting for the Cordillera Administrative Region.</div></div>
     <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Who can access the DMIS dashboard? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Access is granted to authorized DSWD personnel including DMIS Officers, Municipal Links, City/Provincial Coordinators, and supervisors within DSWD FO-CAR. All accounts require multi-factor authentication and role-based access control.</div></div>
@@ -527,7 +526,15 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
 
 <!-- CONTACT -->
 <div id="page-contact" class="page">
-  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> Contact Us</h2><div class="bc">Home › Contact</div></div></div>
+  <div class="page-header">
+    <div class="ph-left">
+      <h2><span class="ab"></span> Contact Us</h2>
+      <div class="bc">Home › Contact</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
+    </div>
+  </div>
   <div class="contact-grid">
     <div class="contact-card"><div class="contact-icon-box"><i class="fa fa-building"></i></div><div><div class="contact-title">DSWD Field Office CAR</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">No. 23 General Luna Road, Baguio City 2600, Benguet</p><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Cordillera Administrative Region, Philippines</p></div></div>
     <div class="contact-card"><div class="contact-icon-box" style="background:#FDF4F4;color:var(--red)"><i class="fa fa-phone"></i></div><div><div class="contact-title">Telephone / Hotline</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">(074) 442-6401 &nbsp;|&nbsp; (074) 442-6402</p><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">4Ps Hotline: 1-800-10-654-0000 (toll-free)</p></div></div>
@@ -540,7 +547,15 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
 
 <!-- OFFICERS -->
 <div id="page-officers" class="page">
-  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> DMIS Officers – FO-CAR</h2><div class="bc">Home › DMIS Officers · Baguio City, CAR</div></div></div>
+  <div class="page-header">
+    <div class="ph-left">
+      <h2><span class="ab"></span> DMIS Officers – FO-CAR</h2>
+      <div class="bc">Home › DMIS Officers · Baguio City, CAR</div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
+    </div>
+  </div>
   <div class="officers-grid">
     <div class="officer-card"><div class="officer-banner" style="background:var(--blue)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--blue)">RC</div></div><div class="officer-info"><div class="officer-name">Rosario C. Cariño</div><div class="officer-role">Regional DMIS Coordinator</div><span class="officer-badge">FO-CAR HQ</span></div></div>
     <div class="officer-card"><div class="officer-banner" style="background:var(--red)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--red)">JB</div></div><div class="officer-info"><div class="officer-name">Juan B. Buagan</div><div class="officer-role">BDMU Chief / Data Analyst</div><span class="officer-badge">BDMU</span></div></div>
