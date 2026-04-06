@@ -408,17 +408,6 @@ canvas{display:block;max-width:100%}
       <h2><span class="ab"></span> ICT – Information &amp; Communications Technology</h2>
       <div class="bc">Home › ICT &nbsp;|&nbsp; IT Equipment Inventory &amp; System Status</div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center">
-      <button class="btn-primary" style="font-size:11px;padding:5px 13px" onclick="exportIctCSV()"><i class="fa fa-download"></i> Export CSV</button>
-      <button class="btn-primary" style="font-size:11px;padding:5px 13px;background:var(--green)" onclick="sheetRefreshTab('ict')"><i class="fa fa-rotate" id="ict-spin"></i> Sync Sheet</button>
-    </div>
-  </div>
-  <div id="ict-sheet-bar" style="display:none;background:#F0F7FF;border:1px solid #C5D5EA;border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-    <i class="fa fa-link" style="color:var(--blue)"></i>
-    <span style="font-size:11.5px;font-weight:600;color:var(--blue)">Google Sheet URL (ICT Inventory tab):</span>
-    <input id="ict-url-input" type="text" class="gcal-url-input" style="flex:1;min-width:280px" placeholder="Paste published CSV URL… e.g. https://docs.google.com/spreadsheets/d/e/…/pub?output=csv&gid=0">
-    <button class="gcal-load-btn" onclick="sheetConnect('ict')"><i class="fa fa-plug"></i> Connect</button>
-    <span id="ict-sheet-msg" style="font-size:11px"></span>
   </div>
 
   <!-- KPI Row -->
@@ -429,100 +418,11 @@ canvas{display:block;max-width:100%}
     <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Warranty / Return</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-rotate-left"></i></div></div><div class="kpi-value" style="color:var(--green)">14</div><div class="kpi-sub">Warranty claims &amp; returns</div></div>
   </div>
 
-  <!-- Charts Row -->
-  <div style="display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:15px;margin-bottom:16px">
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-chart-bar"></i> Equipment by Province</h3><span class="card-tag">All Records</span></div>
-      <div class="card-body" style="padding:12px"><canvas id="ictProvChart" height="210"></canvas></div>
-    </div>
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-chart-pie"></i> Equipment Type</h3></div>
-      <div class="card-body" style="padding:12px"><canvas id="ictTypeChart" height="210"></canvas></div>
-    </div>
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-chart-pie"></i> Recommendation</h3></div>
-      <div class="card-body" style="padding:12px"><canvas id="ictRecoChart" height="210"></canvas></div>
-    </div>
-  </div>
-
-  <!-- System Status Cards -->
-  <div class="module-grid" style="margin-bottom:16px">
-    <div class="module-card" style="border-top-color:var(--green)"><div class="module-icon">🖥️</div><div class="module-title">System Status</div><div class="module-desc">DMIS servers and infrastructure health across CAR region.</div><div class="module-count" style="color:var(--green)">99.8%</div><div class="module-count-lbl">Uptime</div></div>
-    <div class="module-card" style="border-top-color:var(--red)"><div class="module-icon">🔒</div><div class="module-title">Security &amp; Access</div><div class="module-desc">User account management, role-based permissions, and incident tracking.</div><div class="module-count">148</div><div class="module-count-lbl">Active Users</div></div>
-    <div class="module-card" style="border-top-color:var(--green)"><div class="module-icon">🌐</div><div class="module-title">Network</div><div class="module-desc">Internet connectivity for all FO-CAR offices and provincial units.</div><div class="module-count">7/7</div><div class="module-count-lbl">Offices Online</div></div>
-    <div class="module-card" style="border-top-color:var(--blue)"><div class="module-icon">💾</div><div class="module-title">Data Backup</div><div class="module-desc">Automated daily backups. Last backup: March 2, 2026 at 2:00 AM.</div><div class="module-count" style="color:var(--green)">OK</div><div class="module-count-lbl">Status</div></div>
-    <div class="module-card" style="border-top-color:var(--orange)"><div class="module-icon">📋</div><div class="module-title">IT Help Desk</div><div class="module-desc">Ticket management for ICT support requests from DMIS officers and staff.</div><div class="module-count" style="color:var(--orange)">12</div><div class="module-count-lbl">Open Tickets</div></div>
-    <div class="module-card" style="border-top-color:var(--blue-light)"><div class="module-icon">📡</div><div class="module-title">API Integration</div><div class="module-desc">Data exchange between DMIS and national 4Ps systems (NHTS-PR, Listahanan).</div><div class="module-count">Active</div><div class="module-count-lbl">API Status</div></div>
-  </div>
-
-  <!-- IT Equipment Inventory Table -->
   <div class="card">
-    <div class="card-head" style="flex-wrap:wrap;gap:8px">
-      <h3><i class="fa fa-table"></i> IT Equipment Inventory – Serviced &amp; Pre-Inspected</h3>
-      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">
-        <select class="lt-filter" id="ict-prov-filter" onchange="filterIctTable()" style="font-size:11px">
-          <option value="ALL">All Provinces</option>
-          <option value="RPMO">RPMO</option>
-          <option value="Abra">Abra</option>
-          <option value="Apayao">Apayao</option>
-          <option value="Benguet">Benguet</option>
-          <option value="Baguio City">Baguio City</option>
-          <option value="Ifugao">Ifugao</option>
-          <option value="Kalinga">Kalinga</option>
-          <option value="Mountain Province">Mountain Province</option>
-        </select>
-        <select class="lt-filter" id="ict-type-filter" onchange="filterIctTable()" style="font-size:11px">
-          <option value="ALL">All Types</option>
-          <option value="Laptop">Laptop</option>
-          <option value="Computer Set">Computer Set</option>
-          <option value="CPU">CPU</option>
-          <option value="Printer">Printer</option>
-          <option value="UPS">UPS</option>
-          <option value="Monitor">Monitor</option>
-          <option value="Charger">Charger</option>
-          <option value="Other">Other</option>
-        </select>
-        <select class="lt-filter" id="ict-reco-filter" onchange="filterIctTable()" style="font-size:11px">
-          <option value="ALL">All Recommendations</option>
-          <option value="Disposal">Disposal</option>
-          <option value="Repair">Repair</option>
-          <option value="Warranty">Warranty</option>
-          <option value="Return">Return/Re-issuance</option>
-          <option value="Surrender">Surrender</option>
-        </select>
-      </div>
-      <span class="card-tag" id="ict-table-count">73 records</span>
+    <div class="card-head"><h3><i class="fa fa-chart-line"></i> ICT Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
+    <div class="looker-wrap">
+      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/05bdb7cd-c9ae-4989-85c5-be380d8492dd/page/VVwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
     </div>
-    <div style="overflow-x:auto;max-height:420px;overflow-y:auto">
-      <table class="data-table">
-        <thead style="position:sticky;top:0;z-index:2">
-          <tr>
-            <th>#</th>
-            <th>Province</th>
-            <th>Accountable Person</th>
-            <th>Property No.</th>
-            <th>Equipment Details</th>
-            <th>Type</th>
-            <th>Defect / Complaint</th>
-            <th>Recommendation</th>
-            <th>Inspected By</th>
-            <th>Date Inspected</th>
-          </tr>
-        </thead>
-        <tbody id="ict-tbody"></tbody>
-      </table>
-    </div>
-    <div style="padding:8px 14px;font-size:10.5px;color:var(--text-soft);background:#FAFCFF;border-top:1px solid var(--border)">
-      Source: Inventory of Serviced and Pre-Inspected IT Equipment – 4Ps RPMO-CAR &nbsp;·&nbsp; <strong id="ict-shown-count">73</strong> records shown
-    </div>
-  </div>
-
-  <!-- ICT Calendar -->
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> ICT Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>ICT Calendar:</label><input class="gcal-url-input" id="gcal-ict-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-ict-frame','gcal-ict-url','gcal-ict-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-ict-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>ICT Calendar Not Loaded</p></div>
-    <iframe id="gcal-ict-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
   </div>
 </div>
 
@@ -626,36 +526,6 @@ canvas{display:block;max-width:100%}
       <h2><span class="ab"></span> CVS – Compliance Verification System</h2>
       <div class="bc">Home › CVS &nbsp;|&nbsp; NAS/NASH Tracking + MC No. 36 Consolidated Validation</div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <select class="lt-filter" id="cvs-province-filter" onchange="updateCVSCharts()">
-        <option value="ALL">All Provinces</option>
-        <option value="ABRA">Abra</option>
-        <option value="APAYAO">Apayao</option>
-        <option value="BENGUET">Benguet</option>
-        <option value="IFUGAO">Ifugao</option>
-        <option value="KALINGA">Kalinga</option>
-        <option value="MOUNTAIN PROVINCE">Mountain Province</option>
-        <option value="BAGUIO">Baguio City</option>
-      </select>
-      <button class="btn-primary" style="font-size:11px;padding:5px 13px"><i class="fa fa-download"></i> Export</button>
-      <button class="btn-primary" style="font-size:11px;padding:5px 13px;background:var(--green)" onclick="sheetRefreshTab('cvs')"><i class="fa fa-rotate" id="cvs-spin"></i> Sync Sheet</button>
-    </div>
-  </div>
-  <div id="cvs-sheet-bar" style="display:none;background:#F0F7FF;border:1px solid #C5D5EA;border-radius:8px;padding:10px 14px;margin-bottom:14px">
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px">
-      <i class="fa fa-link" style="color:var(--blue)"></i>
-      <span style="font-size:11.5px;font-weight:600;color:var(--blue)">NAS/NASH Sheet URL:</span>
-      <input id="cvs-url-input" type="text" class="gcal-url-input" style="flex:1;min-width:250px" placeholder="https://docs.google.com/spreadsheets/d/e/…/pub?output=csv&gid=NAS_NASH_GID">
-      <button class="gcal-load-btn" onclick="sheetConnect('cvs')"><i class="fa fa-plug"></i> Connect</button>
-      <span id="cvs-sheet-msg" style="font-size:11px"></span>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-      <i class="fa fa-shield-halved" style="color:var(--red)"></i>
-      <span style="font-size:11.5px;font-weight:600;color:var(--red)">MC No.36 Sheet URL:</span>
-      <input id="mc36-url-input" type="text" class="gcal-url-input" style="flex:1;min-width:250px" placeholder="https://docs.google.com/spreadsheets/d/e/…/pub?output=csv&gid=MC36_GID">
-      <button class="gcal-load-btn" style="background:var(--red)" onclick="sheetConnect('mc36')"><i class="fa fa-plug"></i> Connect</button>
-      <span id="mc36-sheet-msg" style="font-size:11px"></span>
-    </div>
   </div>
 
   <!-- ── NAS/NASH KPIs ── -->
@@ -665,186 +535,12 @@ canvas{display:block;max-width:100%}
     <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">No Validated Reason</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-question-circle"></i></div></div><div class="kpi-value" style="color:var(--orange)" id="cvs-novalidated">—</div><div class="kpi-sub">Not yet validated/monitored</div></div>
     <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">For Case Management</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-clipboard-list"></i></div></div><div class="kpi-value" style="color:var(--green)" id="cvs-casemgmt">—</div><div class="kpi-sub">Referred for intervention</div></div>
   </div>
-  <div class="cvs-grid">
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-chart-bar"></i> Top Validated Reasons (NAS/NASH)</h3></div><div class="card-body" style="padding:12px"><canvas id="chartReasons" height="220"></canvas></div></div>
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-chart-pie"></i> Intervention Category Breakdown</h3></div><div class="card-body" style="padding:12px"><canvas id="chartIntervention" height="220"></canvas></div></div>
-  </div>
-  <div style="height:15px"></div>
-  <div class="cvs-3col">
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-venus-mars"></i> Sex Distribution</h3></div><div class="card-body" style="padding:12px"><canvas id="chartSex" height="200"></canvas></div></div>
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-graduation-cap"></i> Grade Group</h3></div><div class="card-body" style="padding:12px"><canvas id="chartGrade" height="200"></canvas></div></div>
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-birthday-cake"></i> Age Group</h3></div><div class="card-body" style="padding:12px"><canvas id="chartAge" height="200"></canvas></div></div>
-  </div>
-  <div style="height:15px"></div>
+
   <div class="card">
-    <div class="card-head"><h3><i class="fa fa-map"></i> NAS/NASH Records by Province</h3><span class="card-tag" id="cvs-last-update">CAR Region · P1 2026</span></div>
-    <div style="overflow-x:auto"><table class="data-table">
-      <thead><tr><th>Province</th><th>City/Municipality</th><th>Total Records</th><th>Has Reason</th><th>No Reason</th><th>For Case Mgmt</th><th>IP Count</th></tr></thead>
-      <tbody id="cvs-province-tbody"></tbody>
-    </table></div>
-  </div>
-
-  <!-- ══════════════════════════════════════════════════
-       MC No. 36 CONSOLIDATED VALIDATION RESULT TRACKING
-  ══════════════════════════════════════════════════ -->
-  <div class="mc36-divider">
-    <div class="mc36-divider-line"></div>
-    <div class="mc36-divider-label"><i class="fa fa-shield-halved"></i> &nbsp;MC No. 36 – Consolidated Validation Result Tracking</div>
-    <div class="mc36-divider-line" style="background:linear-gradient(to left,var(--red),transparent)"></div>
-  </div>
-
-  <div style="background:#FFF5F5;border:1px solid #FFCDD2;border-radius:8px;padding:11px 16px;margin-bottom:16px;display:flex;align-items:flex-start;gap:10px">
-    <i class="fa fa-circle-info" style="color:var(--red);margin-top:2px;font-size:14px"></i>
-    <div style="font-size:12px;color:#5D0000;line-height:1.6">
-      <strong>Source:</strong> 2025 MC No. 36 Consolidated Validation Result Tracking Sheet &nbsp;|&nbsp; <strong>Reference Period:</strong> P1 2025 &nbsp;|&nbsp; <strong>As of:</strong> July 25, 2025 &nbsp;|&nbsp; <strong>CAR Total Records:</strong> 342 HHs &nbsp;|&nbsp; Benguet has 87 records with #REF! (formula errors) pending encoding resolution.
+    <div class="card-head"><h3><i class="fa fa-chart-line"></i> CVS Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
+    <div class="looker-wrap">
+      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/0f5e720b-3175-44b5-91a4-c669e2384f18/page/lDwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
     </div>
-  </div>
-
-  <!-- MC36 KPI ROWS -->
-  <div class="kpi-grid">
-    <div class="kpi-card" style="border-top-color:#7B1FA2">
-      <div class="kpi-top"><div class="kpi-label">Total HH Records (CAR)</div><div class="kpi-icon" style="color:#7B1FA2"><i class="fa fa-house-chimney-user"></i></div></div>
-      <div class="kpi-value" style="color:#7B1FA2">342</div>
-      <div class="kpi-sub">6 CAR Provinces · P1 2025</div>
-    </div>
-    <div class="kpi-card" style="border-top-color:var(--red)">
-      <div class="kpi-top"><div class="kpi-label">For MC No. 36</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-triangle-exclamation"></i></div></div>
-      <div class="kpi-value" style="color:var(--red)">71</div>
-      <div class="kpi-sub"><span class="kpi-trend down"><i class="fa fa-percent"></i> 20.8%</span> of total records</div>
-    </div>
-    <div class="kpi-card" style="border-top-color:var(--green)">
-      <div class="kpi-top"><div class="kpi-label">For Exemption (1 &amp; 2)</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-circle-check"></i></div></div>
-      <div class="kpi-value" style="color:var(--green)">177</div>
-      <div class="kpi-sub">Exemption 1: 13 &nbsp;·&nbsp; Exemption 2: 164</div>
-    </div>
-    <div class="kpi-card" style="border-top-color:var(--orange)">
-      <div class="kpi-top"><div class="kpi-label">Pending / No Result</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-hourglass-half"></i></div></div>
-      <div class="kpi-value" style="color:var(--orange)">94</div>
-      <div class="kpi-sub">#REF! (87) + Blank (7) entries</div>
-    </div>
-  </div>
-
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px">
-    <div class="kpi-card" style="border-top-color:#1565C0;padding:14px 15px">
-      <div class="kpi-top"><div class="kpi-label">With Notice of Failure</div><div class="kpi-icon" style="color:#1565C0;font-size:18px"><i class="fa fa-file-circle-exclamation"></i></div></div>
-      <div class="kpi-value" style="font-size:28px;color:#1565C0">134</div>
-      <div class="kpi-sub">Without Notice: 208</div>
-    </div>
-    <div class="kpi-card" style="border-top-color:#6A1B9A;padding:14px 15px">
-      <div class="kpi-top"><div class="kpi-label">With Encouragement Letter</div><div class="kpi-icon" style="color:#6A1B9A;font-size:18px"><i class="fa fa-envelope-open-text"></i></div></div>
-      <div class="kpi-value" style="font-size:28px;color:#6A1B9A">61</div>
-      <div class="kpi-sub">Without Letter: 281</div>
-    </div>
-    <div class="kpi-card" style="border-top-color:#00695C;padding:14px 15px">
-      <div class="kpi-top"><div class="kpi-label">NFC Facilitated</div><div class="kpi-icon" style="color:#00695C;font-size:18px"><i class="fa fa-handshake"></i></div></div>
-      <div class="kpi-value" style="font-size:28px;color:#00695C">61</div>
-      <div class="kpi-sub">NFC Not Facilitated: 281</div>
-    </div>
-    <div class="kpi-card" style="border-top-color:#BF360C;padding:14px 15px">
-      <div class="kpi-top"><div class="kpi-label">With Validation</div><div class="kpi-icon" style="color:#BF360C;font-size:18px"><i class="fa fa-clipboard-check"></i></div></div>
-      <div class="kpi-value" style="font-size:28px;color:#BF360C">248</div>
-      <div class="kpi-sub">Without: 16 &nbsp;|&nbsp; #REF!: 78</div>
-    </div>
-  </div>
-
-  <!-- MC36 CHARTS -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:16px">
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-chart-pie"></i> Validation Result Distribution – CAR</h3><span class="card-tag">342 HHs · P1 2025</span></div>
-      <div class="card-body" style="padding:14px"><canvas id="mc36ChartResult" height="220"></canvas></div>
-    </div>
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-chart-bar"></i> For MC No. 36 by Province</h3></div>
-      <div class="card-body" style="padding:14px"><canvas id="mc36ChartProvince" height="220"></canvas></div>
-    </div>
-  </div>
-
-  <!-- MC36 PROCESS CHART -->
-  <div class="card" style="margin-bottom:16px">
-    <div class="card-head"><h3><i class="fa fa-bars-progress"></i> MC No. 36 Process Compliance by Province</h3><span class="card-tag">Notice · Letter · NFC</span></div>
-    <div class="card-body" style="padding:14px"><canvas id="mc36ChartProcess" height="170"></canvas></div>
-  </div>
-
-  <!-- HH STATUS + PROVINCE TABLE -->
-  <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:15px;margin-bottom:16px">
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head"><h3><i class="fa fa-users"></i> HH Status as of Jan 31, 2026</h3></div>
-      <div class="card-body" style="padding:14px"><canvas id="mc36ChartStatus" height="240"></canvas></div>
-    </div>
-    <div class="card" style="margin-bottom:0">
-      <div class="card-head">
-        <h3><i class="fa fa-table-list"></i> Province Summary</h3>
-        <select class="lt-filter" id="mc36-prov-filter" onchange="filterMC36ProvTable()" style="font-size:11px">
-          <option value="ALL">All Provinces</option>
-          <option value="Abra">Abra</option>
-          <option value="Apayao">Apayao</option>
-          <option value="Benguet">Benguet</option>
-          <option value="Ifugao">Ifugao</option>
-          <option value="Kalinga">Kalinga</option>
-          <option value="Mountain Province">Mountain Province</option>
-        </select>
-      </div>
-      <div style="overflow-x:auto;max-height:320px;overflow-y:auto">
-        <table class="data-table">
-          <thead style="position:sticky;top:0;z-index:2">
-            <tr>
-              <th>Province</th><th>Total</th>
-              <th style="background:#B71C1C">MC No.36</th>
-              <th style="background:#1B5E20">Exemp. 1</th>
-              <th style="background:#0D47A1">Exemp. 2</th>
-              <th style="background:#E65100">Pending</th>
-              <th>Active</th><th>Graduated</th><th>W/ Notice</th><th>NFC</th>
-            </tr>
-          </thead>
-          <tbody id="mc36-prov-tbody"></tbody>
-        </table>
-      </div>
-    </div>
-  </div>
-
-  <!-- MUNICIPALITY DETAIL TABLE -->
-  <div class="card">
-    <div class="card-head">
-      <h3><i class="fa fa-map-pin"></i> Municipality-Level Detail – MC No. 36 Tracking</h3>
-      <div style="display:flex;gap:7px;flex-wrap:wrap;align-items:center">
-        <select class="lt-filter" id="mc36-muni-prov-filter" onchange="filterMC36MuniTable()" style="font-size:11px">
-          <option value="ALL">All Provinces</option>
-          <option value="Abra">Abra</option>
-          <option value="Apayao">Apayao</option>
-          <option value="Benguet">Benguet</option>
-          <option value="Ifugao">Ifugao</option>
-          <option value="Kalinga">Kalinga</option>
-          <option value="Mountain Province">Mountain Province</option>
-        </select>
-        <button class="btn-primary" style="font-size:11px;padding:4px 11px" onclick="exportMC36CSV()"><i class="fa fa-download"></i> Export CSV</button>
-      </div>
-    </div>
-    <div style="overflow-x:auto">
-      <table class="data-table">
-        <thead>
-          <tr>
-            <th>Province</th><th>Municipality</th><th>Total HHs</th>
-            <th style="background:#B71C1C">For MC No.36</th>
-            <th style="background:#1B5E20">Exemption 1</th>
-            <th style="background:#0D47A1">Exemption 2</th>
-            <th style="background:#E65100">Pending</th>
-            <th>Active</th><th>Graduated</th><th>W/ Notice</th><th>W/ Letter</th><th>NFC</th><th>W/ Validation</th>
-          </tr>
-        </thead>
-        <tbody id="mc36-muni-tbody"></tbody>
-      </table>
-    </div>
-    <div style="padding:8px 14px;font-size:10.5px;color:var(--text-soft);background:#FAFCFF;border-top:1px solid var(--border)">
-      Total: <strong id="mc36-muni-total-label">50 municipalities</strong> shown &nbsp;·&nbsp; Source: MC No. 36 Consolidated Validation Result Tracking – CAR Region, P1 2025
-    </div>
-  </div>
-
-  <!-- CVS CALENDAR -->
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> CVS Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>CVS Calendar:</label><input class="gcal-url-input" id="gcal-cvs-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-cvs-frame','gcal-cvs-url','gcal-cvs-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-cvs-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>CVS Calendar Not Loaded</p></div>
-    <iframe id="gcal-cvs-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
   </div>
 </div>
 
