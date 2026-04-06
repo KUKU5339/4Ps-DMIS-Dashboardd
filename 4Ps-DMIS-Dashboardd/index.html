@@ -404,22 +404,28 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
   </div>
 </div>
 
-<!-- ICT -->
+<!-- ═══════════════════ ICT PAGE ═══════════════════ -->
 <div id="page-ict" class="page">
-  <div class="page-header"><div class="ph-left"><h2><span class="ab"></span> ICT – Information &amp; Communications Technology</h2><div class="bc">Home › ICT</div></div></div>
-  <div class="module-grid">
-    <div class="module-card" style="border-top-color:var(--blue)"><div class="module-icon">🖥️</div><div class="module-title">System Status</div><div class="module-desc">Monitor DMIS servers, uptime, and infrastructure health across CAR region.</div><div class="module-count" style="color:var(--green)">99.8%</div><div class="module-count-lbl">Uptime</div></div>
-    <div class="module-card" style="border-top-color:var(--red)"><div class="module-icon">🔒</div><div class="module-title">Security &amp; Access</div><div class="module-desc">User account management, role-based permissions, and incident tracking.</div><div class="module-count">148</div><div class="module-count-lbl">Active Users</div></div>
-    <div class="module-card" style="border-top-color:var(--green)"><div class="module-icon">🌐</div><div class="module-title">Network</div><div class="module-desc">Internet connectivity status for all FO-CAR offices and provincial units.</div><div class="module-count">7/7</div><div class="module-count-lbl">Offices Online</div></div>
-    <div class="module-card" style="border-top-color:var(--orange)"><div class="module-icon">💾</div><div class="module-title">Data Backup</div><div class="module-desc">Automated daily backups. Last backup: March 2, 2026 at 2:00 AM.</div><div class="module-count" style="color:var(--green)">OK</div><div class="module-count-lbl">Status</div></div>
-    <div class="module-card"><div class="module-icon">📋</div><div class="module-title">IT Help Desk</div><div class="module-desc">Ticket management for ICT support requests from DMIS officers and staff.</div><div class="module-count" style="color:var(--orange)">12</div><div class="module-count-lbl">Open Tickets</div></div>
-    <div class="module-card" style="border-top-color:var(--blue-light)"><div class="module-icon">📡</div><div class="module-title">API Integration</div><div class="module-desc">Data exchange between DMIS and national 4Ps systems (NHTS-PR, Listahanan).</div><div class="module-count">Active</div><div class="module-count-lbl">API Status</div></div>
+  <div class="page-header">
+    <div class="ph-left">
+      <h2><span class="ab"></span> ICT – Information &amp; Communications Technology</h2>
+      <div class="bc">Home › ICT &nbsp;|&nbsp; IT Equipment Inventory &amp; System Status</div>
+    </div>
   </div>
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> ICT Team – Google Calendar</h3><span class="gcal-hint">Paste your ICT team's Google Calendar embed URL</span></div>
-    <div class="gcal-input-bar"><label>ICT Calendar:</label><input class="gcal-url-input" id="gcal-ict-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-ict-frame','gcal-ict-url','gcal-ict-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-ict-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>ICT Calendar Not Loaded</p><small>Paste your ICT Google Calendar embed URL above.</small></div>
-    <iframe id="gcal-ict-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+
+  <!-- KPI Row -->
+  <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kpi-card" style="border-top-color:var(--blue)"><div class="kpi-top"><div class="kpi-label">Total Equipment Records</div><div class="kpi-icon" style="color:var(--blue)"><i class="fa fa-database"></i></div></div><div class="kpi-value" style="color:var(--blue)">73</div><div class="kpi-sub">All provinces – CAR</div></div>
+    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">For Disposal</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-trash-can"></i></div></div><div class="kpi-value" style="color:var(--red)">47</div><div class="kpi-sub">Unserviceable units</div></div>
+    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">For Repair</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-screwdriver-wrench"></i></div></div><div class="kpi-value" style="color:var(--orange)">12</div><div class="kpi-sub">Pending repair action</div></div>
+    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Warranty / Return</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-rotate-left"></i></div></div><div class="kpi-value" style="color:var(--green)">14</div><div class="kpi-sub">Warranty claims &amp; returns</div></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h3><i class="fa fa-chart-line"></i> ICT Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
+    <div class="looker-wrap">
+      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/05bdb7cd-c9ae-4989-85c5-be380d8492dd/page/VVwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+    </div>
   </div>
 </div>
 
@@ -448,72 +454,28 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
   </div>
 </div>
 
-<!-- CVS -->
+<!-- ═══════════════════ CVS PAGE ═══════════════════ -->
 <div id="page-cvs" class="page">
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> CVS – Compliance Verification System</h2>
-      <div class="bc">Home › CVS &nbsp;|&nbsp; Source: NAS/NASH Reason Validation Tracking – CAR 2025</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <select class="lt-filter" id="cvs-province-filter" onchange="updateCVSCharts()">
-        <option value="ALL">All Provinces</option>
-        <option value="ABRA">Abra</option>
-        <option value="APAYAO">Apayao</option>
-        <option value="BENGUET">Benguet</option>
-        <option value="IFUGAO">Ifugao</option>
-        <option value="KALINGA">Kalinga</option>
-        <option value="MOUNTAIN PROVINCE">Mountain Province</option>
-        <option value="BAGUIO">Baguio City</option>
-      </select>
-      <button class="btn-primary" style="font-size:11px;padding:5px 13px" onclick="exportCSV()"><i class="fa fa-download"></i> Export CSV</button>
+      <div class="bc">Home › CVS &nbsp;|&nbsp; NAS/NASH Tracking + MC No. 36 Consolidated Validation</div>
     </div>
   </div>
+
+  <!-- ── NAS/NASH KPIs ── -->
   <div class="kpi-grid">
     <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Total NAS/NASH Records</div><div class="kpi-icon"><i class="fa fa-users"></i></div></div><div class="kpi-value" id="cvs-total">—</div><div class="kpi-sub">CAR Region – P1 2026</div></div>
-    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">With Validated Reason</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-exclamation-circle"></i></div></div><div class="kpi-value" style="color:var(--red)" id="cvs-validated">—</div><div class="kpi-sub">Have identified reason for non-attendance</div></div>
+    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">With Validated Reason</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-exclamation-circle"></i></div></div><div class="kpi-value" style="color:var(--red)" id="cvs-validated">—</div><div class="kpi-sub">Identified reason for non-attendance</div></div>
     <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">No Validated Reason</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-question-circle"></i></div></div><div class="kpi-value" style="color:var(--orange)" id="cvs-novalidated">—</div><div class="kpi-sub">Not yet validated/monitored</div></div>
     <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">For Case Management</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-clipboard-list"></i></div></div><div class="kpi-value" style="color:var(--green)" id="cvs-casemgmt">—</div><div class="kpi-sub">Referred for intervention</div></div>
   </div>
-  <div class="cvs-grid">
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-chart-bar"></i> Top Validated Reasons (NAS/NASH)</h3></div><div class="card-body" style="padding:12px"><canvas id="chartReasons" height="220"></canvas></div></div>
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-chart-pie"></i> Intervention Category Breakdown</h3></div><div class="card-body" style="padding:12px"><canvas id="chartIntervention" height="220"></canvas></div></div>
-  </div>
-  <div style="height:15px"></div>
-  <div class="cvs-3col">
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-venus-mars"></i> Sex Distribution</h3></div><div class="card-body" style="padding:12px"><canvas id="chartSex" height="200"></canvas></div></div>
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-graduation-cap"></i> Grade Group</h3></div><div class="card-body" style="padding:12px"><canvas id="chartGrade" height="200"></canvas></div></div>
-    <div class="card" style="margin-bottom:0"><div class="card-head"><h3><i class="fa fa-birthday-cake"></i> Age Group</h3></div><div class="card-body" style="padding:12px"><canvas id="chartAge" height="200"></canvas></div></div>
-  </div>
-  <div style="height:15px"></div>
+
   <div class="card">
-    <div class="card-head"><h3><i class="fa fa-map"></i> NAS/NASH Records by Province</h3><span class="card-tag" id="cvs-last-update">CAR Region · P1 2026</span></div>
-    <div style="overflow-x:auto"><table class="data-table">
-      <thead><tr><th>Province</th><th>City/Municipality</th><th>Total Records</th><th>Has Reason</th><th>No Reason</th><th>For Case Mgmt</th><th>IP Count</th></tr></thead>
-      <tbody id="cvs-province-tbody"></tbody>
-    </table></div>
-  </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-list"></i> Recent NAS/NASH Validation Records</h3><span class="card-tag">Sample Data</span></div>
-    <div style="overflow-x:auto"><table class="data-table">
-      <thead><tr><th>Name</th><th>Province</th><th>Municipality</th><th>Sex</th><th>Age</th><th>Grade Level</th><th>Validated Reason</th><th>Intervention</th><th>CV Remarks</th></tr></thead>
-      <tbody>
-        <tr><td>Yumie Ayesha Nicandro</td><td>Abra</td><td>Bangued</td><td>Female</td><td>5</td><td>No grade completed</td><td>22 - Emotionally Unprepared</td><td>For Case Management</td><td><span class="sb pending">Not Monitored</span></td></tr>
-        <tr><td>Charles Giar Bonifacio</td><td>Abra</td><td>Bangued</td><td>Male</td><td>14</td><td>Grade 7 – JHS</td><td>5 - Working</td><td>For Case Management</td><td><span class="sb pending">Not Monitored</span></td></tr>
-        <tr><td>Lawrence King Valdez</td><td>Abra</td><td>Bangued</td><td>Male</td><td>12</td><td>Grade 7 – JHS</td><td>NO VALIDATED REASON</td><td>—</td><td><span class="sb active">Compliant</span></td></tr>
-        <tr><td>Melhaina Macaundas</td><td>Abra</td><td>Bangued</td><td>Female</td><td>14</td><td>Grade 9 – JHS</td><td>39 - Registered under another facility</td><td>Update Issues</td><td><span class="sb pending">Not Monitored</span></td></tr>
-        <tr><td>Vincent Jade Bayquen</td><td>Abra</td><td>Bangued</td><td>Male</td><td>17</td><td>Grade 10 – JHS</td><td>9 - Bullied</td><td>For Case Management</td><td><span class="sb pending">Not Monitored</span></td></tr>
-        <tr><td>Ma. Trisha Valeros</td><td>Abra</td><td>Bangued</td><td>Female</td><td>18</td><td>Grade 12 – SHS</td><td>19 - Early Pregnancy</td><td>For Case Management</td><td><span class="sb pending">Not Monitored</span></td></tr>
-        <tr><td>Lea Janey Borreta</td><td>Abra</td><td>Bangued</td><td>Female</td><td>18</td><td>Grade 7 – JHS</td><td>22 - Emotionally Unprepared</td><td>For Case Management</td><td><span class="sb pending">Not Monitored</span></td></tr>
-        <tr><td>Reymark Bonifacio</td><td>Benguet</td><td>La Trinidad</td><td>Male</td><td>16</td><td>Grade 5 - Elem</td><td>10 - Financial</td><td>For Case Management</td><td><span class="sb pending">Not Monitored</span></td></tr>
-      </tbody>
-    </table></div>
-  </div>
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> CVS Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>CVS Calendar:</label><input class="gcal-url-input" id="gcal-cvs-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-cvs-frame','gcal-cvs-url','gcal-cvs-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-cvs-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>CVS Calendar Not Loaded</p><small>Paste your CVS team's Google Calendar embed URL here.</small></div>
-    <iframe id="gcal-cvs-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+    <div class="card-head"><h3><i class="fa fa-chart-line"></i> CVS Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
+    <div class="looker-wrap">
+      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/0f5e720b-3175-44b5-91a4-c669e2384f18/page/lDwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+    </div>
   </div>
 </div>
 
