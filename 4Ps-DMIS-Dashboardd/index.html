@@ -430,20 +430,13 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <button class="btn-primary" onclick="exportCSV()"><i class="fa fa-file-export"></i> Export Data</button>
     </div>
   </div>
-  <div class="kpi-grid">
-    <div class="kpi-card"><div class="kpi-top"><div class="kpi-label">Total Records</div><div class="kpi-icon"><i class="fa fa-database"></i></div></div><div class="kpi-value">143,872</div><div class="kpi-sub">All provinces – CAR</div></div>
-    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">Pending Validation</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-hourglass-half"></i></div></div><div class="kpi-value" style="color:var(--red)">2,340</div><div class="kpi-sub">Awaiting BDMU review</div></div>
-    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Validated This Month</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-check-circle"></i></div></div><div class="kpi-value" style="color:var(--green)">1,820</div><div class="kpi-sub">March 2026</div></div>
-    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">Duplicate Flags</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-exclamation-triangle"></i></div></div><div class="kpi-value" style="color:var(--orange)">47</div><div class="kpi-sub">Needs resolution</div></div>
+  <div class="card">
+    <div class="card-head"><h3><i class="fa fa-chart-line"></i> BDMU Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
+    <div class="looker-wrap">
+      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/10bc3e18-2aa0-4e26-be9b-a92146da6768/page/b2ktF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+    </div>
   </div>
-  <div class="card"><div class="card-head"><h3><i class="fa fa-database"></i> BDMU Data Queue</h3></div>
-    <div style="overflow-x:auto"><table class="data-table"><thead><tr><th>Record ID</th><th>Province</th><th>HH Count</th><th>Submitted</th><th>Encoder</th><th>Status</th></tr></thead><tbody>
-      <tr><td>BDM-0342</td><td>Baguio City</td><td>154</td><td>Mar 1, 2026</td><td>R. Valdez</td><td><span class="sb active">Validated</span></td></tr>
-      <tr><td>BDM-0341</td><td>Benguet</td><td>288</td><td>Mar 1, 2026</td><td>J. Pagapong</td><td><span class="sb pending">Pending</span></td></tr>
-      <tr><td>BDM-0340</td><td>Abra</td><td>412</td><td>Feb 28, 2026</td><td>L. Corpuz</td><td><span class="sb active">Validated</span></td></tr>
-      <tr><td>BDM-0339</td><td>Ifugao</td><td>198</td><td>Feb 27, 2026</td><td>M. Dawang</td><td><span class="sb inactive">Flagged</span></td></tr>
-    </tbody></table></div>
-  </div>
+
   <div class="gcal-section">
     <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> BDMU Team – Google Calendar</h3></div>
     <div class="gcal-input-bar"><label>BDMU Calendar:</label><input class="gcal-url-input" id="gcal-bdmu-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-bdmu-frame','gcal-bdmu-url','gcal-bdmu-ph')"><i class="fa fa-check"></i> Load</button></div>
