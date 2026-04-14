@@ -96,13 +96,6 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .ph-left .bc{font-size:11.5px;color:var(--text-soft);margin-top:3px}
 .btn-primary{background:var(--blue);color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;transition:background .2s}
 .btn-primary:hover{background:var(--blue-mid)}
-.looker-toolbar{background:#fff;border-bottom:1px solid var(--border);padding:7px 18px;display:flex;align-items:center;gap:9px;position:sticky;top:0;z-index:90;margin:-22px -22px 22px;flex-wrap:wrap}
-.lt-label{font-size:11px;color:var(--text-soft);font-weight:600}
-.lt-filter{border:1px solid var(--border);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--text-main);background:#fff;cursor:pointer;font-family:'Barlow',sans-serif}
-.lt-btn{border:1px solid var(--border);border-radius:5px;padding:4px 11px;font-size:11.5px;background:#fff;cursor:pointer;color:var(--blue);font-weight:600;font-family:'Barlow',sans-serif;transition:all .15s;display:flex;align-items:center;gap:5px}
-.lt-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-.lt-sep{width:1px;height:18px;background:var(--border);margin:0 3px}
-.lt-export{margin-left:auto;background:var(--blue);color:#fff;border:none;padding:5px 13px;border-radius:5px;font-size:11.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:'Barlow',sans-serif}
 .card{background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);overflow:hidden;margin-bottom:16px}
 .card-head{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#FAFCFF}
 .card-head h3{font-family:'Barlow Condensed',sans-serif;font-size:14.5px;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:7px}
@@ -125,8 +118,9 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .leaflet-popup-content{margin:0;font-family:'Barlow',sans-serif;font-size:12px;line-height:1.5;min-width:180px}
 .leaflet-popup-tip-container{display:none}
 .leaflet-control-attribution{font-size:9px !important}
-.looker-wrap{width:100%;background:#f8f9ff;overflow:hidden}
-.looker-wrap iframe{display:block;width:100%;border:none}
+.looker-wrap{background:#fff;border-radius:10px;border:1px solid var(--border);padding:0;overflow:hidden;height:620px;position:relative;margin-top:15px;display:flex;flex-direction:column;gap:15px}
+.looker-wrap iframe{width:100%;height:100%;border:none;flex:1}
+.looker-wrap iframe:last-child{border-top:1px solid var(--border)}
 .data-table{width:100%;border-collapse:collapse;font-size:12.5px}
 .data-table thead th{background:var(--blue);color:#fff;padding:9px 12px;text-align:left;font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px}
 .data-table tbody tr:nth-child(even){background:#F4F8FF}
@@ -135,20 +129,6 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .sb{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:600}
 .sb.active{background:#E6F4EC;color:var(--green)}.sb.pending{background:#FFF4E0;color:var(--orange)}.sb.inactive{background:#FDEAEA;color:var(--red)}
 .two-col{display:grid;grid-template-columns:1.55fr 1fr;gap:15px;margin-bottom:16px}
-.gcal-section{background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);overflow:hidden;margin-top:18px}
-.gcal-head{background:var(--blue);color:#fff;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px}
-.gcal-head h3{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;gap:7px}
-.gcal-hint{font-size:10.5px;opacity:.7}
-.gcal-input-bar{background:#FAFCFF;border-bottom:1px solid var(--border);padding:9px 16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.gcal-input-bar label{font-size:11.5px;font-weight:600;color:var(--text-soft)}
-.gcal-url-input{flex:1;min-width:200px;border:1px solid var(--border);border-radius:5px;padding:6px 11px;font-size:11.5px;font-family:'Barlow',sans-serif;outline:none;transition:border-color .2s}
-.gcal-url-input:focus{border-color:var(--blue)}
-.gcal-load-btn{background:var(--blue);color:#fff;border:none;padding:6px 13px;border-radius:5px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:'Barlow',sans-serif;display:flex;align-items:center;gap:5px}
-.gcal-load-btn:hover{background:var(--blue-mid)}
-.gcal-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:280px;color:var(--text-soft);gap:9px;background:#F8FAFF}
-.gcal-ph i{font-size:40px;color:#C5D5EA}
-.gcal-ph p{font-size:13px;font-weight:600;color:var(--text-main)}
-.gcal-ph small{font-size:11px;text-align:center;max-width:300px;line-height:1.55}
 .faq-list{display:flex;flex-direction:column;gap:9px}
 .faq-item{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:3px solid var(--blue-light)}
 .faq-q{padding:13px 16px;font-weight:600;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .15s;user-select:none}
@@ -232,7 +212,7 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
     <div class="tb-divider"></div>
     <div class="tb-titles">
       <div class="agency">DSWD Field Office – CAR</div>
-      <div class="sub">Baguio City, Benguet &nbsp;|&nbsp; DMIS Dashboard</div>
+      <div class="sub">Baguio City, Benguet</div>
     </div>
     <div class="tb-divider"></div>
     <div class="tb-program">Data Management Information System</div>
@@ -288,19 +268,10 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
 <nav class="sidebar" id="sidebar">
   <div class="sidebar-section">
     <div class="sidebar-label">Main</div>
-    <a class="nav-item active" onclick="showPage('dashboard',this)"><i class="fa fa-chart-line"></i><span class="nav-label"> Dashboard</span></a>
-  </div>
-  <hr>
-  <div class="sidebar-section">
-    <div class="sidebar-label">Modules</div>
-    <a class="nav-item" onclick="showPage('ict',this)"><i class="fa fa-laptop-code"></i><span class="nav-label"> ICT</span></a>
+    <a class="nav-item active" onclick="showPage('ict',this)"><i class="fa fa-laptop-code"></i><span class="nav-label"> ICT</span></a>
     <a class="nav-item" onclick="showPage('bdmu',this)"><i class="fa fa-database"></i><span class="nav-label"> BDMU</span></a>
     <a class="nav-item" onclick="showPage('cvs',this)"><i class="fa fa-check-double"></i><span class="nav-label"> CVS</span></a>
     <a class="nav-item" onclick="showPage('grs',this)"><i class="fa fa-hand-holding-heart"></i><span class="nav-label"> GRS</span></a>
-  </div>
-  <hr>
-  <div class="sidebar-section">
-    <div class="sidebar-label">Support</div>
     <a class="nav-item" onclick="showPage('officers',this)"><i class="fa fa-users"></i><span class="nav-label"> DMIS Officers</span></a>
     <a class="nav-item" onclick="showPage('faqs',this)"><i class="fa fa-question-circle"></i><span class="nav-label"> FAQs</span></a>
     <a class="nav-item" onclick="showPage('contact',this)"><i class="fa fa-envelope"></i><span class="nav-label"> Contact Us</span></a>
@@ -312,109 +283,16 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
 
 <main class="main" id="main-content">
 
-<!-- DASHBOARD -->
-<div id="page-dashboard" class="page active">
-  <div class="looker-toolbar">
-    <span class="lt-label">Period:</span>
-    <select class="lt-filter" id="dash-period"><option>Jan–Dec 2025</option><option>Q1 2025</option><option>Q2 2025</option></select>
-    <div class="lt-sep"></div>
-    <span class="lt-label">Region:</span>
-    <select class="lt-filter"><option>CAR – Cordillera Administrative Region</option></select>
-    <button class="lt-btn" id="filter-btn" onclick="applyFilter()"><i class="fa fa-filter"></i> Filter</button>
-    <button class="lt-btn" id="refresh-btn" onclick="refreshDash()"><i class="fa fa-sync-alt" id="refresh-icon"></i> Refresh</button>
-    <button class="lt-export" onclick="exportCSV()"><i class="fa fa-download"></i> Export CSV</button>
-  </div>
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> 4Ps DMIS Dashboard – CAR Region</h2>
-      <div class="bc" id="dash-bc">Home › Dashboard › CAR Overview &nbsp;|&nbsp; March 4, 2026</div>
-    </div>
-    <button class="btn-primary" onclick="printReport()"><i class="fa fa-print"></i> Print Report</button>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card" style="border-top-color:var(--blue)"><div class="kpi-top"><div class="kpi-label">Registered HHs</div><div class="kpi-icon" style="color:var(--blue)"><i class="fa fa-house-user"></i></div></div><div class="kpi-value">143,872</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +2.3%</span> vs last year</div></div>
-    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">Active Beneficiaries</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-users"></i></div></div><div class="kpi-value" style="color:var(--red)">127,450</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +1.8%</span> vs last quarter</div></div>
-    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Compliance Rate</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-chart-bar"></i></div></div><div class="kpi-value" style="color:var(--green)">91.4%</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +0.6%</span> this period</div></div>
-    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">Grievances Resolved</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-check-circle"></i></div></div><div class="kpi-value" style="color:var(--orange)">3,218</div><div class="kpi-sub"><span class="kpi-trend down"><i class="fa fa-arrow-down"></i> 142 pending</span></div></div>
-  </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> Looker Studio – 4Ps CAR Analytics Report</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/50206683-91c0-493b-a06c-2b9e92683acc/page/BIGpF" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
-  </div>
-  <div class="two-col">
-    <div class="card" style="overflow:hidden">
-      <div class="card-head"><h3><i class="fa fa-map-marked-alt"></i> CAR Bubble Map – Beneficiary Distribution</h3><span class="card-tag">CAR Only</span></div>
-      <div id="car-map"></div>
-      <div style="padding:7px 14px;background:#fff;display:flex;gap:12px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--border);font-size:10.5px;">
-        <div style="display:flex;align-items:center;gap:4px;"><div style="width:11px;height:11px;border-radius:50%;background:rgba(206,17,38,.7);"></div> Bubble size = HH count</div>
-        <div style="color:var(--text-soft);">Click for details · Scroll to zoom</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3><i class="fa fa-chart-bar"></i> Compliance Rate by Province</h3></div>
-      <div class="card-body">
-        <div style="font-size:10px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">2025 – CAR Region</div>
-        <div class="prog-row"><span class="prog-label">Baguio City</span><div class="prog-bar"><div class="prog-fill" style="width:95%;background:var(--red)"></div></div><span class="prog-val" style="color:var(--red)">95%</span></div>
-        <div class="prog-row"><span class="prog-label">Ifugao</span><div class="prog-bar"><div class="prog-fill" style="width:94%;background:var(--green)"></div></div><span class="prog-val" style="color:var(--green)">94%</span></div>
-        <div class="prog-row"><span class="prog-label">Mt. Province</span><div class="prog-bar"><div class="prog-fill" style="width:93%;background:var(--blue)"></div></div><span class="prog-val" style="color:var(--blue)">93%</span></div>
-        <div class="prog-row"><span class="prog-label">Benguet</span><div class="prog-bar"><div class="prog-fill" style="width:92%;background:var(--blue-mid)"></div></div><span class="prog-val">92%</span></div>
-        <div class="prog-row"><span class="prog-label">Kalinga</span><div class="prog-bar"><div class="prog-fill" style="width:90%;background:var(--blue-light)"></div></div><span class="prog-val">90%</span></div>
-        <div class="prog-row"><span class="prog-label">Abra</span><div class="prog-bar"><div class="prog-fill" style="width:89%;background:#64B5F6"></div></div><span class="prog-val">89%</span></div>
-        <div class="prog-row"><span class="prog-label">Apayao</span><div class="prog-bar"><div class="prog-fill" style="width:87%;background:#90CAF9"></div></div><span class="prog-val">87%</span></div>
-        <div style="border-top:1px solid var(--border);padding-top:13px;margin-top:5px;">
-          <div style="font-size:10px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:9px;">Cash Grant Released (₱M)</div>
-          <div style="display:flex;align-items:flex-end;gap:5px;height:75px;">
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end;"><div style="font-size:8.5px;font-weight:700">29.4</div><div style="width:100%;height:80%;background:var(--blue);opacity:.8;border-radius:2px 2px 0 0"></div><div style="font-size:7.5px;color:var(--text-soft)">Abra</div></div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end;"><div style="font-size:8.5px;font-weight:700">14.8</div><div style="width:100%;height:40%;background:var(--blue);opacity:.8;border-radius:2px 2px 0 0"></div><div style="font-size:7.5px;color:var(--text-soft)">Apayao</div></div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end;"><div style="font-size:8.5px;font-weight:700">21.4</div><div style="width:100%;height:58%;background:var(--blue);opacity:.8;border-radius:2px 2px 0 0"></div><div style="font-size:7.5px;color:var(--text-soft)">Kalinga</div></div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end;"><div style="font-size:8.5px;font-weight:700">18.9</div><div style="width:100%;height:51%;background:var(--green);opacity:.8;border-radius:2px 2px 0 0"></div><div style="font-size:7.5px;color:var(--text-soft)">Mt.P</div></div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end;"><div style="font-size:8.5px;font-weight:700">22.5</div><div style="width:100%;height:61%;background:var(--blue);opacity:.8;border-radius:2px 2px 0 0"></div><div style="font-size:7.5px;color:var(--text-soft)">Ifugao</div></div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end;"><div style="font-size:8.5px;font-weight:700">24.4</div><div style="width:100%;height:66%;background:var(--blue-mid);opacity:.8;border-radius:2px 2px 0 0"></div><div style="font-size:7.5px;color:var(--text-soft)">Benguet</div></div>
-            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;height:100%;justify-content:flex-end;"><div style="font-size:8.5px;font-weight:700">12.5</div><div style="width:100%;height:34%;background:var(--red);opacity:.9;border-radius:2px 2px 0 0"></div><div style="font-size:7.5px;color:var(--red);font-weight:700">Baguio</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-table"></i> Recent Beneficiary Updates – CAR</h3><button class="btn-primary" style="font-size:11px;padding:5px 13px"><i class="fa fa-plus"></i> Add Record</button></div>
-    <div style="overflow-x:auto"><table class="data-table"><thead><tr><th>#</th><th>HH ID</th><th>Beneficiary Name</th><th>Province</th><th>Municipality</th><th>Status</th><th>Updated</th></tr></thead><tbody>
-      <tr><td>1</td><td>CAR-2025-0001</td><td>Maria Santos</td><td>Baguio City</td><td>Baguio City</td><td><span class="sb active">Active</span></td><td>Mar 1, 2026</td></tr>
-      <tr><td>2</td><td>CAR-2025-0042</td><td>Jose Bugan</td><td>Benguet</td><td>La Trinidad</td><td><span class="sb active">Active</span></td><td>Feb 28, 2026</td></tr>
-      <tr><td>3</td><td>CAR-2025-0118</td><td>Rosario Dulnuan</td><td>Ifugao</td><td>Lagawe</td><td><span class="sb pending">Pending</span></td><td>Feb 26, 2026</td></tr>
-      <tr><td>4</td><td>CAR-2025-0230</td><td>Pedro Cariño</td><td>Abra</td><td>Bangued</td><td><span class="sb active">Active</span></td><td>Feb 25, 2026</td></tr>
-      <tr><td>5</td><td>CAR-2025-0389</td><td>Lourdes Bannayan</td><td>Kalinga</td><td>Tabuk</td><td><span class="sb inactive">Suspended</span></td><td>Feb 20, 2026</td></tr>
-    </tbody></table></div>
-  </div>
-</div>
-
-
-
 <!-- ═══════════════════ ICT PAGE ═══════════════════ -->
-<div id="page-ict" class="page">
+<div id="page-ict" class="page active">
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> ICT – Information &amp; Communications Technology</h2>
       <div class="bc">Home › ICT &nbsp;|&nbsp; IT Equipment Inventory &amp; System Status</div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
   </div>
-
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> ICT Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/05bdb7cd-c9ae-4989-85c5-be380d8492dd/page/VVwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
-  </div>
-
-  <!-- ICT Calendar -->
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> ICT Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>ICT Calendar:</label><input class="gcal-url-input" id="gcal-ict-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-ict-frame','gcal-ict-url','gcal-ict-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-ict-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>ICT Calendar Not Loaded</p></div>
-    <iframe id="gcal-ict-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  <div class="looker-wrap">
+    <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/05bdb7cd-c9ae-4989-85c5-be380d8492dd/page/VVwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -425,23 +303,10 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <h2><span class="ab"></span> BDMU – Beneficiary Data Management Unit</h2>
       <div class="bc">Home › BDMU</div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-      <button class="btn-primary" onclick="exportCSV()"><i class="fa fa-file-export"></i> Export Data</button>
-    </div>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> BDMU Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/10bc3e18-2aa0-4e26-be9b-a92146da6768/page/b2ktF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
-  </div>
-
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> BDMU Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>BDMU Calendar:</label><input class="gcal-url-input" id="gcal-bdmu-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-bdmu-frame','gcal-bdmu-url','gcal-bdmu-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-bdmu-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>BDMU Calendar Not Loaded</p><small>Paste your BDMU team's Google Calendar embed URL above.</small></div>
-    <iframe id="gcal-bdmu-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  <div class="looker-wrap">
+    <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/10bc3e18-2aa0-4e26-be9b-a92146da6768/page/b2ktF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+    <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/c91e2ccf-4367-4a16-8159-0ce85e98a631/page/iOxuF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -452,24 +317,9 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <h2><span class="ab"></span> CVS – Compliance Verification System</h2>
       <div class="bc">Home › CVS &nbsp;|&nbsp; NAS/NASH Tracking + MC No. 36 Consolidated Validation</div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
   </div>
-
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> CVS Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/0f5e720b-3175-44b5-91a4-c669e2384f18/page/lDwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
-  </div>
-
-  <!-- CVS Calendar -->
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> CVS Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>CVS Calendar:</label><input class="gcal-url-input" id="gcal-cvs-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-cvs-frame','gcal-cvs-url','gcal-cvs-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-cvs-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>CVS Calendar Not Loaded</p></div>
-    <iframe id="gcal-cvs-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
+  <div class="looker-wrap">
+    <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/0f5e720b-3175-44b5-91a4-c669e2384f18/page/lDwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -480,19 +330,10 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <h2><span class="ab"></span> GRS – Grievance Redress System</h2>
       <div class="bc">Home › GRS</div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-      <button class="btn-primary"><i class="fa fa-plus"></i> File Grievance</button>
-    </div>
   </div>
-
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> GRS Analytics Report 1 – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/40669b4d-e21f-4093-9b15-d0e8a943e1ec/page/3DbND" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
-  </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-bar"></i> GRS Analytics Report 2 – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/49308f49-d071-4884-a2a6-f1dff822ced5/page/3DbND" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
+  <div class="looker-wrap">
+    <iframe src="https://lookerstudio.google.com/embed/reporting/40669b4d-e21f-4093-9b15-d0e8a943e1ec/page/3DbND" width="100%" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+    <iframe src="https://lookerstudio.google.com/embed/reporting/49308f49-d071-4884-a2a6-f1dff822ced5/page/3DbND" width="100%" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -503,17 +344,9 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <h2><span class="ab"></span> Frequently Asked Questions</h2>
       <div class="bc">Home › FAQs</div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
   </div>
-  <div class="faq-list">
-    <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)">What is the 4Ps DMIS? <i class="fa fa-chevron-down"></i></div><div class="faq-a">The DMIS for the Pantawid Pamilyang Pilipino Program (4Ps) is an online platform used by DSWD Field Office CAR to manage beneficiary data, compliance monitoring, grievance redress, and reporting for the Cordillera Administrative Region.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Who can access the DMIS dashboard? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Access is granted to authorized DSWD personnel including DMIS Officers, Municipal Links, City/Provincial Coordinators, and supervisors within DSWD FO-CAR. All accounts require multi-factor authentication and role-based access control.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What does NAS/NASH mean in the CVS module? <i class="fa fa-chevron-down"></i></div><div class="faq-a">NAS (Non-Attending Student) and NASH (Non-Attending Student – Health) are beneficiary children who are not attending school or health facilities as required by the 4Ps compliance conditions. The CVS module tracks validated reasons for their non-attendance to enable appropriate interventions.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I file a grievance through GRS? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Navigate to the GRS module and click "File Grievance." Fill in the complainant's information, nature of grievance, and supporting documents. The system will assign a GRS ticket and route it to the appropriate DMIS officer for action within 30 days.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I add my Google Calendar to a module tab? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Go to calendar.google.com → Settings → select your calendar → scroll to "Integrate calendar" → copy the embed URL → paste it in the calendar input field of the relevant module tab, then click Load.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How does the sidebar work? <i class="fa fa-chevron-down"></i></div><div class="faq-a">The sidebar is collapsed by default to maximize screen space. Simply hover your mouse over the left sidebar to expand it and see all menu labels. Move your mouse away and it will collapse back.</div></div>
+  <div class="looker-wrap">
+    <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/62772f2c-54a2-4f25-b030-e3458fc10228/page/sp4uF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -524,17 +357,9 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
       <h2><span class="ab"></span> Contact Us</h2>
       <div class="bc">Home › Contact</div>
     </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
   </div>
-  <div class="contact-grid">
-    <div class="contact-card"><div class="contact-icon-box"><i class="fa fa-building"></i></div><div><div class="contact-title">DSWD Field Office CAR</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">No. 23 General Luna Road, Baguio City 2600, Benguet</p><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Cordillera Administrative Region, Philippines</p></div></div>
-    <div class="contact-card"><div class="contact-icon-box" style="background:#FDF4F4;color:var(--red)"><i class="fa fa-phone"></i></div><div><div class="contact-title">Telephone / Hotline</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">(074) 442-6401 &nbsp;|&nbsp; (074) 442-6402</p><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">4Ps Hotline: 1-800-10-654-0000 (toll-free)</p></div></div>
-    <div class="contact-card"><div class="contact-icon-box" style="background:#F2FAF4;color:var(--green)"><i class="fa fa-envelope"></i></div><div><div class="contact-title">Email Addresses</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">fo-car@dswd.gov.ph &nbsp;|&nbsp; 4ps-car@dswd.gov.ph</p><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">ict-car@dswd.gov.ph (ICT concerns)</p></div></div>
-    <div class="contact-card"><div class="contact-icon-box" style="background:#FFF9EE;color:var(--orange)"><i class="fa fa-clock"></i></div><div><div class="contact-title">Office Hours</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Monday – Friday: 8:00 AM – 5:00 PM</p><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Closed on weekends and public holidays</p></div></div>
-    <div class="contact-card"><div class="contact-icon-box" style="background:#F0F5FF;color:var(--blue-light)"><i class="fab fa-facebook-f"></i></div><div><div class="contact-title">Social Media</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Facebook: DSWD Field Office CAR</p><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Twitter/X: @DSWDfoCARph</p></div></div>
-    <div class="contact-card"><div class="contact-icon-box" style="background:#F4F8FF;color:var(--blue)"><i class="fa fa-headset"></i></div><div><div class="contact-title">DMIS Help Desk</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">For DMIS system concerns: Local 112</p><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Email: dmis-car@dswd.gov.ph</p></div></div>
+  <div class="looker-wrap">
+    <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/f51c11ea-c484-4700-a336-209ae0e07064/page/sp4uF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -543,21 +368,11 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> DMIS Officers – FO-CAR</h2>
-      <div class="bc">Home › DMIS Officers · Baguio City, CAR</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
+      <div class="bc">Home › DMIS Officers</div>
     </div>
   </div>
-  <div class="officers-grid">
-    <div class="officer-card"><div class="officer-banner" style="background:var(--blue)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--blue)">RC</div></div><div class="officer-info"><div class="officer-name">Rosario C. Cariño</div><div class="officer-role">Regional DMIS Coordinator</div><span class="officer-badge">FO-CAR HQ</span></div></div>
-    <div class="officer-card"><div class="officer-banner" style="background:var(--red)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--red)">JB</div></div><div class="officer-info"><div class="officer-name">Juan B. Buagan</div><div class="officer-role">BDMU Chief / Data Analyst</div><span class="officer-badge">BDMU</span></div></div>
-    <div class="officer-card"><div class="officer-banner" style="background:var(--green)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--green)">MP</div></div><div class="officer-info"><div class="officer-name">Maria D. Pagapong</div><div class="officer-role">CVS Officer – Health &amp; Education</div><span class="officer-badge">CVS</span></div></div>
-    <div class="officer-card"><div class="officer-banner" style="background:var(--orange)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--orange)">AL</div></div><div class="officer-info"><div class="officer-name">Andres L. Laoyan</div><div class="officer-role">GRS Focal Person</div><span class="officer-badge">GRS</span></div></div>
-    <div class="officer-card"><div class="officer-banner" style="background:var(--blue-light)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--blue-light)">FV</div></div><div class="officer-info"><div class="officer-name">Felicidad V. Valdez</div><div class="officer-role">ICT Officer / Systems Admin</div><span class="officer-badge">ICT</span></div></div>
-    <div class="officer-card"><div class="officer-banner"></div><div class="officer-avatar-wrap"><div class="officer-avatar">BD</div></div><div class="officer-info"><div class="officer-name">Bernardo D. Dawang</div><div class="officer-role">Provincial DMIS Officer – Benguet</div><span class="officer-badge">Benguet</span></div></div>
-    <div class="officer-card"><div class="officer-banner"></div><div class="officer-avatar-wrap"><div class="officer-avatar">LC</div></div><div class="officer-info"><div class="officer-name">Leonila C. Corpuz</div><div class="officer-role">Provincial DMIS Officer – Abra</div><span class="officer-badge">Abra</span></div></div>
-    <div class="officer-card"><div class="officer-banner"></div><div class="officer-avatar-wrap"><div class="officer-avatar">ST</div></div><div class="officer-info"><div class="officer-name">Salvador T. Tibayan</div><div class="officer-role">Provincial DMIS Officer – Kalinga</div><span class="officer-badge">Kalinga</span></div></div>
+  <div class="looker-wrap">
+    <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/283adda1-6660-4ae1-91fa-c2f46eeec46d/page/sp4uF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -567,22 +382,16 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
     <div class="footer-brand">
       <div class="gov-seal-ft">4Ps</div>
       <h4>DSWD Field Office – Cordillera Administrative Region</h4>
-      <p>Pantawid Pamilyang Pilipino Program<br>Data Management Information System<br>23 General Luna Road, Baguio City 2600</p>
+      <p>Pantawid Pamilyang Pilipino Program<br>23 General Luna Road, Baguio City 2600</p>
     </div>
     <div class="footer-col"><h5>Quick Links</h5><ul>
-      <li><a onclick="showPage('dashboard',null)">Dashboard</a></li>
       <li><a onclick="showPage('ict',null)">ICT</a></li>
       <li><a onclick="showPage('bdmu',null)">BDMU</a></li>
       <li><a onclick="showPage('cvs',null)">CVS</a></li>
       <li><a onclick="showPage('grs',null)">GRS</a></li>
-      <li><a onclick="showPage('calendar',null)">Calendar</a></li>
-    </ul></div>
-    <div class="footer-col"><h5>Support</h5><ul>
+      <li><a onclick="showPage('officers',null)">DMIS Officers</a></li>
       <li><a onclick="showPage('faqs',null)">FAQs</a></li>
       <li><a onclick="showPage('contact',null)">Contact Us</a></li>
-      <li><a onclick="showPage('officers',null)">DMIS Officers</a></li>
-      <li><a href="#">Privacy Policy</a></li>
-      <li><a href="#">Accessibility</a></li>
     </ul></div>
     <div class="footer-col footer-contact"><h5>Contact</h5>
       <p><i class="fa fa-phone"></i> (074) 442-6401</p>
@@ -601,7 +410,10 @@ window._DSWD_SRC = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAxQAAADiCAIAAA
 </div>
 
 <script>
-// ── IMAGES (loaded from JS to avoid any escaping issues) ──
+// ── IMAGES ──
+window._PS4_SRC = "4pslogo.png";
+window._DSWD_SRC = "Screenshot 2026-03-05 084849.png";
+
 window.addEventListener('DOMContentLoaded', function() {
   document.getElementById('logo4ps').src = localStorage.getItem('logo4ps') || window._PS4_SRC || '';
   document.getElementById('logoDswd').src = localStorage.getItem('logoDswd') || window._DSWD_SRC || '';
@@ -615,18 +427,9 @@ function showPage(id, navEl) {
   document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
   if (navEl) navEl.classList.add('active');
   window.scrollTo(0, 0);
-  if (id === 'dashboard') setTimeout(initMap, 150);
-  if (id === 'cvs') setTimeout(initCVSCharts, 100);
 }
 
 function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
-
-function loadCal(fId, iId, pId) {
-  var url = document.getElementById(iId).value.trim();
-  if (!url) { alert('Please paste a Google Calendar embed URL first.'); return; }
-  var f = document.getElementById(fId), p = document.getElementById(pId);
-  f.src = url; f.style.display = 'block'; p.style.display = 'none';
-}
 
 // ── NOTIFICATIONS ──
 var notifCount = 4;
@@ -693,14 +496,13 @@ function resetLogos() {
   document.getElementById('logoDswd').src = window._DSWD_SRC || '';
   document.getElementById('logo-dropdown').classList.remove('open');
 }
+
 // ── SEARCH ──
 var SEARCH_PAGES = [
-  {id:'dashboard', icon:'fa-chart-line', title:'Dashboard', desc:'KPIs, map, beneficiary overview'},
   {id:'ict', icon:'fa-laptop-code', title:'ICT', desc:'System status, network, help desk'},
   {id:'bdmu', icon:'fa-database', title:'BDMU', desc:'Beneficiary data management, validation'},
   {id:'cvs', icon:'fa-check-double', title:'CVS', desc:'Compliance verification, NAS/NASH tracking'},
   {id:'grs', icon:'fa-hand-holding-heart', title:'GRS', desc:'Grievance redress system, complaints'},
-  {id:'calendar', icon:'fa-calendar-alt', title:'Calendar', desc:'DMIS main Google Calendar'},
   {id:'officers', icon:'fa-users', title:'DMIS Officers', desc:'FO-CAR officer directory'},
   {id:'faqs', icon:'fa-question-circle', title:'FAQs', desc:'Frequently asked questions and guides'},
   {id:'contact', icon:'fa-envelope', title:'Contact Us', desc:'Office address, phone, email, hotline'},
@@ -745,194 +547,6 @@ function goSearch(id) {
   });
   showPage(id, found);
 }
-
-// ── FILTER & REFRESH ──
-function applyFilter() {
-  var period = document.getElementById('dash-period').value;
-  document.getElementById('dash-bc').innerHTML = 'Home &rsaquo; Dashboard &rsaquo; CAR Overview &nbsp;|&nbsp; Period: ' + period;
-  var btn = document.getElementById('filter-btn');
-  btn.style.background = 'var(--green)'; btn.style.color = '#fff'; btn.style.borderColor = 'var(--green)';
-  btn.innerHTML = '<i class="fa fa-check"></i> Applied';
-  setTimeout(function() { btn.style.background=''; btn.style.color=''; btn.style.borderColor=''; btn.innerHTML='<i class="fa fa-filter"></i> Filter'; }, 1600);
-}
-function refreshDash() {
-  var icon = document.getElementById('refresh-icon');
-  var btn = document.getElementById('refresh-btn');
-  icon.style.animation = 'spin 0.8s linear infinite';
-  btn.disabled = true;
-  setTimeout(function() {
-    icon.style.animation = '';
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa fa-sync-alt"></i> Refreshed!';
-    setTimeout(function() { btn.innerHTML = '<i class="fa fa-sync-alt" id="refresh-icon"></i> Refresh'; }, 1500);
-  }, 1200);
-}
-
-// ── MAP ──
-var CAR_PROV = [
-  {name:'Abra', lat:17.597, lng:120.772, hh:29440, comp:89, active:26214, gr:54},
-  {name:'Apayao', lat:18.015, lng:121.115, hh:14820, comp:87, active:12893, gr:23},
-  {name:'Kalinga', lat:17.473, lng:121.365, hh:21360, comp:90, active:19224, gr:31},
-  {name:'Mountain Province', lat:16.988, lng:121.018, hh:18910, comp:93, active:17586, gr:18},
-  {name:'Ifugao', lat:16.833, lng:121.200, hh:22510, comp:94, active:21159, gr:11},
-  {name:'Benguet', lat:16.532, lng:120.807, hh:24380, comp:92, active:22430, gr:28},
-  {name:'Baguio City', lat:16.409, lng:120.598, hh:12452, comp:95, active:11844, gr:8, hq:true},
-];
-var mapInit = false;
-function initMap() {
-  if (mapInit) return;
-  var el = document.getElementById('car-map');
-  if (!el || el.offsetWidth === 0 || typeof L === 'undefined') return;
-  mapInit = true;
-  var map = L.map('car-map', {center:[17.1,121.0], zoom:8, minZoom:7, maxZoom:12});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution:'© OpenStreetMap', maxZoom:18}).addTo(map);
-  var maxHH = Math.max.apply(null, CAR_PROV.map(function(p){return p.hh;}));
-  function rad(hh){ return 8000 + (hh/maxHH)*12000; }
-  CAR_PROV.forEach(function(p) {
-    var fc = p.hq ? '#8B0000' : '#CE1126';
-    var fo = p.hq ? 0.82 : 0.68;
-    var c = L.circle([p.lat,p.lng], {radius:rad(p.hh), color:p.hq?'rgba(139,0,0,.8)':'rgba(206,17,38,.5)', weight:p.hq?3:1.5, fillColor:fc, fillOpacity:fo}).addTo(map);
-    var hqB = p.hq ? '<span style="background:#FCD116;color:#003087;font-size:8px;font-weight:800;padding:1px 6px;border-radius:8px;margin-left:5px">HQ</span>' : '';
-    c.bindPopup('<div style="font-family:Barlow,sans-serif;min-width:175px"><div style="background:#003087;color:#fff;padding:8px 12px;margin:-1px -1px 9px;font-weight:700;font-size:13px">' + p.name + hqB + '</div><div style="padding:0 12px 10px"><table style="width:100%;border-collapse:collapse;font-size:11.5px"><tr><td style="color:#666;padding:2px 0">Registered HHs</td><td style="font-weight:800;text-align:right">' + p.hh.toLocaleString() + '</td></tr><tr><td style="color:#666;padding:2px 0">Active</td><td style="font-weight:700;text-align:right">' + p.active.toLocaleString() + '</td></tr><tr><td style="color:#666;padding:2px 0">Compliance</td><td style="font-weight:800;text-align:right;color:#1B7A3E">' + p.comp + '%</td></tr><tr><td style="color:#666;padding:2px 0">Open Grievances</td><td style="font-weight:700;text-align:right;color:#D46B00">' + p.gr + '</td></tr></table></div></div>', {maxWidth:210,offset:[0,-8]});
-    c.on('mouseover', function(){this.setStyle({fillOpacity:Math.min(fo+.18,.95),weight:p.hq?4:2.5});});
-    c.on('mouseout', function(){this.setStyle({fillOpacity:fo,weight:p.hq?3:1.5});});
-    c.on('click', function(){this.openPopup();});
-    L.marker([p.lat,p.lng], {icon:L.divIcon({className:'', html:'<div style="font-family:Barlow,sans-serif;font-size:9px;font-weight:700;color:#fff;background:rgba(0,48,135,.8);padding:2px 6px;border-radius:8px;white-space:nowrap;pointer-events:none;border:1px solid rgba(255,255,255,.2)">' + (p.hq?'★ ':'') + p.name + '</div>', iconAnchor:[35,5]})}).addTo(map);
-  });
-}
-
-// ── CVS CHARTS ──
-var CVS_DATA = {
-  ALL: {
-    total:12847, validated:7340, novalidated:5507, casemgmt:6892,
-    reasons:{'22 - Emotionally Unprepared':1842,'10 - Financial':1654,'5 - Working':923,'39 - Another facility':812,'9 - Bullied':387,'13 - Parent Decision':342,'19 - Early Pregnancy':312,'20 - Early Marriage':298,'4 - Sickly':254,'36 - Psychosocial':204,'16 - Inaccurate Data':180,'Other':132},
-    intervention:{'For Case Management':6892,'Update Issues':1848,'No Validated Category':4107},
-    sex:{FEMALE:5940,MALE:6907},
-    grade:{'Daycare/Kinder':380,'Elementary':2840,'Junior High School':6420,'Senior High School':2180,'Invalid Grade':1027},
-    age:{'3 to 5':410,'6 to 14':5820,'15 to 18':6617},
-    provinces:[
-      {prov:'Abra',city:'Multiple',total:3240,hasReason:1920,noReason:1320,casemgmt:1740,ip:210},
-      {prov:'Apayao',city:'Multiple',total:1420,hasReason:780,noReason:640,casemgmt:720,ip:340},
-      {prov:'Kalinga',city:'Multiple',total:1980,hasReason:1140,noReason:840,casemgmt:1020,ip:510},
-      {prov:'Mountain Province',city:'Multiple',total:1640,hasReason:940,noReason:700,casemgmt:860,ip:420},
-      {prov:'Ifugao',city:'Multiple',total:1920,hasReason:1120,noReason:800,casemgmt:1040,ip:680},
-      {prov:'Benguet',city:'Multiple',total:1820,hasReason:1060,noReason:760,casemgmt:980,ip:180},
-      {prov:'Baguio City',city:'Baguio City',total:827,hasReason:380,noReason:447,casemgmt:532,ip:12},
-    ]
-  },
-  ABRA:{total:3240,validated:1920,novalidated:1320,casemgmt:1740,
-    reasons:{'22 - Emotionally Unprepared':520,'10 - Financial':480,'5 - Working':280,'39 - Another facility':240,'9 - Bullied':110,'13 - Parent Decision':95,'19 - Early Pregnancy':90,'20 - Early Marriage':85,'4 - Sickly':70,'Other':50},
-    intervention:{'For Case Management':1740,'Update Issues':420,'No Validated Category':1080},
-    sex:{FEMALE:1480,MALE:1760},
-    grade:{'Elementary':640,'Junior High School':1840,'Senior High School':560,'Invalid Grade':200},
-    age:{'3 to 5':95,'6 to 14':1420,'15 to 18':1725}},
-};
-var cvsCharts = {};
-function updateCVSCharts() {
-  var sel = document.getElementById('cvs-province-filter').value;
-  var d = CVS_DATA[sel] || CVS_DATA.ALL;
-  document.getElementById('cvs-total').textContent = (d.total||0).toLocaleString();
-  document.getElementById('cvs-validated').textContent = (d.validated||0).toLocaleString();
-  document.getElementById('cvs-novalidated').textContent = (d.novalidated||0).toLocaleString();
-  document.getElementById('cvs-casemgmt').textContent = (d.casemgmt||0).toLocaleString();
-  var reasons = d.reasons || CVS_DATA.ALL.reasons;
-  updateChart('chartReasons','bar',Object.keys(reasons).map(function(k){return k.length>26?k.substring(0,25)+'…':k;}),Object.values(reasons),['rgba(0,48,135,.8)']);
-  var iData = d.intervention || CVS_DATA.ALL.intervention;
-  updateChart('chartIntervention','doughnut',Object.keys(iData),Object.values(iData),['#003087','#CE1126','#FCD116']);
-  var sData = d.sex || CVS_DATA.ALL.sex;
-  updateChart('chartSex','bar',Object.keys(sData),Object.values(sData),['#CE1126','#003087']);
-  var gData = d.grade || CVS_DATA.ALL.grade;
-  updateChart('chartGrade','doughnut',Object.keys(gData),Object.values(gData),['#003087','#0057B7','#2979E0','#64B5F6','#BBDEFB']);
-  var aData = d.age || CVS_DATA.ALL.age;
-  updateChart('chartAge','bar',Object.keys(aData),Object.values(aData),['#1B7A3E','#D46B00','#CE1126']);
-  var tbody = document.getElementById('cvs-province-tbody');
-  var rows = sel==='ALL' ? CVS_DATA.ALL.provinces : CVS_DATA.ALL.provinces.filter(function(r){return r.prov.toUpperCase().includes(sel);});
-  tbody.innerHTML = rows.map(function(r) {
-    return '<tr><td><strong>' + r.prov + '</strong></td><td>' + r.city + '</td><td>' + r.total.toLocaleString() + '</td><td>' + r.hasReason.toLocaleString() + '</td><td>' + r.noReason.toLocaleString() + '</td><td>' + r.casemgmt.toLocaleString() + '</td><td>' + r.ip.toLocaleString() + '</td></tr>';
-  }).join('');
-}
-function updateChart(id, type, labels, data, colors) {
-  var ctx = document.getElementById(id);
-  if (!ctx) return;
-  if (cvsCharts[id]) { cvsCharts[id].destroy(); }
-  var isHoriz = (id === 'chartReasons');
-  cvsCharts[id] = new Chart(ctx, {
-    type: type,
-    data: {labels:labels, datasets:[{data:data, backgroundColor:type==='bar'?colors[0]:colors, borderWidth:type==='doughnut'?2:0, borderColor:'#fff'}]},
-    options: {
-      indexAxis: isHoriz ? 'y' : 'x',
-      responsive:true, maintainAspectRatio:false,
-      plugins:{
-        legend:{display:type==='doughnut', position:'right', labels:{font:{size:10,family:'Barlow'},padding:8,boxWidth:12}},
-        tooltip:{callbacks:{label:function(ctx){return ' ' + (ctx.parsed.y !== undefined ? ctx.parsed.y : ctx.parsed);}}}
-      },
-      scales: type==='bar' ? {x:{grid:{display:false},ticks:{font:{size:9,family:'Barlow'}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}} : {}
-    }
-  });
-}
-function initCVSCharts() { updateCVSCharts(); }
-
-window.addEventListener('load', function() { setTimeout(initMap, 400); });
-
-// ── PRINT REPORT ──
-function printReport() {
-  var active = document.querySelector('.page.active');
-  var title = active ? active.querySelector('h2') : null;
-  var pageTitle = title ? title.textContent.trim() : '4Ps DMIS Report';
-  var printWin = window.open('', '_blank', 'width=900,height=700');
-  printWin.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>' + pageTitle + '</title>');
-  printWin.document.write('<style>');
-  printWin.document.write('body{font-family:Arial,sans-serif;font-size:12px;color:#111;margin:20px}');
-  printWin.document.write('h1{color:#003087;border-bottom:3px solid #CE1126;padding-bottom:8px;font-size:18px}');
-  printWin.document.write('table{width:100%;border-collapse:collapse;margin:12px 0}');
-  printWin.document.write('th{background:#003087;color:#fff;padding:7px 10px;text-align:left;font-size:11px}');
-  printWin.document.write('td{padding:6px 10px;border-bottom:1px solid #ddd;font-size:11px}');
-  printWin.document.write('tr:nth-child(even){background:#F0F5FF}');
-  printWin.document.write('.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0}');
-  printWin.document.write('.kpi-card{border:1px solid #ddd;border-radius:6px;padding:12px;border-top:3px solid #003087}');
-  printWin.document.write('.kpi-label{font-size:9px;text-transform:uppercase;color:#666;font-weight:600}');
-  printWin.document.write('.kpi-value{font-size:26px;font-weight:800;margin-top:4px}');
-  printWin.document.write('.header-bar{background:#003087;color:#fff;padding:10px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}');
-  printWin.document.write('.header-bar h2{font-size:16px;margin:0}');
-  printWin.document.write('.header-bar .sub{font-size:10px;opacity:.8}');
-  printWin.document.write('@media print{button{display:none}}');
-  printWin.document.write('</style></head><body>');
-  printWin.document.write('<div class="header-bar"><div><h2>DSWD Field Office CAR – 4Ps DMIS</h2><div class="sub">Pantawid Pamilyang Pilipino Program | ' + new Date().toLocaleDateString('en-PH',{year:'numeric',month:'long',day:'numeric'}) + '</div></div><div style="font-size:10px;opacity:.8">DMIS v2.1.0</div></div>');
-  printWin.document.write('<h1>' + pageTitle + '</h1>');
-  if (active) { printWin.document.write(active.innerHTML); }
-  printWin.document.write('<br><button onclick="window.print()">🖨️ Print / Save as PDF</button>');
-  printWin.document.write('</body></html>');
-  printWin.document.close();
-  setTimeout(function(){ printWin.print(); }, 600);
-}
-
-// ── EXPORT CSV ──
-function exportCSV() {
-  var active = document.querySelector('.page.active');
-  var tables = active ? active.querySelectorAll('table') : [];
-  if (tables.length === 0) { alert('No table data to export on this page.'); return; }
-  var table = tables[0];
-  var rows = [];
-  table.querySelectorAll('tr').forEach(function(tr) {
-    var cells = [];
-    tr.querySelectorAll('th,td').forEach(function(td) {
-      var text = td.textContent.trim().replace(/,/g,'').replace(/\n/g,' ');
-      cells.push('"' + text + '"');
-    });
-    rows.push(cells.join(','));
-  });
-  var csv = rows.join('\n');
-  var blob = new Blob([csv], {type:'text/csv'});
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'dmis_export_' + new Date().toISOString().slice(0,10) + '.csv';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
 </script>
 </body>
 </html>

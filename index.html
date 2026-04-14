@@ -23,7 +23,8 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .topbar{position:fixed;top:0;left:0;right:0;z-index:300;height:var(--header-h);background:var(--blue);display:flex;align-items:center;padding:0 18px;box-shadow:0 3px 12px rgba(0,0,0,.35)}
 .tb-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
 .tb-right{display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-4ps,.logo-dswd{height:44px;width:auto;object-fit:contain;background:transparent;border-radius:0;padding:0}
+.logo-4ps{height:42px;width:auto;object-fit:contain;background:#fff;border-radius:7px;padding:3px 8px;}
+.logo-dswd{height:42px;width:auto;object-fit:contain;background:#fff;border-radius:7px;padding:3px 8px;}
 .tb-divider{width:1px;height:36px;background:rgba(255,255,255,.22);margin:0 10px}
 .tb-titles .agency{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#fff;letter-spacing:.6px}
 .tb-titles .sub{font-size:10px;color:rgba(255,255,255,.72);letter-spacing:.4px;margin-top:1px}
@@ -31,8 +32,11 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .tb-icon-btn{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.13);border:none;color:#fff;cursor:pointer;font-size:13px;display:flex;align-items:center;justify-content:center;transition:background .2s;position:relative}
 .tb-icon-btn:hover{background:rgba(255,255,255,.28)}
 .notif-badge-dot{position:absolute;top:-2px;right:-2px;width:16px;height:16px;background:var(--red);border-radius:50%;font-size:9px;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;border:1.5px solid var(--blue)}
+/* NOTIFICATION DROPDOWN */
 .notif-dropdown{position:absolute;top:42px;right:-10px;width:320px;background:#fff;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.22);z-index:500;display:none;overflow:hidden}
 .notif-dropdown.open{display:block}
+.logo-dropdown{position:absolute;top:42px;right:-10px;width:280px;background:#fff;border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.22);z-index:500;display:none;overflow:hidden}
+.logo-dropdown.open{display:block}
 .notif-head{background:var(--blue);color:#fff;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;font-family:'Barlow Condensed',sans-serif}
 .notif-head span{font-size:11px;background:var(--red);padding:1px 7px;border-radius:10px;font-weight:700}
 .notif-item{display:flex;gap:11px;padding:11px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background .15s}
@@ -44,9 +48,11 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .notif-time{font-size:10px;color:var(--text-soft);margin-top:3px}
 .notif-footer{padding:10px 14px;text-align:center;font-size:12px;color:var(--blue-mid);font-weight:600;cursor:pointer}
 .notif-footer:hover{background:#F0F5FF}
+/* SEARCH */
 .search-overlay{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(10,26,58,.7);z-index:400;display:none;align-items:flex-start;justify-content:center;padding-top:100px;backdrop-filter:blur(4px)}
 .search-overlay.open{display:flex}
 .search-box{background:#fff;border-radius:14px;width:100%;max-width:580px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.topbar{display:none}
 .search-input-wrap{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border)}
 .search-input-wrap i{color:var(--text-soft);font-size:16px}
 .search-input{flex:1;border:none;outline:none;font-size:16px;font-family:'Barlow',sans-serif;color:var(--text-main)}
@@ -62,6 +68,7 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .sr-desc{font-size:11.5px;color:var(--text-soft);margin-top:1px}
 .search-empty{padding:30px;text-align:center;color:var(--text-soft);font-size:13px}
 .search-section-label{padding:8px 18px 4px;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-soft);background:#FAFCFF}
+/* LAYOUT */
 .layout{display:flex;margin-top:0;min-height:100vh;position:relative}
 .sidebar{width:52px;flex-shrink:0;background:var(--dark);color:#fff;position:fixed;top:0;left:0;bottom:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;z-index:200;transition:width .3s cubic-bezier(.4,0,.2,1)}
 .sidebar:hover{width:var(--sidebar-w);box-shadow:4px 0 24px rgba(0,0,0,.35)}
@@ -79,32 +86,18 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .sidebar-bottom{margin-top:auto;padding:10px 0;border-top:1px solid rgba(255,255,255,.08)}
 .main{margin-left:52px;flex:1;min-width:0;display:flex;flex-direction:column;transition:margin-left .3s cubic-bezier(.4,0,.2,1)}
 .sidebar:hover ~ .main{margin-left:var(--sidebar-w)}
+/* PAGES */
 .page{display:none;padding:22px;flex:1;animation:fadeUp .35s ease both}
 .page.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.topbar{display:none}
-.footer{display:none}
-.embed .topbar{display:none}
-.embed .sidebar{display:none}
-.embed .footer{display:none}
-.embed .layout{margin-top:0}
-.embed .main{margin-left:0}
-.embed .page{padding:0}
 .page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
 .ph-left h2{font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:9px}
 .ph-left h2 .ab{width:4px;height:24px;background:var(--red);border-radius:2px;flex-shrink:0}
 .ph-left .bc{font-size:11.5px;color:var(--text-soft);margin-top:3px}
 .btn-primary{background:var(--blue);color:#fff;border:none;padding:7px 16px;border-radius:6px;font-size:12.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-family:'Barlow',sans-serif;transition:background .2s}
 .btn-primary:hover{background:var(--blue-mid)}
-.looker-toolbar{background:#fff;border-bottom:1px solid var(--border);padding:7px 18px;display:flex;align-items:center;gap:9px;position:sticky;top:0;z-index:90;margin:-22px -22px 22px;flex-wrap:wrap}
-.lt-label{font-size:11px;color:var(--text-soft);font-weight:600}
-.lt-filter{border:1px solid var(--border);border-radius:5px;padding:4px 9px;font-size:11.5px;color:var(--text-main);background:#fff;cursor:pointer;font-family:'Barlow',sans-serif}
-.lt-btn{border:1px solid var(--border);border-radius:5px;padding:4px 11px;font-size:11.5px;background:#fff;cursor:pointer;color:var(--blue);font-weight:600;font-family:'Barlow',sans-serif;transition:all .15s;display:flex;align-items:center;gap:5px}
-.lt-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
-.lt-sep{width:1px;height:18px;background:var(--border);margin:0 3px}
-.lt-export{margin-left:auto;background:var(--blue);color:#fff;border:none;padding:5px 13px;border-radius:5px;font-size:11.5px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;font-family:'Barlow',sans-serif}
 .card{background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);overflow:hidden;margin-bottom:16px}
-.card-head{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#FAFCFF;flex-wrap:wrap;gap:7px}
+.card-head{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#FAFCFF}
 .card-head h3{font-family:'Barlow Condensed',sans-serif;font-size:14.5px;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:7px}
 .card-head h3 i{color:var(--blue-light);font-size:13px}
 .card-body{padding:16px}
@@ -125,34 +118,17 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .leaflet-popup-content{margin:0;font-family:'Barlow',sans-serif;font-size:12px;line-height:1.5;min-width:180px}
 .leaflet-popup-tip-container{display:none}
 .leaflet-control-attribution{font-size:9px !important}
-.looker-wrap{width:100%;background:#f8f9ff;overflow:hidden}
-.looker-wrap iframe{display:block;width:100%;border:none}
+.looker-wrap{background:#fff;border-radius:10px;border:1px solid var(--border);padding:0;overflow:hidden;height:620px;position:relative;margin-top:15px;display:flex;flex-direction:column;gap:15px}
+.looker-wrap iframe{width:100%;height:100%;border:none;flex:1}
+.looker-wrap iframe:last-child{border-top:1px solid var(--border)}
 .data-table{width:100%;border-collapse:collapse;font-size:12.5px}
-.data-table thead th{background:var(--blue);color:#fff;padding:9px 12px;text-align:left;font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px;white-space:nowrap}
+.data-table thead th{background:var(--blue);color:#fff;padding:9px 12px;text-align:left;font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.4px}
 .data-table tbody tr:nth-child(even){background:#F4F8FF}
 .data-table tbody tr:hover{background:#E4EDFF}
 .data-table tbody td{padding:8px 12px;border-bottom:1px solid var(--border)}
 .sb{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:600}
 .sb.active{background:#E6F4EC;color:var(--green)}.sb.pending{background:#FFF4E0;color:var(--orange)}.sb.inactive{background:#FDEAEA;color:var(--red)}
-.sb.mc36{background:#FDEAEA;color:#B71C1C;font-weight:800}
-.sb.exemp1{background:#E8F5E9;color:#1B5E20}
-.sb.exemp2{background:#E3F2FD;color:#0D47A1}
-.sb.blank{background:#FFF8E1;color:#E65100}
 .two-col{display:grid;grid-template-columns:1.55fr 1fr;gap:15px;margin-bottom:16px}
-.gcal-section{background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);overflow:hidden;margin-top:18px}
-.gcal-head{background:var(--blue);color:#fff;padding:11px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px}
-.gcal-head h3{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;gap:7px}
-.gcal-hint{font-size:10.5px;opacity:.7}
-.gcal-input-bar{background:#FAFCFF;border-bottom:1px solid var(--border);padding:9px 16px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.gcal-input-bar label{font-size:11.5px;font-weight:600;color:var(--text-soft)}
-.gcal-url-input{flex:1;min-width:200px;border:1px solid var(--border);border-radius:5px;padding:6px 11px;font-size:11.5px;font-family:'Barlow',sans-serif;outline:none;transition:border-color .2s}
-.gcal-url-input:focus{border-color:var(--blue)}
-.gcal-load-btn{background:var(--blue);color:#fff;border:none;padding:6px 13px;border-radius:5px;font-size:11.5px;font-weight:600;cursor:pointer;font-family:'Barlow',sans-serif;display:flex;align-items:center;gap:5px}
-.gcal-load-btn:hover{background:var(--blue-mid)}
-.gcal-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:280px;color:var(--text-soft);gap:9px;background:#F8FAFF}
-.gcal-ph i{font-size:40px;color:#C5D5EA}
-.gcal-ph p{font-size:13px;font-weight:600;color:var(--text-main)}
-.gcal-ph small{font-size:11px;text-align:center;max-width:300px;line-height:1.55}
 .faq-list{display:flex;flex-direction:column;gap:9px}
 .faq-item{background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07);border-left:3px solid var(--blue-light)}
 .faq-q{padding:13px 16px;font-weight:600;font-size:13.5px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .15s;user-select:none}
@@ -191,18 +167,9 @@ canvas{display:block;max-width:100%}
 .prog-bar{flex:1;background:#eee;border-radius:4px;height:9px;overflow:hidden}
 .prog-fill{height:100%;border-radius:4px;transition:width .6s ease}
 .prog-val{font-weight:700;width:32px;text-align:right;flex-shrink:0}
-/* MC36 specific */
-.mc36-divider{display:flex;align-items:center;gap:10px;margin:24px 0 16px}
-.mc36-divider-line{flex:1;height:2px;background:linear-gradient(to right,var(--red),transparent)}
-.mc36-divider-label{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;color:var(--red);letter-spacing:.5px;white-space:nowrap;padding:4px 12px;background:#FFF5F5;border:1px solid #FFCDD2;border-radius:20px}
-.mc36-badge-mc36{background:#FFEBEE;color:#C62828;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700}
-.mc36-badge-ex1{background:#E8F5E9;color:#1B5E20;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700}
-.mc36-badge-ex2{background:#E3F2FD;color:#0D47A1;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700}
-.mc36-badge-pend{background:#FFF8E1;color:#E65100;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:700}
 .footer{background:var(--blue);color:rgba(255,255,255,.9)}
 .footer-main{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:28px;padding:28px 32px 22px}
 .gov-seal-ft{width:46px;height:46px;background:#fff;border-radius:50%;border:2.5px solid var(--yellow);display:flex;align-items:center;justify-content:center;color:var(--blue);font-weight:900;font-size:13px;font-family:'Barlow Condensed',sans-serif;margin-bottom:9px}
-.footer-logo{height:46px;width:auto;object-fit:contain;display:block;margin-bottom:9px}
 .footer-brand h4{font-family:'Barlow Condensed',sans-serif;font-size:14px;font-weight:800;letter-spacing:.5px;margin-bottom:4px}
 .footer-brand p{font-size:11.5px;opacity:.72;line-height:1.6}
 .footer-col h5{font-family:'Barlow Condensed',sans-serif;font-size:12.5px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--yellow);margin-bottom:9px}
@@ -219,1281 +186,144 @@ canvas{display:block;max-width:100%}
 @media(max-width:768px){.module-grid{grid-template-columns:1fr 1fr}.contact-grid{grid-template-columns:1fr}}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
-</head>
-<body>
+<script>
+// ── IMAGES ──
+window._PS4_SRC = "4Ps-DMIS-Dashboardd/4pslogo.png";
+window._DSWD_SRC = "4Ps-DMIS-Dashboardd/Screenshot 2026-03-05 084849.png";
 
-<!-- SEARCH OVERLAY -->
-<div class="search-overlay" id="search-overlay" onclick="closeSearchBg(event)">
-  <div class="search-box">
-    <div class="search-input-wrap">
-      <i class="fa fa-search"></i>
-      <input class="search-input" id="search-input" type="text" placeholder="Search pages, modules, beneficiaries..." oninput="doSearch(this.value)" onkeydown="if(event.key==='Escape')closeSearch()">
-      <button class="search-close-btn" onclick="closeSearch()"><i class="fa fa-times"></i> ESC</button>
-    </div>
-    <div class="search-results" id="search-results"></div>
-  </div>
-</div>
+window.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('logo4ps').src = localStorage.getItem('logo4ps') || window._PS4_SRC || '';
+  document.getElementById('logoDswd').src = localStorage.getItem('logoDswd') || window._DSWD_SRC || '';
+});
 
-<!-- TOPBAR -->
-<header class="topbar">
-  <div class="tb-left">
-    <img class="logo-4ps" id="logo4ps" alt="4Ps Logo" src="4Ps-DMIS-Dashboardd/4pslogo.png">
-    <div class="tb-divider"></div>
-    <div class="tb-titles">
-      <div class="agency">DSWD Field Office – CAR</div>
-      <div class="sub">Baguio City, Benguet &nbsp;|&nbsp; DMIS Dashboard</div>
-    </div>
-    <div class="tb-divider"></div>
-    <div class="tb-program">Data Management Information System</div>
-  </div>
-  <div class="tb-right">
-    <div style="position:relative">
-      <button class="tb-icon-btn" id="notif-btn" onclick="toggleNotif(event)">
-        <i class="fa fa-bell"></i>
-        <span class="notif-badge-dot" id="notif-badge">4</span>
-      </button>
-      <div class="notif-dropdown" id="notif-dropdown">
-        <div class="notif-head">Notifications <span id="notif-count-label">4 new</span></div>
-        <div class="notif-item" onclick="markRead(this)">
-          <div class="notif-icon-box" style="background:#FFF4E0;color:var(--orange)"><i class="fa fa-exclamation-triangle"></i></div>
-          <div class="notif-text"><div class="notif-title">71 HHs For MC No. 36 Processing</div><div class="notif-body">CAR Region: 71 households tagged For MC No. 36 – P1 2025.</div><div class="notif-time">Today, 8:14 AM</div></div>
-        </div>
-        <div class="notif-item" onclick="markRead(this)">
-          <div class="notif-icon-box" style="background:#FDEAEA;color:var(--red)"><i class="fa fa-hand-holding-heart"></i></div>
-          <div class="notif-text"><div class="notif-title">142 Grievances Still Pending</div><div class="notif-body">GRS: 142 cases unresolved, 18 escalated to RO.</div><div class="notif-time">Yesterday, 4:32 PM</div></div>
-        </div>
-        <div class="notif-item" onclick="markRead(this)">
-          <div class="notif-icon-box" style="background:#E6F4EC;color:var(--green)"><i class="fa fa-check-circle"></i></div>
-          <div class="notif-text"><div class="notif-title">177 HHs Qualified for Exemption</div><div class="notif-body">MC36 Tracking: 13 Exemption 1, 164 Exemption 2 across CAR.</div><div class="notif-time">Mar 1, 2026</div></div>
-        </div>
-        <div class="notif-item" onclick="markRead(this)">
-          <div class="notif-icon-box" style="background:#E8F0FB;color:var(--blue)"><i class="fa fa-database"></i></div>
-          <div class="notif-text"><div class="notif-title">94 Benguet Records Pending Validation</div><div class="notif-body">MC36 Tracking: Benguet has 87 #REF! entries needing resolution.</div><div class="notif-time">Feb 28, 2026</div></div>
-        </div>
-        <div class="notif-footer" onclick="clearAllNotifs()">Mark all as read</div>
-      </div>
-    </div>
-    <button class="tb-icon-btn" onclick="openSearch()"><i class="fa fa-search"></i></button>
-    <div class="tb-divider"></div>
-    <button class="tb-icon-btn" id="open-full-btn" onclick="openFull()" style="display:none"><i class="fa fa-up-right-from-square"></i></button>
-    <div class="tb-divider"></div>
-    <img class="logo-dswd" id="logoDswd" alt="DSWD Logo" src="4Ps-DMIS-Dashboardd/Screenshot 2026-03-05 084849.png">
-  </div>
-</header>
-
-<div class="layout">
-<!-- SIDEBAR -->
-<nav class="sidebar" id="sidebar">
-  <div class="sidebar-section">
-    <div class="sidebar-label">Main</div>
-    <a class="nav-item active" onclick="showPage('dashboard',this)"><i class="fa fa-chart-line"></i><span class="nav-label"> Dashboard</span></a>
-  </div>
-  <hr>
-  <div class="sidebar-section">
-    <div class="sidebar-label">Modules</div>
-    <a class="nav-item" onclick="showPage('ict',this)"><i class="fa fa-laptop-code"></i><span class="nav-label"> ICT</span></a>
-    <a class="nav-item" onclick="showPage('bdmu',this)"><i class="fa fa-database"></i><span class="nav-label"> BDMU</span></a>
-    <a class="nav-item" onclick="showPage('cvs',this)"><i class="fa fa-check-double"></i><span class="nav-label"> CVS</span></a>
-    <a class="nav-item" onclick="showPage('grs',this)"><i class="fa fa-hand-holding-heart"></i><span class="nav-label"> GRS</span></a>
-  </div>
-  <hr>
-  <div class="sidebar-section">
-    <div class="sidebar-label">Support</div>
-    <a class="nav-item" onclick="showPage('officers',this)"><i class="fa fa-users"></i><span class="nav-label"> DMIS Officers</span></a>
-    <a class="nav-item" onclick="showPage('faqs',this)"><i class="fa fa-question-circle"></i><span class="nav-label"> FAQs</span></a>
-    <a class="nav-item" onclick="showPage('contact',this)"><i class="fa fa-envelope"></i><span class="nav-label"> Contact Us</span></a>
-  </div>
-
-  <div class="sidebar-bottom">
-    <div class="nav-item" style="opacity:.45;font-size:11px;cursor:default"><i class="fa fa-code-branch"></i><span class="nav-label sidebar-bottom-label"> v2.2.0 · FO-CAR</span></div>
-  </div>
-</nav>
-
-<main class="main" id="main-content">
-
-<!-- ═══════════════════ DASHBOARD PAGE ═══════════════════ -->
-<div id="page-dashboard" class="page active">
-  <div class="looker-toolbar">
-    <span class="lt-label">Period:</span>
-    <select class="lt-filter" id="dash-period"><option>Jan–Dec 2025</option><option>Q1 2025</option><option>Q2 2025</option></select>
-    <div class="lt-sep"></div>
-    <span class="lt-label">Region:</span>
-    <select class="lt-filter"><option>CAR – Cordillera Administrative Region</option></select>
-    <button class="lt-btn" id="filter-btn" onclick="applyFilter()"><i class="fa fa-filter"></i> Filter</button>
-    <button class="lt-btn" id="refresh-btn" onclick="refreshDash()"><i class="fa fa-sync-alt" id="refresh-icon"></i> Refresh</button>
-    <button class="lt-export"><i class="fa fa-download"></i> Export</button>
-  </div>
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> 4Ps DMIS Dashboard – CAR Region</h2>
-      <div class="bc" id="dash-bc">Home › Dashboard › CAR Overview &nbsp;|&nbsp; March 5, 2026</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary"><i class="fa fa-print"></i> Print Report</button>
-      <button class="btn-primary" style="background:var(--green)" onclick="sheetRefreshTab('dashboard')"><i class="fa fa-rotate" id="dashboard-spin"></i> Sync Sheet</button>
-    </div>
-  </div>
-  <div id="dashboard-sheet-bar" style="display:none;background:#F0F7FF;border:1px solid #C5D5EA;border-radius:8px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-    <i class="fa fa-link" style="color:var(--blue)"></i>
-    <span style="font-size:11.5px;font-weight:600;color:var(--blue)">Google Sheet URL (KPIs tab):</span>
-    <input id="dashboard-url-input" type="text" class="gcal-url-input" style="flex:1;min-width:280px" placeholder="https://docs.google.com/spreadsheets/d/e/…/pub?output=csv&gid=0">
-    <button class="gcal-load-btn" onclick="sheetConnect('dashboard')"><i class="fa fa-plug"></i> Connect</button>
-    <span id="dashboard-sheet-msg" style="font-size:11px"></span>
-  </div>
-  <div class="kpi-grid">
-    <div class="kpi-card" style="border-top-color:var(--blue)"><div class="kpi-top"><div class="kpi-label">Registered HHs</div><div class="kpi-icon" style="color:var(--blue)"><i class="fa fa-house-user"></i></div></div><div class="kpi-value">143,872</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +2.3%</span> vs last year</div></div>
-    <div class="kpi-card" style="border-top-color:var(--red)"><div class="kpi-top"><div class="kpi-label">Active Beneficiaries</div><div class="kpi-icon" style="color:var(--red)"><i class="fa fa-users"></i></div></div><div class="kpi-value" style="color:var(--red)">127,450</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +1.8%</span> vs last quarter</div></div>
-    <div class="kpi-card" style="border-top-color:var(--green)"><div class="kpi-top"><div class="kpi-label">Compliance Rate</div><div class="kpi-icon" style="color:var(--green)"><i class="fa fa-chart-bar"></i></div></div><div class="kpi-value" style="color:var(--green)">91.4%</div><div class="kpi-sub"><span class="kpi-trend up"><i class="fa fa-arrow-up"></i> +0.6%</span> this period</div></div>
-    <div class="kpi-card" style="border-top-color:var(--orange)"><div class="kpi-top"><div class="kpi-label">Grievances Resolved</div><div class="kpi-icon" style="color:var(--orange)"><i class="fa fa-check-circle"></i></div></div><div class="kpi-value" style="color:var(--orange)">3,218</div><div class="kpi-sub"><span class="kpi-trend down"><i class="fa fa-arrow-down"></i> 142 pending</span></div></div>
-  </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> Looker Studio – 4Ps CAR Analytics Report</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/50206683-91c0-493b-a06c-2b9e92683acc/page/BIGpF" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
-  </div>
-  <div class="two-col">
-    <div class="card" style="overflow:hidden">
-      <div class="card-head"><h3><i class="fa fa-map-marked-alt"></i> CAR Bubble Map – Beneficiary Distribution</h3><span class="card-tag">CAR Only</span></div>
-      <div id="car-map"></div>
-      <div style="padding:7px 14px;background:#fff;display:flex;gap:12px;flex-wrap:wrap;align-items:center;border-top:1px solid var(--border);font-size:10.5px;">
-        <div style="display:flex;align-items:center;gap:4px;"><div style="width:11px;height:11px;border-radius:50%;background:rgba(206,17,38,.7);"></div> Bubble size = HH count</div>
-        <div style="color:var(--text-soft);">Click for details · Scroll to zoom</div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-head"><h3><i class="fa fa-chart-bar"></i> Compliance Rate by Province</h3></div>
-      <div class="card-body">
-        <div style="font-size:10px;font-weight:700;color:var(--text-soft);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;">2025 – CAR Region</div>
-        <div class="prog-row"><span class="prog-label">Baguio City</span><div class="prog-bar"><div class="prog-fill" style="width:95%;background:var(--red)"></div></div><span class="prog-val" style="color:var(--red)">95%</span></div>
-        <div class="prog-row"><span class="prog-label">Ifugao</span><div class="prog-bar"><div class="prog-fill" style="width:94%;background:var(--green)"></div></div><span class="prog-val" style="color:var(--green)">94%</span></div>
-        <div class="prog-row"><span class="prog-label">Mt. Province</span><div class="prog-bar"><div class="prog-fill" style="width:93%;background:var(--blue)"></div></div><span class="prog-val" style="color:var(--blue)">93%</span></div>
-        <div class="prog-row"><span class="prog-label">Benguet</span><div class="prog-bar"><div class="prog-fill" style="width:92%;background:var(--blue-mid)"></div></div><span class="prog-val">92%</span></div>
-        <div class="prog-row"><span class="prog-label">Kalinga</span><div class="prog-bar"><div class="prog-fill" style="width:90%;background:var(--blue-light)"></div></div><span class="prog-val">90%</span></div>
-        <div class="prog-row"><span class="prog-label">Abra</span><div class="prog-bar"><div class="prog-fill" style="width:89%;background:#64B5F6"></div></div><span class="prog-val">89%</span></div>
-        <div class="prog-row"><span class="prog-label">Apayao</span><div class="prog-bar"><div class="prog-fill" style="width:87%;background:#90CAF9"></div></div><span class="prog-val">87%</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-table"></i> Recent Beneficiary Updates – CAR</h3><button class="btn-primary" style="font-size:11px;padding:5px 13px"><i class="fa fa-plus"></i> Add Record</button></div>
-    <div style="overflow-x:auto"><table class="data-table"><thead><tr><th>#</th><th>HH ID</th><th>Beneficiary Name</th><th>Province</th><th>Municipality</th><th>Status</th><th>Updated</th></tr></thead><tbody>
-      <tr><td>1</td><td>CAR-2025-0001</td><td>Maria Santos</td><td>Baguio City</td><td>Baguio City</td><td><span class="sb active">Active</span></td><td>Mar 1, 2026</td></tr>
-      <tr><td>2</td><td>CAR-2025-0042</td><td>Jose Bugan</td><td>Benguet</td><td>La Trinidad</td><td><span class="sb active">Active</span></td><td>Feb 28, 2026</td></tr>
-      <tr><td>3</td><td>CAR-2025-0118</td><td>Rosario Dulnuan</td><td>Ifugao</td><td>Lagawe</td><td><span class="sb pending">Pending</span></td><td>Feb 26, 2026</td></tr>
-      <tr><td>4</td><td>CAR-2025-0230</td><td>Pedro Cariño</td><td>Abra</td><td>Bangued</td><td><span class="sb active">Active</span></td><td>Feb 25, 2026</td></tr>
-      <tr><td>5</td><td>CAR-2025-0389</td><td>Lourdes Bannayan</td><td>Kalinga</td><td>Tabuk</td><td><span class="sb inactive">Suspended</span></td><td>Feb 20, 2026</td></tr>
-    </tbody></table></div>
-  </div>
-</div>
-
-
-
-<!-- ═══════════════════ ICT PAGE ═══════════════════ -->
-<div id="page-ict" class="page">
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> ICT – Information &amp; Communications Technology</h2>
-      <div class="bc">Home › ICT &nbsp;|&nbsp; IT Equipment Inventory &amp; System Status</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> ICT Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/05bdb7cd-c9ae-4989-85c5-be380d8492dd/page/VVwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
-  </div>
-
-  <!-- ICT Calendar -->
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> ICT Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>ICT Calendar:</label><input class="gcal-url-input" id="gcal-ict-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-ict-frame','gcal-ict-url','gcal-ict-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-ict-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>ICT Calendar Not Loaded</p></div>
-    <iframe id="gcal-ict-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
-  </div>
-</div>
-
-<!-- ═══════════════════ BDMU PAGE ═══════════════════ -->
-<div id="page-bdmu" class="page">
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> BDMU – Beneficiary Data Management Unit</h2>
-      <div class="bc">Home › BDMU</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-      <button class="btn-primary"><i class="fa fa-file-export"></i> Export Data</button>
-      <button class="btn-primary" style="background:var(--green)" onclick="sheetRefreshTab('bdmu')"><i class="fa fa-rotate" id="bdmu-spin"></i> Sync Sheet</button>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> BDMU Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/10bc3e18-2aa0-4e26-be9b-a92146da6768/page/b2ktF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
-  </div>
-
-  <!-- BDMU Calendar -->
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> BDMU Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>BDMU Calendar:</label><input class="gcal-url-input" id="gcal-bdmu-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-bdmu-frame','gcal-bdmu-url','gcal-bdmu-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-bdmu-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>BDMU Calendar Not Loaded</p></div>
-    <iframe id="gcal-bdmu-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
-  </div>
-</div>
-
-<!-- ═══════════════════ CVS PAGE ═══════════════════ -->
-<div id="page-cvs" class="page">
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> CVS – Compliance Verification System</h2>
-      <div class="bc">Home › CVS &nbsp;|&nbsp; NAS/NASH Tracking + MC No. 36 Consolidated Validation</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> CVS Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe width="600" height="450" src="https://lookerstudio.google.com/embed/reporting/0f5e720b-3175-44b5-91a4-c669e2384f18/page/lDwsF" frameborder="0" style="border:0;width:100%;height:620px" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
-  </div>
-
-  <!-- CVS Calendar -->
-  <div class="gcal-section">
-    <div class="gcal-head"><h3><i class="fab fa-google" style="color:#FCD116"></i> CVS Team – Google Calendar</h3></div>
-    <div class="gcal-input-bar"><label>CVS Calendar:</label><input class="gcal-url-input" id="gcal-cvs-url" type="text" placeholder="https://calendar.google.com/calendar/embed?src=..."><button class="gcal-load-btn" onclick="loadCal('gcal-cvs-frame','gcal-cvs-url','gcal-cvs-ph')"><i class="fa fa-check"></i> Load</button></div>
-    <div id="gcal-cvs-ph" class="gcal-ph"><i class="fab fa-google-calendar"></i><p>CVS Calendar Not Loaded</p></div>
-    <iframe id="gcal-cvs-frame" src="" height="500" style="display:none;width:100%;border:none"></iframe>
-  </div>
-</div>
-
-<!-- ═══════════════════ GRS PAGE ═══════════════════ -->
-<div id="page-grs" class="page">
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> GRS – Grievance Redress System</h2>
-      <div class="bc">Home › GRS</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-      <button class="btn-primary"><i class="fa fa-plus"></i> File Grievance</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> GRS Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap"><iframe src="https://lookerstudio.google.com/embed/reporting/40669b4d-e21f-4093-9b15-d0e8a943e1ec/page/3DbND" height="620" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe></div>
-  </div>
-</div>
-
-<!-- FAQs -->
-<div id="page-faqs" class="page">
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> Frequently Asked Questions</h2>
-      <div class="bc">Home › FAQs</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
-  </div>
-  <div class="faq-list">
-    <div class="faq-item open"><div class="faq-q" onclick="toggleFaq(this)">What is the 4Ps DMIS? <i class="fa fa-chevron-down"></i></div><div class="faq-a">The DMIS for the Pantawid Pamilyang Pilipino Program (4Ps) is an online platform used by DSWD Field Office CAR to manage beneficiary data, compliance monitoring, grievance redress, and reporting for the Cordillera Administrative Region.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is MC No. 36 and why is it tracked here? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Memorandum Circular No. 36 governs the suspension and delisting of 4Ps beneficiaries who fail to comply with program conditions. The CVS module now includes the consolidated MC No. 36 Validation Result Tracking for P1 2025, showing which households are For MC No. 36 monitoring, qualified for Exemption 1 (beyond their control) or Exemption 2 (system-related issues), or are pending validation.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What do the three MC No. 36 validation results mean? <i class="fa fa-chevron-down"></i></div><div class="faq-a"><strong>For MC No. 36 Monitoring:</strong> HH failed to comply and is subject to the MC 36 process (Notice of Failure, Evaluation Period, Checkpoint). <br><strong>Exemption No. 1:</strong> HH failed due to reasons beyond their control (e.g., natural calamity, serious illness). <br><strong>Exemption No. 2:</strong> HH failed due to system-related issues (e.g., wrong facility tagging, data mismatch). These require facilitation of updates.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I file a grievance through GRS? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Navigate to the GRS module and click "File Grievance." Fill in the complainant's information, nature of grievance, and supporting documents. The system will assign a GRS ticket and route it to the appropriate DMIS officer for action within 30 days.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I add my Google Calendar to a module tab? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Go to calendar.google.com → Settings → select your calendar → scroll to "Integrate calendar" → copy the embed URL → paste it in the calendar input field of the relevant module tab, then click Load.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I connect a Google Sheet to a module? <i class="fa fa-chevron-down"></i></div><div class="faq-a"><strong>One-time setup per module:</strong><br><br>1. Open your Google Sheet → click <strong>File → Share → Publish to web</strong><br>2. Select the specific sheet tab (e.g. "ICT Inventory") → format: <strong>CSV</strong> → click <strong>Publish</strong><br>3. Copy the published URL<br>4. Go to the relevant module tab (e.g. ICT) → click the green <strong>Sync Sheet</strong> button<br>5. Paste the URL → click <strong>Connect</strong><br><br>After the first connection, clicking <strong>Sync Sheet</strong> will refresh data instantly. The URL is remembered in your browser. To connect a different sheet tab, add <code>&amp;gid=XXXXXXXXX</code> to the URL (find the gid in the sheet URL after <code>#gid=</code>).</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What data should NOT be put in the Google Sheets connected to this dashboard? <i class="fa fa-chevron-down"></i></div><div class="faq-a">Because published Google Sheets are publicly accessible via their CSV URL, <strong>do not include</strong> any of the following in connected sheets: full names of beneficiaries, employee IDs, email addresses, contact numbers, internal report details, or any personally identifiable information (PII). Only include aggregated statistics, counts, and summary data appropriate for a public-facing dashboard.</div></div>
-  </div>
-</div>
-
-<!-- CONTACT -->
-<div id="page-contact" class="page">
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> Contact Us</h2>
-      <div class="bc">Home › Contact</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
-  </div>
-  <div class="contact-grid">
-    <div class="contact-card"><div class="contact-icon-box"><i class="fa fa-building"></i></div><div><div class="contact-title">DSWD Field Office CAR</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">No. 23 General Luna Road, Baguio City 2600</p></div></div>
-    <div class="contact-card"><div class="contact-icon-box" style="background:#FDF4F4;color:var(--red)"><i class="fa fa-phone"></i></div><div><div class="contact-title">Telephone / Hotline</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">(074) 442-6401 &nbsp;|&nbsp; 4Ps Hotline: 1-800-10-654-0000</p></div></div>
-    <div class="contact-card"><div class="contact-icon-box" style="background:#F2FAF4;color:var(--green)"><i class="fa fa-envelope"></i></div><div><div class="contact-title">Email Addresses</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7b1d1456181a093b1f080c1f551c140d550b13">[email&#160;protected]</a> &nbsp;|&nbsp; <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d7970746e307e7c6f5d796e6a79337a726b336d75">[email&#160;protected]</a></p></div></div>
-    <div class="contact-card"><div class="contact-icon-box" style="background:#FFF9EE;color:var(--orange)"><i class="fa fa-clock"></i></div><div><div class="contact-title">Office Hours</div><p style="font-size:12.5px;color:var(--text-soft);line-height:1.6">Monday – Friday: 8:00 AM – 5:00 PM</p></div></div>
-  </div>
-</div>
-
-<!-- OFFICERS -->
-<div id="page-officers" class="page">
-  <div class="page-header">
-    <div class="ph-left">
-      <h2><span class="ab"></span> DMIS Officers – FO-CAR</h2>
-      <div class="bc">Home › DMIS Officers</div>
-    </div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn-primary" onclick="window.print()"><i class="fa fa-print"></i> Print Report</button>
-    </div>
-  </div>
-  <div class="officers-grid">
-    <div class="officer-card"><div class="officer-banner" style="background:var(--blue)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--blue)">RC</div></div><div class="officer-info"><div class="officer-name">Rosario C. Cariño</div><div class="officer-role">Regional DMIS Coordinator</div><span class="officer-badge">FO-CAR HQ</span></div></div>
-    <div class="officer-card"><div class="officer-banner" style="background:var(--red)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--red)">JB</div></div><div class="officer-info"><div class="officer-name">Juan B. Buagan</div><div class="officer-role">BDMU Chief / Data Analyst</div><span class="officer-badge">BDMU</span></div></div>
-    <div class="officer-card"><div class="officer-banner" style="background:var(--green)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--green)">MP</div></div><div class="officer-info"><div class="officer-name">Maria D. Pagapong</div><div class="officer-role">CVS Officer – Health &amp; Education</div><span class="officer-badge">CVS</span></div></div>
-    <div class="officer-card"><div class="officer-banner" style="background:var(--orange)"></div><div class="officer-avatar-wrap"><div class="officer-avatar" style="background:var(--orange)">AL</div></div><div class="officer-info"><div class="officer-name">Andres L. Laoyan</div><div class="officer-role">GRS Focal Person</div><span class="officer-badge">GRS</span></div></div>
-  </div>
-</div>
-
-
-</div>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-main">
-    <div class="footer-brand">
-      <img class="footer-logo" src="4Ps-DMIS-Dashboardd/4pslogo.png" alt="4Ps Logo">
-      <h4>DSWD Field Office – Cordillera Administrative Region</h4>
-      <p>Pantawid Pamilyang Pilipino Program<br>Data Management Information System · v2.2.0<br>23 General Luna Road, Baguio City 2600</p>
-    </div>
-    <div class="footer-col"><h5>Quick Links</h5><ul>
-      <li><a onclick="showPage('dashboard',null)">Dashboard</a></li>
-      <li><a onclick="showPage('ict',null)">ICT</a></li>
-      <li><a onclick="showPage('bdmu',null)">BDMU</a></li>
-      <li><a onclick="showPage('cvs',null)">CVS</a></li>
-      <li><a onclick="showPage('grs',null)">GRS</a></li>
-    </ul></div>
-    <div class="footer-col"><h5>Support</h5><ul>
-      <li><a onclick="showPage('faqs',null)">FAQs</a></li>
-      <li><a onclick="showPage('contact',null)">Contact Us</a></li>
-      <li><a onclick="showPage('officers',null)">DMIS Officers</a></li>
-    </ul></div>
-    <div class="footer-col footer-contact"><h5>Contact</h5>
-      <p><i class="fa fa-phone"></i> (074) 442-6401</p>
-      <p><i class="fa fa-envelope"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dcbab3f1bfbdae9cb8afabb8f2bbb3aaf2acb4">[email&#160;protected]</a></p>
-      <p><i class="fa fa-globe"></i> www.dswd.gov.ph</p>
-      <p style="margin-top:8px"><i class="fa fa-shield-halved"></i> Protected under RA 10173</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 Department of Social Welfare and Development – Field Office CAR. All rights reserved.</span>
-    <span>DMIS v2.2.0 &nbsp;|&nbsp; MC No. 36 Tracking Integrated</span>
-  </div>
-</footer>
-</main>
-</div>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── NAVIGATION ──
 function showPage(id, navEl) {
-  document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   var t = document.getElementById('page-' + id);
-  if(t) t.classList.add('active');
-  document.querySelectorAll('.nav-item').forEach(function(n){n.classList.remove('active');});
-  if(navEl) navEl.classList.add('active');
-  window.scrollTo(0,0);
-  if(id==='dashboard') setTimeout(initMap,150);
-  if(id==='cvs'){setTimeout(initCVSCharts,100);setTimeout(initMC36Charts,200);}
-  if(id==='ict') setTimeout(initIctCharts,150);
-  if(id==='bdmu') setTimeout(initBdmuGranteeCharts,150);
-  // Auto-load sheets when tab opens
-  setTimeout(function(){ autoLoadSheets(id); }, 400);
+  if (t) t.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('active'); });
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
 }
-function toggleFaq(el){el.closest('.faq-item').classList.toggle('open');}
-function loadCal(fId,iId,pId){
-  var url=document.getElementById(iId).value.trim();
-  if(!url){alert('Paste a Google Calendar embed URL first.');return;}
-  var f=document.getElementById(fId),p=document.getElementById(pId);
-  f.src=url;f.style.display='block';p.style.display='none';
-}
+
+function toggleFaq(el) { el.closest('.faq-item').classList.toggle('open'); }
 
 // ── NOTIFICATIONS ──
-var notifCount=4;
-function toggleNotif(e){e.stopPropagation();document.getElementById('notif-dropdown').classList.toggle('open');}
-function markRead(item){if(item.dataset.read)return;item.dataset.read='1';item.style.opacity='.5';notifCount=Math.max(0,notifCount-1);updateNotifBadge();}
-function clearAllNotifs(){document.querySelectorAll('.notif-item').forEach(function(i){i.dataset.read='1';i.style.opacity='.5';});notifCount=0;updateNotifBadge();document.getElementById('notif-dropdown').classList.remove('open');}
-function updateNotifBadge(){var b=document.getElementById('notif-badge'),l=document.getElementById('notif-count-label');if(notifCount===0){b.style.display='none';l.textContent='All read';}else{b.style.display='flex';b.textContent=notifCount;l.textContent=notifCount+' new';}}
-document.addEventListener('click',function(e){if(!e.target.closest('#notif-btn')&&!e.target.closest('#notif-dropdown'))document.getElementById('notif-dropdown').classList.remove('open');});
+var notifCount = 4;
+function toggleNotif(e) {
+  e.stopPropagation();
+  document.getElementById('notif-dropdown').classList.toggle('open');
+}
+function markRead(item) {
+  if (item.dataset.read) return;
+  item.dataset.read = '1';
+  item.style.opacity = '0.5';
+  item.style.background = '#fafcff';
+  notifCount = Math.max(0, notifCount - 1);
+  updateNotifBadge();
+}
+function clearAllNotifs() {
+  document.querySelectorAll('.notif-item').forEach(function(i) {
+    i.dataset.read = '1'; i.style.opacity = '0.5'; i.style.background = '#fafcff';
+  });
+  notifCount = 0;
+  updateNotifBadge();
+  document.getElementById('notif-dropdown').classList.remove('open');
+}
+function updateNotifBadge() {
+  var badge = document.getElementById('notif-badge');
+  var label = document.getElementById('notif-count-label');
+  if (notifCount === 0) {
+    badge.style.display = 'none';
+    label.textContent = 'All read';
+  } else {
+    badge.style.display = 'flex';
+    badge.textContent = notifCount;
+    label.textContent = notifCount + ' new';
+  }
+}
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('#notif-btn') && !e.target.closest('#notif-dropdown')) {
+    document.getElementById('notif-dropdown').classList.remove('open');
+  }
+  if (!e.target.closest('#logo-btn') && !e.target.closest('#logo-dropdown')) {
+    document.getElementById('logo-dropdown').classList.remove('open');
+  }
+});
+
+function toggleLogoPanel(e) {
+  e.stopPropagation();
+  document.getElementById('logo-dropdown').classList.toggle('open');
+}
+function uploadLogo(input, imgId, key) {
+  var f = input.files && input.files[0];
+  if (!f) return;
+  var r = new FileReader();
+  r.onload = function() {
+    var data = r.result;
+    document.getElementById(imgId).src = data;
+    localStorage.setItem(key, data);
+  };
+  r.readAsDataURL(f);
+}
+function resetLogos() {
+  localStorage.removeItem('logo4ps');
+  localStorage.removeItem('logoDswd');
+  document.getElementById('logo4ps').src = window._PS4_SRC || '';
+  document.getElementById('logoDswd').src = window._DSWD_SRC || '';
+  document.getElementById('logo-dropdown').classList.remove('open');
+}
 
 // ── SEARCH ──
-var SEARCH_PAGES=[
-  {id:'dashboard',icon:'fa-chart-line',title:'Dashboard',desc:'KPIs, map, beneficiary overview'},
-  {id:'ict',icon:'fa-laptop-code',title:'ICT',desc:'System status, network, help desk'},
-  {id:'bdmu',icon:'fa-database',title:'BDMU',desc:'Beneficiary data management, validation'},
-  {id:'cvs',icon:'fa-check-double',title:'CVS / MC No. 36',desc:'Compliance verification, NAS/NASH, MC No. 36 tracking'},
-  {id:'grs',icon:'fa-hand-holding-heart',title:'GRS',desc:'Grievance redress system, complaints'},
-  {id:'calendar',icon:'fa-calendar-alt',title:'Calendar',desc:'DMIS main Google Calendar'},
-  {id:'officers',icon:'fa-users',title:'DMIS Officers',desc:'FO-CAR officer directory'},
-  {id:'faqs',icon:'fa-question-circle',title:'FAQs',desc:'Frequently asked questions'},
-  {id:'contact',icon:'fa-envelope',title:'Contact Us',desc:'Office address, phone, email, hotline'},
+var SEARCH_PAGES = [
+  {id:'ict', icon:'fa-laptop-code', title:'ICT', desc:'System status, network, help desk'},
+  {id:'bdmu', icon:'fa-database', title:'BDMU', desc:'Beneficiary data management, validation'},
+  {id:'cvs', icon:'fa-check-double', title:'CVS', desc:'Compliance verification, NAS/NASH tracking'},
+  {id:'grs', icon:'fa-hand-holding-heart', title:'GRS', desc:'Grievance redress system, complaints'},
+  {id:'officers', icon:'fa-users', title:'DMIS Officers', desc:'FO-CAR officer directory'},
+  {id:'faqs', icon:'fa-question-circle', title:'FAQs', desc:'Frequently asked questions and guides'},
+  {id:'contact', icon:'fa-envelope', title:'Contact Us', desc:'Office address, phone, email, hotline'},
 ];
-function openSearch(){document.getElementById('search-overlay').classList.add('open');setTimeout(function(){document.getElementById('search-input').focus();},50);doSearch('');}
-function closeSearch(){document.getElementById('search-overlay').classList.remove('open');document.getElementById('search-input').value='';}
-function closeSearchBg(e){if(e.target===document.getElementById('search-overlay'))closeSearch();}
-function doSearch(q){
-  var r=document.getElementById('search-results');q=q.toLowerCase().trim();
-  var filtered=q===''?SEARCH_PAGES:SEARCH_PAGES.filter(function(p){return p.title.toLowerCase().includes(q)||p.desc.toLowerCase().includes(q)||p.id.includes(q);});
-  if(filtered.length===0){r.innerHTML='<div class="search-empty">No results for "'+q+'"</div>';return;}
-  var label='<div class="search-section-label">'+(q?'Search Results':'All Pages')+'</div>';
-  var items=filtered.map(function(p){return '<div class="search-result-item" onclick="goSearch(\''+p.id+'\')"><div class="sr-icon"><i class="fa '+p.icon+'"></i></div><div><div class="sr-title">'+p.title+'</div><div class="sr-desc">'+p.desc+'</div></div></div>';}).join('');
-  r.innerHTML=label+items;
+function openSearch() {
+  document.getElementById('search-overlay').classList.add('open');
+  setTimeout(function() { document.getElementById('search-input').focus(); }, 50);
+  doSearch('');
 }
-function goSearch(id){closeSearch();var found=null;document.querySelectorAll('.nav-item').forEach(function(n){if(n.getAttribute('onclick')&&n.getAttribute('onclick').indexOf("'"+id+"'")!==-1)found=n;});showPage(id,found);}
-
-// ── FILTER & REFRESH ──
-function applyFilter(){var period=document.getElementById('dash-period').value;document.getElementById('dash-bc').innerHTML='Home &rsaquo; Dashboard &rsaquo; CAR Overview &nbsp;|&nbsp; Period: '+period;var btn=document.getElementById('filter-btn');btn.style.background='var(--green)';btn.style.color='#fff';btn.style.borderColor='var(--green)';btn.innerHTML='<i class="fa fa-check"></i> Applied';setTimeout(function(){btn.style.background='';btn.style.color='';btn.style.borderColor='';btn.innerHTML='<i class="fa fa-filter"></i> Filter';},1600);}
-function refreshDash(){var icon=document.getElementById('refresh-icon');var btn=document.getElementById('refresh-btn');icon.style.animation='spin 0.8s linear infinite';btn.disabled=true;setTimeout(function(){icon.style.animation='';btn.disabled=false;btn.innerHTML='<i class="fa fa-sync-alt"></i> Refreshed!';setTimeout(function(){btn.innerHTML='<i class="fa fa-sync-alt" id="refresh-icon"></i> Refresh';},1500);},1200);}
-
-// ── MAP ──
-var CAR_PROV=[
-  {name:'Abra',lat:17.597,lng:120.772,hh:29440,comp:89,active:26214,gr:54},
-  {name:'Apayao',lat:18.015,lng:121.115,hh:14820,comp:87,active:12893,gr:23},
-  {name:'Kalinga',lat:17.473,lng:121.365,hh:21360,comp:90,active:19224,gr:31},
-  {name:'Mountain Province',lat:16.988,lng:121.018,hh:18910,comp:93,active:17586,gr:18},
-  {name:'Ifugao',lat:16.833,lng:121.200,hh:22510,comp:94,active:21159,gr:11},
-  {name:'Benguet',lat:16.532,lng:120.807,hh:24380,comp:92,active:22430,gr:28},
-  {name:'Baguio City',lat:16.409,lng:120.598,hh:12452,comp:95,active:11844,gr:8,hq:true},
-];
-var mapInit=false;
-function initMap(){
-  if(mapInit)return;
-  var el=document.getElementById('car-map');
-  if(!el||el.offsetWidth===0||typeof L==='undefined')return;
-  mapInit=true;
-  var map=L.map('car-map',{center:[17.1,121.0],zoom:8,minZoom:7,maxZoom:12});
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'© OpenStreetMap',maxZoom:18}).addTo(map);
-  var maxHH=Math.max.apply(null,CAR_PROV.map(function(p){return p.hh;}));
-  function rad(hh){return 8000+(hh/maxHH)*12000;}
-  CAR_PROV.forEach(function(p){
-    var fc=p.hq?'#8B0000':'#CE1126';var fo=p.hq?0.82:0.68;
-    var c=L.circle([p.lat,p.lng],{radius:rad(p.hh),color:p.hq?'rgba(139,0,0,.8)':'rgba(206,17,38,.5)',weight:p.hq?3:1.5,fillColor:fc,fillOpacity:fo}).addTo(map);
-    var hqB=p.hq?'<span style="background:#FCD116;color:#003087;font-size:8px;font-weight:800;padding:1px 6px;border-radius:8px;margin-left:5px">HQ</span>':'';
-    c.bindPopup('<div style="font-family:Barlow,sans-serif;min-width:175px"><div style="background:#003087;color:#fff;padding:8px 12px;margin:-1px -1px 9px;font-weight:700;font-size:13px">'+p.name+hqB+'</div><div style="padding:0 12px 10px"><table style="width:100%;border-collapse:collapse;font-size:11.5px"><tr><td style="color:#666;padding:2px 0">Registered HHs</td><td style="font-weight:800;text-align:right">'+p.hh.toLocaleString()+'</td></tr><tr><td style="color:#666;padding:2px 0">Active</td><td style="font-weight:700;text-align:right">'+p.active.toLocaleString()+'</td></tr><tr><td style="color:#666;padding:2px 0">Compliance</td><td style="font-weight:800;text-align:right;color:#1B7A3E">'+p.comp+'%</td></tr><tr><td style="color:#666;padding:2px 0">Open Grievances</td><td style="font-weight:700;text-align:right;color:#D46B00">'+p.gr+'</td></tr></table></div></div>',{maxWidth:210,offset:[0,-8]});
-    c.on('mouseover',function(){this.setStyle({fillOpacity:Math.min(fo+.18,.95),weight:p.hq?4:2.5});});
-    c.on('mouseout',function(){this.setStyle({fillOpacity:fo,weight:p.hq?3:1.5});});
-    c.on('click',function(){this.openPopup();});
-    L.marker([p.lat,p.lng],{icon:L.divIcon({className:'',html:'<div style="font-family:Barlow,sans-serif;font-size:9px;font-weight:700;color:#fff;background:rgba(0,48,135,.8);padding:2px 6px;border-radius:8px;white-space:nowrap;pointer-events:none;border:1px solid rgba(255,255,255,.2)">'+(p.hq?'★ ':'')+p.name+'</div>',iconAnchor:[35,5]})}).addTo(map);
+function closeSearch() {
+  document.getElementById('search-overlay').classList.remove('open');
+  document.getElementById('search-input').value = '';
+}
+function closeSearchBg(e) {
+  if (e.target === document.getElementById('search-overlay')) closeSearch();
+}
+function doSearch(q) {
+  var r = document.getElementById('search-results');
+  q = q.toLowerCase().trim();
+  var filtered = q === '' ? SEARCH_PAGES : SEARCH_PAGES.filter(function(p) {
+    return p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.id.includes(q);
   });
-}
-
-// ── CVS CHARTS (NAS/NASH) ──
-var CVS_DATA={
-  ALL:{total:12847,validated:7340,novalidated:5507,casemgmt:6892,
-    reasons:{'22 - Emotionally Unprepared':1842,'10 - Financial':1654,'5 - Working':923,'39 - Another facility':812,'9 - Bullied':387,'13 - Parent Decision':342,'19 - Early Pregnancy':312,'20 - Early Marriage':298,'4 - Sickly':254,'Other':316},
-    intervention:{'For Case Management':6892,'Update Issues':1848,'No Validated Category':4107},
-    sex:{FEMALE:5940,MALE:6907},grade:{'Daycare/Kinder':380,'Elementary':2840,'Junior HS':6420,'Senior HS':2180,'Invalid':1027},age:{'3–5':410,'6–14':5820,'15–18':6617},
-    provinces:[
-      {prov:'Abra',city:'Multiple',total:3240,hasReason:1920,noReason:1320,casemgmt:1740,ip:210},
-      {prov:'Apayao',city:'Multiple',total:1420,hasReason:780,noReason:640,casemgmt:720,ip:340},
-      {prov:'Kalinga',city:'Multiple',total:1980,hasReason:1140,noReason:840,casemgmt:1020,ip:510},
-      {prov:'Mountain Province',city:'Multiple',total:1640,hasReason:940,noReason:700,casemgmt:860,ip:420},
-      {prov:'Ifugao',city:'Multiple',total:1920,hasReason:1120,noReason:800,casemgmt:1040,ip:680},
-      {prov:'Benguet',city:'Multiple',total:1820,hasReason:1060,noReason:760,casemgmt:980,ip:180},
-      {prov:'Baguio City',city:'Baguio City',total:827,hasReason:380,noReason:447,casemgmt:532,ip:12},
-    ]},
-};
-var cvsCharts={};
-function updateCVSCharts(){
-  var sel=document.getElementById('cvs-province-filter').value;
-  var d=CVS_DATA[sel]||CVS_DATA.ALL;
-  document.getElementById('cvs-total').textContent=(d.total||0).toLocaleString();
-  document.getElementById('cvs-validated').textContent=(d.validated||0).toLocaleString();
-  document.getElementById('cvs-novalidated').textContent=(d.novalidated||0).toLocaleString();
-  document.getElementById('cvs-casemgmt').textContent=(d.casemgmt||0).toLocaleString();
-  var reasons=d.reasons||CVS_DATA.ALL.reasons;
-  updateChart('chartReasons','bar',Object.keys(reasons).map(function(k){return k.length>26?k.substring(0,25)+'…':k;}),Object.values(reasons),['rgba(0,48,135,.8)']);
-  var iData=d.intervention||CVS_DATA.ALL.intervention;
-  updateChart('chartIntervention','doughnut',Object.keys(iData),Object.values(iData),['#003087','#CE1126','#FCD116']);
-  var sData=d.sex||CVS_DATA.ALL.sex;
-  updateChart('chartSex','bar',Object.keys(sData),Object.values(sData),['#CE1126','#003087']);
-  var gData=d.grade||CVS_DATA.ALL.grade;
-  updateChart('chartGrade','doughnut',Object.keys(gData),Object.values(gData),['#003087','#0057B7','#2979E0','#64B5F6','#BBDEFB']);
-  var aData=d.age||CVS_DATA.ALL.age;
-  updateChart('chartAge','bar',Object.keys(aData),Object.values(aData),['#1B7A3E','#D46B00','#CE1126']);
-  var tbody=document.getElementById('cvs-province-tbody');
-  var rows=sel==='ALL'?CVS_DATA.ALL.provinces:CVS_DATA.ALL.provinces.filter(function(r){return r.prov.toUpperCase().includes(sel);});
-  tbody.innerHTML=rows.map(function(r){return '<tr><td><strong>'+r.prov+'</strong></td><td>'+r.city+'</td><td>'+r.total.toLocaleString()+'</td><td>'+r.hasReason.toLocaleString()+'</td><td>'+r.noReason.toLocaleString()+'</td><td>'+r.casemgmt.toLocaleString()+'</td><td>'+r.ip.toLocaleString()+'</td></tr>';}).join('');
-}
-function updateChart(id,type,labels,data,colors){
-  var ctx=document.getElementById(id);if(!ctx)return;
-  if(cvsCharts[id]){cvsCharts[id].destroy();}
-  var isHoriz=(id==='chartReasons');
-  cvsCharts[id]=new Chart(ctx,{type:type,data:{labels:labels,datasets:[{data:data,backgroundColor:type==='bar'?colors[0]:colors,borderWidth:type==='doughnut'?2:0,borderColor:'#fff'}]},options:{indexAxis:isHoriz?'y':'x',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:type==='doughnut',position:'right',labels:{font:{size:10,family:'Barlow'},padding:8,boxWidth:12}},tooltip:{callbacks:{label:function(ctx){return ' '+(ctx.parsed.y!==undefined?ctx.parsed.y:ctx.parsed);}}}},scales:type==='bar'?{x:{grid:{display:false},ticks:{font:{size:9,family:'Barlow'}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}}:{}}});
-}
-function initCVSCharts(){updateCVSCharts();}
-
-// ══════════════════════════════════════════════════════
-//  MC No. 36 DATA & CHARTS
-// ══════════════════════════════════════════════════════
-var MC36_PROV_DATA=[
-  {province:"Abra",total:32,mc36:19,exemption1:0,exemption2:13,pending:0,active:12,graduated:13,delisted:1,withNotice:20,withLetter:19,nfcFacilitated:19},
-  {province:"Apayao",total:62,mc36:8,exemption1:0,exemption2:54,pending:0,active:36,graduated:14,delisted:0,withNotice:15,withLetter:6,nfcFacilitated:6},
-  {province:"Benguet",total:135,mc36:10,exemption1:0,exemption2:38,pending:87,active:51,graduated:58,delisted:0,withNotice:52,withLetter:6,nfcFacilitated:6},
-  {province:"Ifugao",total:41,mc36:7,exemption1:13,exemption2:21,pending:0,active:28,graduated:10,delisted:0,withNotice:15,withLetter:12,nfcFacilitated:12},
-  {province:"Kalinga",total:61,mc36:24,exemption1:0,exemption2:30,pending:7,active:27,graduated:25,delisted:0,withNotice:29,withLetter:18,nfcFacilitated:18},
-  {province:"Mountain Province",total:11,mc36:3,exemption1:0,exemption2:8,pending:0,active:3,graduated:5,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0},
-];
-
-var MC36_MUNI_DATA=[
-  {province:"Abra",municipality:"Bangued",total:5,mc36:5,exemption1:0,exemption2:0,pending:0,active:2,graduated:1,delisted:0,withNotice:5,withLetter:5,nfcFacilitated:5,withValidation:5},
-  {province:"Abra",municipality:"Bucay",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:0,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Abra",municipality:"Dolores",total:1,mc36:1,exemption1:0,exemption2:0,pending:0,active:1,graduated:0,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:1},
-  {province:"Abra",municipality:"La Paz",total:6,mc36:4,exemption1:0,exemption2:2,pending:0,active:1,graduated:3,delisted:1,withNotice:4,withLetter:4,nfcFacilitated:4,withValidation:6},
-  {province:"Abra",municipality:"Manabo",total:4,mc36:1,exemption1:0,exemption2:3,pending:0,active:0,graduated:4,delisted:0,withNotice:2,withLetter:1,nfcFacilitated:1,withValidation:4},
-  {province:"Abra",municipality:"Peñarrubia",total:5,mc36:3,exemption1:0,exemption2:2,pending:0,active:1,graduated:4,delisted:0,withNotice:3,withLetter:3,nfcFacilitated:3,withValidation:5},
-  {province:"Abra",municipality:"San Juan",total:3,mc36:2,exemption1:0,exemption2:1,pending:0,active:1,graduated:1,delisted:0,withNotice:2,withLetter:2,nfcFacilitated:2,withValidation:3},
-  {province:"Abra",municipality:"Tayum",total:2,mc36:0,exemption1:0,exemption2:2,pending:0,active:2,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:2},
-  {province:"Abra",municipality:"Tineg",total:4,mc36:3,exemption1:0,exemption2:1,pending:0,active:3,graduated:0,delisted:0,withNotice:3,withLetter:3,nfcFacilitated:3,withValidation:4},
-  {province:"Abra",municipality:"Tubo",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:1,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Apayao",municipality:"Calanasan",total:3,mc36:1,exemption1:0,exemption2:2,pending:0,active:1,graduated:0,delisted:0,withNotice:2,withLetter:1,nfcFacilitated:1,withValidation:3},
-  {province:"Apayao",municipality:"Conner",total:15,mc36:3,exemption1:0,exemption2:12,pending:0,active:8,graduated:4,delisted:0,withNotice:6,withLetter:2,nfcFacilitated:2,withValidation:15},
-  {province:"Apayao",municipality:"Flora",total:8,mc36:0,exemption1:0,exemption2:8,pending:0,active:5,graduated:2,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:8},
-  {province:"Apayao",municipality:"Kabugao",total:11,mc36:2,exemption1:0,exemption2:9,pending:0,active:1,graduated:7,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0,withValidation:11},
-  {province:"Apayao",municipality:"Luna",total:8,mc36:1,exemption1:0,exemption2:7,pending:0,active:8,graduated:0,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:8},
-  {province:"Apayao",municipality:"Pudtol",total:9,mc36:1,exemption1:0,exemption2:8,pending:0,active:7,graduated:0,delisted:0,withNotice:2,withLetter:1,nfcFacilitated:1,withValidation:9},
-  {province:"Apayao",municipality:"Santa Marcela",total:8,mc36:0,exemption1:0,exemption2:8,pending:0,active:6,graduated:1,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:8},
-  {province:"Benguet",municipality:"Atok",total:1,mc36:0,exemption1:0,exemption2:0,pending:1,active:0,graduated:1,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"Bakun",total:3,mc36:0,exemption1:0,exemption2:0,pending:3,active:1,graduated:2,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"Bokod",total:5,mc36:0,exemption1:0,exemption2:0,pending:5,active:2,graduated:3,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"Buguias",total:1,mc36:0,exemption1:0,exemption2:0,pending:1,active:0,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"City of Baguio",total:54,mc36:8,exemption1:0,exemption2:37,pending:9,active:22,graduated:18,delisted:0,withNotice:11,withLetter:5,nfcFacilitated:5,withValidation:45},
-  {province:"Benguet",municipality:"Itogon",total:20,mc36:0,exemption1:0,exemption2:0,pending:20,active:7,graduated:11,delisted:0,withNotice:10,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"Kabayan",total:8,mc36:0,exemption1:0,exemption2:1,pending:7,active:5,graduated:1,delisted:0,withNotice:6,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Benguet",municipality:"Kapangan",total:2,mc36:0,exemption1:0,exemption2:0,pending:2,active:2,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"Kibungan",total:10,mc36:0,exemption1:0,exemption2:0,pending:10,active:4,graduated:4,delisted:0,withNotice:4,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"La Trinidad",total:7,mc36:0,exemption1:0,exemption2:0,pending:7,active:1,graduated:5,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"Mankayan",total:5,mc36:0,exemption1:0,exemption2:0,pending:5,active:2,graduated:1,delisted:0,withNotice:4,withLetter:0,nfcFacilitated:0,withValidation:0},
-  {province:"Benguet",municipality:"Tuba",total:12,mc36:2,exemption1:0,exemption2:0,pending:10,active:4,graduated:8,delisted:0,withNotice:7,withLetter:0,nfcFacilitated:0,withValidation:2},
-  {province:"Benguet",municipality:"Tublay",total:7,mc36:0,exemption1:0,exemption2:0,pending:7,active:1,graduated:4,delisted:0,withNotice:4,withLetter:1,nfcFacilitated:1,withValidation:0},
-  {province:"Ifugao",municipality:"Aguinaldo",total:6,mc36:0,exemption1:0,exemption2:6,pending:0,active:3,graduated:3,delisted:0,withNotice:2,withLetter:2,nfcFacilitated:2,withValidation:6},
-  {province:"Ifugao",municipality:"Alfonso Lista",total:7,mc36:0,exemption1:4,exemption2:3,pending:0,active:7,graduated:0,delisted:0,withNotice:3,withLetter:1,nfcFacilitated:1,withValidation:7},
-  {province:"Ifugao",municipality:"Asipulo",total:10,mc36:0,exemption1:0,exemption2:10,pending:0,active:6,graduated:2,delisted:0,withNotice:2,withLetter:2,nfcFacilitated:2,withValidation:10},
-  {province:"Ifugao",municipality:"Banaue",total:1,mc36:0,exemption1:1,exemption2:0,pending:0,active:1,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Ifugao",municipality:"Hingyon",total:1,mc36:0,exemption1:1,exemption2:0,pending:0,active:1,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Ifugao",municipality:"Hungduan",total:1,mc36:1,exemption1:0,exemption2:0,pending:0,active:1,graduated:0,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:1},
-  {province:"Ifugao",municipality:"Kiangan",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:0,graduated:1,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Ifugao",municipality:"Lamut",total:7,mc36:6,exemption1:0,exemption2:1,pending:0,active:5,graduated:2,delisted:0,withNotice:6,withLetter:4,nfcFacilitated:4,withValidation:7},
-  {province:"Ifugao",municipality:"Tinoc",total:7,mc36:0,exemption1:7,exemption2:0,pending:0,active:4,graduated:2,delisted:0,withNotice:1,withLetter:2,nfcFacilitated:2,withValidation:7},
-  {province:"Kalinga",municipality:"Balbalan",total:1,mc36:1,exemption1:0,exemption2:0,pending:0,active:0,graduated:1,delisted:0,withNotice:1,withLetter:1,nfcFacilitated:1,withValidation:1},
-  {province:"Kalinga",municipality:"City of Tabuk",total:25,mc36:6,exemption1:0,exemption2:19,pending:0,active:12,graduated:7,delisted:0,withNotice:7,withLetter:4,nfcFacilitated:4,withValidation:25},
-  {province:"Kalinga",municipality:"Lubuagan",total:5,mc36:1,exemption1:0,exemption2:4,pending:0,active:3,graduated:2,delisted:0,withNotice:3,withLetter:3,nfcFacilitated:3,withValidation:5},
-  {province:"Kalinga",municipality:"Pasil",total:1,mc36:1,exemption1:0,exemption2:0,pending:0,active:0,graduated:0,delisted:0,withNotice:1,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Kalinga",municipality:"Pinukpuk",total:14,mc36:4,exemption1:0,exemption2:3,pending:7,active:6,graduated:7,delisted:0,withNotice:5,withLetter:2,nfcFacilitated:2,withValidation:7},
-  {province:"Kalinga",municipality:"Rizal",total:14,mc36:11,exemption1:0,exemption2:3,pending:0,active:6,graduated:7,delisted:0,withNotice:12,withLetter:8,nfcFacilitated:8,withValidation:14},
-  {province:"Kalinga",municipality:"Tinglayan",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:0,graduated:1,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Mountain Province",municipality:"Bauko",total:3,mc36:0,exemption1:0,exemption2:3,pending:0,active:0,graduated:1,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:3},
-  {province:"Mountain Province",municipality:"Bontoc",total:1,mc36:0,exemption1:0,exemption2:1,pending:0,active:1,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:1},
-  {province:"Mountain Province",municipality:"Sadanga",total:3,mc36:0,exemption1:0,exemption2:3,pending:0,active:2,graduated:0,delisted:0,withNotice:0,withLetter:0,nfcFacilitated:0,withValidation:3},
-  {province:"Mountain Province",municipality:"Tadian",total:4,mc36:3,exemption1:0,exemption2:1,pending:0,active:0,graduated:4,delisted:0,withNotice:3,withLetter:0,nfcFacilitated:0,withValidation:4},
-];
-
-var mc36Charts={};
-
-function initMC36Charts(){
-  // 1. Doughnut – Validation Result
-  var ctx1=document.getElementById('mc36ChartResult');
-  if(ctx1){
-    if(mc36Charts.result)mc36Charts.result.destroy();
-    mc36Charts.result=new Chart(ctx1,{type:'doughnut',data:{
-      labels:['For MC No. 36','Exemption No. 1','Exemption No. 2','Pending / #REF!'],
-      datasets:[{data:[71,13,164,94],backgroundColor:['#C62828','#2E7D32','#1565C0','#E65100'],borderWidth:3,borderColor:'#fff'}]
-    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10,family:'Barlow'},padding:9,boxWidth:13}}}}});
+  if (filtered.length === 0) {
+    r.innerHTML = '<div class="search-empty">No results for "' + q + '"</div>';
+    return;
   }
-
-  // 2. Bar – MC36 by Province
-  var ctx2=document.getElementById('mc36ChartProvince');
-  if(ctx2){
-    if(mc36Charts.province)mc36Charts.province.destroy();
-    var provLabels=MC36_PROV_DATA.map(function(p){return p.province==='Mountain Province'?'Mt. Province':p.province;});
-    mc36Charts.province=new Chart(ctx2,{type:'bar',data:{
-      labels:provLabels,
-      datasets:[
-        {label:'For MC No.36',data:MC36_PROV_DATA.map(function(p){return p.mc36;}),backgroundColor:'#C62828',borderRadius:3},
-        {label:'Exemption 1',data:MC36_PROV_DATA.map(function(p){return p.exemption1;}),backgroundColor:'#2E7D32',borderRadius:3},
-        {label:'Exemption 2',data:MC36_PROV_DATA.map(function(p){return p.exemption2;}),backgroundColor:'#1565C0',borderRadius:3},
-        {label:'Pending',data:MC36_PROV_DATA.map(function(p){return p.pending;}),backgroundColor:'#E65100',borderRadius:3},
-      ]
-    },options:{responsive:true,maintainAspectRatio:false,scales:{x:{stacked:true,grid:{display:false},ticks:{font:{size:9,family:'Barlow'}}},y:{stacked:true,grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}},plugins:{legend:{position:'top',labels:{font:{size:10,family:'Barlow'},padding:8,boxWidth:11}}}}});
-  }
-
-  // 3. Grouped Bar – Process compliance
-  var ctx3=document.getElementById('mc36ChartProcess');
-  if(ctx3){
-    if(mc36Charts.process)mc36Charts.process.destroy();
-    var pl=MC36_PROV_DATA.map(function(p){return p.province==='Mountain Province'?'Mt. Province':p.province;});
-    mc36Charts.process=new Chart(ctx3,{type:'bar',data:{
-      labels:pl,
-      datasets:[
-        {label:'Total HHs',data:MC36_PROV_DATA.map(function(p){return p.total;}),backgroundColor:'rgba(0,48,135,.15)',borderColor:'#003087',borderWidth:1,borderRadius:3},
-        {label:'W/ Notice of Failure',data:MC36_PROV_DATA.map(function(p){return p.withNotice;}),backgroundColor:'rgba(198,40,40,.75)',borderRadius:3},
-        {label:'W/ Letter',data:MC36_PROV_DATA.map(function(p){return p.withLetter;}),backgroundColor:'rgba(106,27,154,.75)',borderRadius:3},
-        {label:'NFC Facilitated',data:MC36_PROV_DATA.map(function(p){return p.nfcFacilitated;}),backgroundColor:'rgba(0,105,92,.75)',borderRadius:3},
-      ]
-    },options:{responsive:true,maintainAspectRatio:false,scales:{x:{grid:{display:false},ticks:{font:{size:9,family:'Barlow'}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}},plugins:{legend:{position:'top',labels:{font:{size:10,family:'Barlow'},padding:8,boxWidth:11}}}}});
-  }
-
-  // 4. Doughnut – HH Status
-  var ctx4=document.getElementById('mc36ChartStatus');
-  if(ctx4){
-    if(mc36Charts.status)mc36Charts.status.destroy();
-    mc36Charts.status=new Chart(ctx4,{type:'doughnut',data:{
-      labels:['Active (1)','Graduated (3)','No Eligible CVS (14)','Moved Out (12)','No Eligible (15)','Waived (8)','Non-poor (33)','L3 Concerns (32)','Delisted (7)'],
-      datasets:[{data:[157,125,22,19,7,7,2,2,1],backgroundColor:['#1565C0','#2E7D32','#6A1B9A','#E65100','#00838F','#F9A825','#455A64','#AD1457','#B71C1C'],borderWidth:2,borderColor:'#fff'}]
-    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9,family:'Barlow'},padding:6,boxWidth:11}}}}});
-  }
-
-  // Populate province table
-  filterMC36ProvTable();
-  // Populate muni table
-  filterMC36MuniTable();
-}
-
-function filterMC36ProvTable(){
-  var sel=document.getElementById('mc36-prov-filter').value;
-  var rows=sel==='ALL'?MC36_PROV_DATA:MC36_PROV_DATA.filter(function(r){return r.province===sel;});
-  var tbody=document.getElementById('mc36-prov-tbody');
-  tbody.innerHTML=rows.map(function(r){
-    var valBadge=r.mc36>0?'<span class="mc36-badge-mc36">'+r.mc36+'</span>':'<span style="color:#999">0</span>';
-    var ex1Badge=r.exemption1>0?'<span class="mc36-badge-ex1">'+r.exemption1+'</span>':'<span style="color:#999">0</span>';
-    var ex2Badge=r.exemption2>0?'<span class="mc36-badge-ex2">'+r.exemption2+'</span>':'<span style="color:#999">0</span>';
-    var pendBadge=r.pending>0?'<span class="mc36-badge-pend">'+r.pending+'</span>':'<span style="color:#999">0</span>';
-    return '<tr><td><strong>'+r.province+'</strong></td><td><strong>'+r.total+'</strong></td><td>'+valBadge+'</td><td>'+ex1Badge+'</td><td>'+ex2Badge+'</td><td>'+pendBadge+'</td><td>'+r.active+'</td><td>'+r.graduated+'</td><td>'+r.withNotice+'</td><td>'+r.nfcFacilitated+'</td></tr>';
+  var label = '<div class="search-section-label">' + (q ? 'Search Results' : 'All Pages') + '</div>';
+  var items = filtered.map(function(p) {
+    return '<div class="search-result-item" onclick="goSearch(\'' + p.id + '\')">'
+      + '<div class="sr-icon"><i class="fa ' + p.icon + '"></i></div>'
+      + '<div><div class="sr-title">' + p.title + '</div><div class="sr-desc">' + p.desc + '</div></div>'
+      + '</div>';
   }).join('');
+  r.innerHTML = label + items;
 }
-
-function filterMC36MuniTable(){
-  var sel=document.getElementById('mc36-muni-prov-filter').value;
-  var rows=sel==='ALL'?MC36_MUNI_DATA:MC36_MUNI_DATA.filter(function(r){return r.province===sel;});
-  var tbody=document.getElementById('mc36-muni-tbody');
-  document.getElementById('mc36-muni-total-label').textContent=rows.length+' municipalities shown';
-  tbody.innerHTML=rows.map(function(r){
-    function badge(v,cls){return v>0?'<span class="mc36-badge-'+cls+'">'+v+'</span>':'<span style="color:#bbb;font-size:11px">—</span>';}
-    return '<tr>'
-      +'<td><strong>'+r.province+'</strong></td>'
-      +'<td>'+r.municipality+'</td>'
-      +'<td style="font-weight:700">'+r.total+'</td>'
-      +'<td>'+badge(r.mc36,'mc36')+'</td>'
-      +'<td>'+badge(r.exemption1,'ex1')+'</td>'
-      +'<td>'+badge(r.exemption2,'ex2')+'</td>'
-      +'<td>'+badge(r.pending,'pend')+'</td>'
-      +'<td>'+r.active+'</td>'
-      +'<td>'+r.graduated+'</td>'
-      +'<td>'+(r.withNotice>0?r.withNotice:'—')+'</td>'
-      +'<td>'+(r.withLetter>0?r.withLetter:'—')+'</td>'
-      +'<td>'+(r.nfcFacilitated>0?r.nfcFacilitated:'—')+'</td>'
-      +'<td>'+(r.withValidation>0?r.withValidation:'—')+'</td>'
-      +'</tr>';
-  }).join('');
-}
-
-function exportMC36CSV(){
-  var sel=document.getElementById('mc36-muni-prov-filter').value;
-  var rows=sel==='ALL'?MC36_MUNI_DATA:MC36_MUNI_DATA.filter(function(r){return r.province===sel;});
-  var header='Province,Municipality,Total HHs,For MC No.36,Exemption 1,Exemption 2,Pending,Active,Graduated,With Notice,With Letter,NFC Facilitated,With Validation\n';
-  var csv=header+rows.map(function(r){return [r.province,r.municipality,r.total,r.mc36,r.exemption1,r.exemption2,r.pending,r.active,r.graduated,r.withNotice,r.withLetter,r.nfcFacilitated,r.withValidation].join(',');}).join('\n');
-  var blob=new Blob([csv],{type:'text/csv'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='MC36_Tracking_CAR_P1_2025.csv';a.click();
-}
-
-// ══════════════════════════════════════════════
-// ICT – IT EQUIPMENT INVENTORY DATA
-// Source: Inventory of Serviced and Pre-Inspected IT Equipment (Sheet 1)
-// ══════════════════════════════════════════════
-var ICT_DATA = [
-  {no:1,province:'Kalinga',municipality:'PAT',accountable:'Alona K. Ngayaan',propNo:'',details:'Eaton 5L 650VA USB PH',type:'UPS',defect:'Not working',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2022'},
-  {no:2,province:'Mountain Province',municipality:'PAT',accountable:'Wilfreda A. Tayaban',propNo:'CAR-CO2-18-0206',details:'Acer Travelmate TMP246-MG-53M7',type:'Laptop',defect:'Battery not functional, no mouse, no charger; board busted.',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2022'},
-  {no:3,province:'Apayao',municipality:'',accountable:'Bea Paragua',propNo:'CAR-CO7-22-0001',details:'Coby Netbook',type:'Laptop',defect:'For surrender to PSS',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2022'},
-  {no:4,province:'Benguet',municipality:'SWAD Office',accountable:'Annie B. Palasi',propNo:'CAR-PS1-18-0124',details:'UPS',type:'UPS',defect:'Not working',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/06/2022'},
-  {no:5,province:'Benguet',municipality:'SWAD Office',accountable:'Annie B. Palasi',propNo:'CAR-PR6-19-0027',details:'EPSON L3150',type:'Printer',defect:'Not working; printhead busted',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/06/2022'},
-  {no:6,province:'RPMO',municipality:'',accountable:'May Flor M. Dongga-as',propNo:'CAR-HE1-17-0013',details:'Transcend StoreJet External HDD',type:'Other',defect:'Drive corrupted, cannot be detected',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/07/2022'},
-  {no:7,province:'Benguet',municipality:'Itogon',accountable:'Annie B. Palasi',propNo:'CAR-CO1-18-0140',details:'Acer Veriton S6610G Computer Set',type:'Computer Set',defect:'Does not switch on, no display',recommendation:'Return',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/18/2022'},
-  {no:8,province:'RPMO',municipality:'',accountable:'Multiple',propNo:'CAR-CO1-21-0049',details:'Secure UPS-650VA (5 units)',type:'UPS',defect:'Five UPS no longer functional',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/18/2022'},
-  {no:9,province:'Abra',municipality:'Langiden',accountable:'Mary Rose B. Madriaga',propNo:'CAR-CO1-18-0153',details:'Acer Veriton S6610G',type:'Computer Set',defect:'Blue screen; disk insertion ruined',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/19/2022'},
-  {no:10,province:'Apayao',municipality:'',accountable:'Cherry B. Dalasdas',propNo:'CAR-PR6-19-0025',details:'EPSON L3150',type:'Printer',defect:'Print/photocopy stopped midway',recommendation:'Return',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/21/2022'},
-  {no:11,province:'RPMO',municipality:'Systems',accountable:'Dianne A. Emaguin',propNo:'',details:'Intex UPS',type:'UPS',defect:'UPS switches off few seconds after on',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/22/2022'},
-  {no:12,province:'Ifugao',municipality:'Banaue',accountable:'Valeryn N. Buhle',propNo:'5-4PS-P161-101',details:'Coby Netbook',type:'Laptop',defect:'Malfunctioning charger, damaged LCD',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/26/2022'},
-  {no:13,province:'Ifugao',municipality:'',accountable:'Daisy D. Cabbigat',propNo:'',details:'Acer Laptop Charger',type:'Charger',defect:'Malfunctioning charger',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/28/2022'},
-  {no:14,province:'Ifugao',municipality:'',accountable:'Donalyn Bestre',propNo:'CAR-CO2-18-0081',details:'Acer Travelmate Laptop',type:'Laptop',defect:'Charger damaged; laptop functional',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'08/17/2022'},
-  {no:15,province:'RPMO',municipality:'',accountable:'Jefferson P. Ladines',propNo:'',details:'Epson L360 Printer',type:'Printer',defect:'Defective ink pad; max printing life',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'08/24/2022'},
-  {no:16,province:'Ifugao',municipality:'Kiangan',accountable:'Kristel Gail T. Canute',propNo:'CAR-PR6-20-0005',details:'Epson L3110 Printer',type:'Printer',defect:'Paper jam; waste ink pad full',recommendation:'Return',inspectedBy:'Jordan Greg E. Paran',dateInspected:'11/07/2022'},
-  {no:17,province:'Kalinga',municipality:'Balbalan',accountable:'Remy P. Bainto',propNo:'CAR-CO2-18-0097',details:'Acer Travelmate Laptop',type:'Laptop',defect:'Battery not working, no charger',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'11/07/2022'},
-  {no:18,province:'Abra',municipality:'POO',accountable:'Joseph E. Tolingan',propNo:'CAR-CO1-21-0080',details:'HP 280 Pro G5 Computer Set',type:'Computer Set',defect:'Stopped functioning after earthquake',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'11/11/2022'},
-  {no:19,province:'Abra',municipality:'POO',accountable:'Juvy De Guzman',propNo:'CAR-PR6-21-0008',details:'Epson L3150 Printer',type:'Printer',defect:'Stopped functioning after earthquake',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'11/15/2022'},
-  {no:20,province:'Ifugao',municipality:'Kiangan',accountable:'Kristel Gail T. Canute',propNo:'CAR-PR6-20-0005',details:'Epson L3110 Printer',type:'Printer',defect:'Unfunctional; worn out',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/04/2023'},
-  {no:21,province:'Apayao',municipality:'Sta. Marcela',accountable:'Jon-jon C. Rosario',propNo:'CAR-CO1-18-0095',details:'Acer Veriton S6610G',type:'Computer Set',defect:'Start-up malfunction; HDD failure',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/05/2023'},
-  {no:22,province:'Abra',municipality:'Lacub',accountable:'Jennifer G. Crisologo',propNo:'CAR 2016 1060503000-077',details:'Dell Vostro 5459',type:'Laptop',defect:'Some keys not functioning; surrender',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/13/2023'},
-  {no:23,province:'Kalinga',municipality:'',accountable:'Alona K. Ngayaan',propNo:'CAR-CO1-17-0207',details:'Xitrix DeskFrame M-710',type:'CPU',defect:'Busted motherboard / video card',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/30/2023'},
-  {no:24,province:'RPMO',municipality:'',accountable:'Multiple',propNo:'CAR-CO1-18-0060',details:'ACER Veriton S6610G (Bulk 2023)',type:'CPU',defect:'Worn out; bulk disposal 2023',recommendation:'Disposal',inspectedBy:'ICTU',dateInspected:'02/22/2023'},
-  {no:25,province:'RPMO',municipality:'',accountable:'Carmela Nympha D. Sabalo',propNo:'CAR-CO2-21-0095',details:'Acer Laptop',type:'Laptop',defect:'Dents and cracks on exterior',recommendation:'Return',inspectedBy:'Jordan Greg E. Paran',dateInspected:'03/16/2023'},
-  {no:26,province:'RPMO',municipality:'',accountable:'Jefferson P. Ladines',propNo:'CAR-AP8-20-0156',details:'Edifier Headphone',type:'Other',defect:'Defective left speaker',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'05/23/2023'},
-  {no:27,province:'RPMO',municipality:'',accountable:'Marc Anthony R. Deang',propNo:'CAR-MN4-18-0001',details:'Acer LED Monitor',type:'Monitor',defect:'Monitor does not open; blown',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'06/21/2023'},
-  {no:28,province:'Abra',municipality:'',accountable:'Angelica Sotelo / Merly De Guzman',propNo:'CAR-CO1-17-0140',details:'HP Desktop Computer Set',type:'Computer Set',defect:'Not powering up; damaged HDD',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'06/21/2023'},
-  {no:29,province:'RPMO',municipality:'',accountable:'Jefferson P. Ladines',propNo:'CAR-PS1-18-0038',details:'Eaton UPS',type:'UPS',defect:'Unable to turn on',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'08/22/2023'},
-  {no:30,province:'RPMO',municipality:'',accountable:'Seymore P. Octavo',propNo:'CAR-PS1-18-0041',details:'Eaton UPS',type:'UPS',defect:'Equipment not working',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'08/31/2023'},
-  {no:31,province:'RPMO',municipality:'',accountable:'John Eric B. Escalante',propNo:'CAR-CO2-20-0074',details:'Acer Travelmate TMP 614',type:'Laptop',defect:'LED display busted',recommendation:'Repair',inspectedBy:'Ronald W. Ulep',dateInspected:'09/25/2023'},
-  {no:32,province:'Kalinga',municipality:'',accountable:'Mark Aldrin A. Bermillo',propNo:'CAR-SPHV-CO2-2023-10-0071',details:'Acer Travelmate P216-51-57K7',type:'Laptop',defect:'Horizontal lines on screen',recommendation:'Warranty',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/05/2024'},
-  {no:33,province:'RPMO',municipality:'',accountable:'Gabriel T. Abalos',propNo:'CAR-MN4-20-0008',details:'Samsung LED Monitor',type:'Monitor',defect:'Blurred display, brightness issue',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/23/2024'},
-  {no:34,province:'Apayao',municipality:'',accountable:'Jenelyn R. Salacup',propNo:'CAR-PR6-22-0062',details:'Epson L3250',type:'Printer',defect:'Cannot print; worn out',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'02/27/2024'},
-  {no:35,province:'Kalinga',municipality:'',accountable:'Liza F. Oppas',propNo:'CAR-PR6-20-0026',details:'Epson L3110',type:'Printer',defect:'Malfunctioning since June 2023',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'03/01/2024'},
-  {no:36,province:'Apayao',municipality:'',accountable:'David T. Camide',propNo:'CAR-PR6-19-0012',details:'Epson L3150',type:'Printer',defect:'Cannot print; limit exceeded',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'03/19/2024'},
-  {no:37,province:'Kalinga',municipality:'',accountable:'Richard S. Marcelo',propNo:'CAR-PS1-22-0021',details:'APC UPS',type:'UPS',defect:'No longer back-up power',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'05/03/2024'},
-  {no:38,province:'Baguio City',municipality:'',accountable:'Joan F. Ab-ab',propNo:'CAR-CO1-18-0107',details:'Computer Set (CPU, Monitor, UPS)',type:'Computer Set',defect:'Stopped working',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'06/04/2024'},
-  {no:39,province:'RPMO',municipality:'',accountable:'Cristine Joy C. Timbreza',propNo:'CAR-PR6-22-0076',details:'Epson L3250',type:'Printer',defect:'Unable to scan and print',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/26/2024'},
-  {no:40,province:'RPMO',municipality:'',accountable:'Kanabril A. Macalingay',propNo:'CAR-CO1-23-0039',details:'HP Monitor',type:'Monitor',defect:'Very thin small lines on screen',recommendation:'Warranty',inspectedBy:'Jordan Greg E. Paran',dateInspected:'06/26/2024'},
-  {no:41,province:'RPMO',municipality:'',accountable:'Carmela Nympha D. Sabalo',propNo:'CAR-CO2-21-0095',details:'Acer AC Adapter ADP-65DE B',type:'Charger',defect:'Malfunctioning laptop charger',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/26/2024'},
-  {no:42,province:'Baguio City',municipality:'',accountable:'Ivy P. Cabanilla',propNo:'CAR-CO2-22-0018',details:'Acer AC Adapter',type:'Charger',defect:'Stopped working',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/26/2024'},
-  {no:43,province:'Kalinga',municipality:'',accountable:'Kiwani G. Batalao-Jokico',propNo:'CAR-CO2-22-0024',details:'Acer Laptop',type:'Laptop',defect:'Unserviceable; no power',recommendation:'Warranty',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/26/2024'},
-  {no:44,province:'Abra',municipality:'Pilar',accountable:'Mike P. Balag',propNo:'CAR-CO1-18-0193',details:'Acer Veriton S6620G Computer Set',type:'Computer Set',defect:'Very slow; deprecated unit',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'08/06/2024'},
-  {no:45,province:'RPMO',municipality:'',accountable:'Delia C. Pangesfan',propNo:'CAR-CO1-21-0032',details:'HP CPU',type:'CPU',defect:'No power; PSU not working',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'08/22/2024'},
-  {no:46,province:'RPMO',municipality:'',accountable:'Mae Heart O. Sal-ao',propNo:'CAR-CO2-21-0044',details:'Lenovo Thinkpad Laptop',type:'Laptop',defect:'Not functioning; failing HDD',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'09/03/2024'},
-  {no:47,province:'Mountain Province',municipality:'',accountable:'Graciela D. Buya',propNo:'CAR-C01-19-0019',details:'Acer Veriton S6620G',type:'Computer Set',defect:'Not switching on; damaged PSU',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'09/23/2024'},
-  {no:48,province:'Mountain Province',municipality:'',accountable:'Aristotle G. Duloy',propNo:'CAR-CO2-18-0085',details:'Acer TMP259',type:'Laptop',defect:'Not switching on; damaged battery',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'09/23/2024'},
-  {no:49,province:'Mountain Province',municipality:'',accountable:'April M. Kiaki',propNo:'CAR-PR6-22-0083',details:'Epson L3250 Printer',type:'Printer',defect:'Paper jam; damaged rollers',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'09/23/2024'},
-  {no:50,province:'Ifugao',municipality:'',accountable:'Reniette B. Ananayo',propNo:'CAR-CO1-21-0091',details:'Secure UPS',type:'UPS',defect:'Stopped working; worn-out batteries',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'09/30/2024'},
-  {no:51,province:'RPMO',municipality:'',accountable:'Casler C. Bantas',propNo:'CAR-MN3-22-0003',details:'LCD Monitor',type:'Monitor',defect:'Vertical lines; flickering',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'12/09/2024'},
-  {no:52,province:'RPMO',municipality:'',accountable:'Gabriel T. Abalos',propNo:'CAR-SPLV-MN3-2024-01-0004',details:'LCD Monitor',type:'Monitor',defect:'Flickering after several minutes',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'12/09/2024'},
-  {no:53,province:'Kalinga',municipality:'',accountable:'Nardelyn Yvonne D. Bawalan',propNo:'CAR-SPHV-CO2-2023-07-0103',details:'Acer Travelmate P215-54-5474',type:'Laptop',defect:'Not charging; no power',recommendation:'Return',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/06/2025'},
-  {no:54,province:'Kalinga',municipality:'',accountable:'Rose Lily L. Sangdaan',propNo:'CAR-CO2-20-0038',details:'Acer Laptop',type:'Laptop',defect:'Charger and battery not working',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/15/2025'},
-  {no:55,province:'Abra',municipality:'',accountable:'Jennifer G. Crisologo',propNo:'CAR-SPHV-CO2-2024-05-0011',details:'Xitrix Laptop',type:'Laptop',defect:'Damaged LCD screen',recommendation:'Warranty',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/14/2025'},
-  {no:56,province:'RPMO',municipality:'',accountable:'Mariza B. Bayating-Galvez',propNo:'CAR-SPHV-CO2-2025-02-009',details:'Acer TMP214-55-G2',type:'Laptop',defect:'Does not charge',recommendation:'Warranty',inspectedBy:'Jordan Greg E. Paran',dateInspected:'03/12/2025'},
-  {no:57,province:'Mountain Province',municipality:'',accountable:'Noemi Parongpong-Ballawig',propNo:'CAR-SPHV-CO2-2023-07-0142',details:'Acer Laptop',type:'Laptop',defect:'For clearance (leave)',recommendation:'Return',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2025'},
-  {no:58,province:'Mountain Province',municipality:'',accountable:'Noemi Parongpong-Ballawig',propNo:'CAR-SPHV-CO9-2024-10-0055',details:'Lenovo Tablet',type:'Other',defect:'For clearance (leave)',recommendation:'Return',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2025'},
-  {no:59,province:'Kalinga',municipality:'',accountable:'San-San M. Laoyan',propNo:'CAR-PS1-18-0152',details:'UPS',type:'UPS',defect:'For surrender',recommendation:'Surrender',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2025'},
-  {no:60,province:'Kalinga',municipality:'',accountable:'Melanio Jay W. Balbin',propNo:'CAR-PS1-18-0092',details:'UPS',type:'UPS',defect:'Dead after power interruption',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2025'},
-  {no:61,province:'Kalinga',municipality:'',accountable:'Melanio Jay W. Balbin',propNo:'CAR-LN5-18-0112',details:'Huawei Wireless Router',type:'Other',defect:'Shut-off after power surge',recommendation:'Return',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2025'},
-  {no:62,province:'RPMO',municipality:'',accountable:'Mariza B. Bayating-Galvez',propNo:'CAR-SPHV-PS1-2024-02-2002',details:'APC UPS',type:'UPS',defect:'Idle, not being used',recommendation:'Surrender',inspectedBy:'Jordan Greg E. Paran',dateInspected:'07/04/2025'},
-  {no:63,province:'Kalinga',municipality:'',accountable:'Lerma P. Wagyen',propNo:'CAR-CO1-21-0088',details:'UPS',type:'UPS',defect:'Continuous beep; red light',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'08/07/2025'},
-  {no:64,province:'Abra',municipality:'',accountable:'Reneboy O. Bisnan',propNo:'CAR-SPHV-CO2-2023-07-0160',details:'Acer TravelMate P215-54-5474',type:'Laptop',defect:'Keyboard not functioning',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'09/11/2025'},
-  {no:65,province:'Ifugao',municipality:'',accountable:'Michelle L. Liban',propNo:'CAR-SPLV-AP6-2023-12-0019',details:'Shure SG 800 Wireless Microphone',type:'Other',defect:'Mic not switching on',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/07/2026'},
-  {no:66,province:'RPMO',municipality:'',accountable:'Mylene Buya',propNo:'CAR-CO2-21-0095',details:'Acer TMP614-51-G2-76J6',type:'Laptop',defect:'No charger; cracked casing',recommendation:'Surrender',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/12/2026'},
-  {no:67,province:'RPMO',municipality:'',accountable:'Shennen Mae D. Oggang',propNo:'CAR-CO2-21-0070',details:'Lenovo Laptop',type:'Laptop',defect:'Keyboard not working',recommendation:'Repair',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/12/2026'},
-  {no:68,province:'RPMO',municipality:'',accountable:'Marc Anthony R. Deang',propNo:'CAR-CO2-21-0096',details:'Acer Laptop',type:'Laptop',defect:'For surrender',recommendation:'Surrender',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/15/2026'},
-  {no:69,province:'Kalinga',municipality:'',accountable:'Wilson B. Longay',propNo:'CAR-SPHV-CO2-2024-03-0028',details:'Xitrix Laptop Charger',type:'Charger',defect:'Charger not working',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/20/2026'},
-  {no:70,province:'Mountain Province',municipality:'',accountable:'Merriam F. Vetlen',propNo:'CAR-LN5-18-0123',details:'Huawei Router',type:'Other',defect:'Power adapter defective',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'01/29/2026'},
-  {no:71,province:'Baguio City',municipality:'',accountable:'Ivy P. Cabanilla',propNo:'',details:'Laptop Charger',type:'Charger',defect:'Sparked and ripped charger',recommendation:'Disposal',inspectedBy:'Jordan Greg E. Paran',dateInspected:'02/02/2026'},
-  {no:72,province:'Kalinga',municipality:'',accountable:'Jimmeline K. Imado (bulk)',propNo:'Various (bulk 2023)',details:'ACER Veriton S6610G / Xitrix DeskFrame (bulk)',type:'CPU',defect:'Worn out; bulk disposal 2023',recommendation:'Disposal',inspectedBy:'ICTU',dateInspected:'02/22/2023'},
-  {no:73,province:'RPMO',municipality:'',accountable:'Maria T. Madiguid',propNo:'',details:'Laptop',type:'Laptop',defect:'Vertical lines on screen',recommendation:'Warranty',inspectedBy:'Jordan Greg E. Paran',dateInspected:''}
-];
-
-var ictCharts = {};
-
-function recoBadge(reco) {
-  var r = reco.toLowerCase();
-  if(r.includes('disposal')) return '<span class="sb inactive">Disposal</span>';
-  if(r.includes('repair')) return '<span class="sb pending">Repair</span>';
-  if(r.includes('warranty')) return '<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:600;background:#E8F0FB;color:#003087">Warranty</span>';
-  if(r.includes('surrender')) return '<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:10px;font-size:10.5px;font-weight:600;background:#F3E8FF;color:#6A1B9A">Surrender</span>';
-  return '<span class="sb active">Return/Re-issuance</span>';
-}
-
-function filterIctTable() {
-  var prov = document.getElementById('ict-prov-filter').value;
-  var type = document.getElementById('ict-type-filter').value;
-  var reco = document.getElementById('ict-reco-filter').value;
-  var rows = ICT_DATA.filter(function(r){
-    var pMatch = prov==='ALL' || r.province===prov;
-    var tMatch = type==='ALL' || r.type.toLowerCase().includes(type.toLowerCase()) || (type==='Other' && !['Laptop','Computer Set','CPU','Printer','UPS','Monitor','Charger'].some(function(t){return r.type.toLowerCase().includes(t.toLowerCase());}));
-    var reMatch = reco==='ALL' || r.recommendation.toLowerCase().includes(reco.toLowerCase());
-    return pMatch && tMatch && reMatch;
+function goSearch(id) {
+  closeSearch();
+  var navItems = document.querySelectorAll('.nav-item');
+  var found = null;
+  navItems.forEach(function(n) {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').indexOf("'" + id + "'") !== -1) found = n;
   });
-  var tbody = document.getElementById('ict-tbody');
-  document.getElementById('ict-table-count').textContent = rows.length + ' records';
-  document.getElementById('ict-shown-count').textContent = rows.length;
-  tbody.innerHTML = rows.map(function(r){
-    return '<tr>'
-      +'<td>'+r.no+'</td>'
-      +'<td><strong>'+r.province+'</strong>'+(r.municipality?'<br><span style="font-size:10px;color:var(--text-soft)">'+r.municipality+'</span>':'')+'</td>'
-      +'<td style="font-size:11.5px">'+r.accountable+'</td>'
-      +'<td style="font-size:10.5px;color:var(--text-soft)">'+r.propNo+'</td>'
-      +'<td style="font-size:11.5px;font-weight:600">'+r.details+'</td>'
-      +'<td><span style="display:inline-block;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;background:#EEF3FB;color:var(--blue)">'+r.type+'</span></td>'
-      +'<td style="font-size:11px;color:var(--text-soft);max-width:180px">'+r.defect+'</td>'
-      +'<td>'+recoBadge(r.recommendation)+'</td>'
-      +'<td style="font-size:11px">'+r.inspectedBy+'</td>'
-      +'<td style="font-size:11px;white-space:nowrap">'+r.dateInspected+'</td>'
-      +'</tr>';
-  }).join('');
+  showPage(id, found);
 }
-
-function initIctCharts() {
-  // Province bar chart
-  var provCounts = {};
-  ICT_DATA.forEach(function(r){ provCounts[r.province]=(provCounts[r.province]||0)+1; });
-  var provLabels = Object.keys(provCounts).sort(function(a,b){return provCounts[b]-provCounts[a];});
-  var provVals = provLabels.map(function(p){return provCounts[p];});
-  var ctxP = document.getElementById('ictProvChart');
-  if(ctxP){
-    if(ictCharts.prov) ictCharts.prov.destroy();
-    ictCharts.prov = new Chart(ctxP,{type:'bar',data:{
-      labels:provLabels,
-      datasets:[{data:provVals,backgroundColor:['#003087','#0057B7','#2979E0','#CE1126','#D46B00','#1B7A3E','#6A1B9A','#00838F','#455A64'],borderRadius:4}]
-    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9,family:'Barlow'}},grid:{display:false}},y:{ticks:{font:{size:9,family:'Barlow'}},grid:{color:'rgba(0,0,0,.05)'}}}}});
-  }
-  // Type doughnut
-  var typeCounts = {};
-  ICT_DATA.forEach(function(r){
-    var t = r.type;
-    if(!['Laptop','Computer Set','CPU','Printer','UPS','Monitor','Charger'].includes(t)) t='Other';
-    typeCounts[t]=(typeCounts[t]||0)+1;
-  });
-  var typeLabels = Object.keys(typeCounts);
-  var ctxT = document.getElementById('ictTypeChart');
-  if(ctxT){
-    if(ictCharts.type) ictCharts.type.destroy();
-    ictCharts.type = new Chart(ctxT,{type:'doughnut',data:{
-      labels:typeLabels,
-      datasets:[{data:typeLabels.map(function(l){return typeCounts[l];}),backgroundColor:['#003087','#CE1126','#D46B00','#1B7A3E','#6A1B9A','#00838F','#2979E0','#455A64'],borderWidth:2,borderColor:'#fff'}]
-    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9,family:'Barlow'},padding:5,boxWidth:11}}}}});
-  }
-  // Recommendation doughnut
-  var recoCounts = {};
-  ICT_DATA.forEach(function(r){
-    var rc = r.recommendation;
-    if(rc.toLowerCase().includes('disposal')) rc='Disposal';
-    else if(rc.toLowerCase().includes('repair')) rc='Repair';
-    else if(rc.toLowerCase().includes('warranty')) rc='Warranty';
-    else if(rc.toLowerCase().includes('surrender')) rc='Surrender';
-    else rc='Return/Re-issue';
-    recoCounts[rc]=(recoCounts[rc]||0)+1;
-  });
-  var recoLabels = Object.keys(recoCounts);
-  var ctxR = document.getElementById('ictRecoChart');
-  if(ctxR){
-    if(ictCharts.reco) ictCharts.reco.destroy();
-    ictCharts.reco = new Chart(ctxR,{type:'doughnut',data:{
-      labels:recoLabels,
-      datasets:[{data:recoLabels.map(function(l){return recoCounts[l];}),backgroundColor:['#C62828','#D46B00','#003087','#6A1B9A','#1B7A3E'],borderWidth:2,borderColor:'#fff'}]
-    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9,family:'Barlow'},padding:5,boxWidth:11}}}}});
-  }
-  // Render table
-  filterIctTable();
-}
-
-function exportIctCSV(){
-  var header='No.,Province,Municipality,Accountable Person,Property No.,Equipment Details,Type,Defect/Complaint,Recommendation,Inspected By,Date Inspected\n';
-  var csv=header+ICT_DATA.map(function(r){
-    return [r.no,r.province,r.municipality,r.accountable,r.propNo,'"'+r.details+'"',r.type,'"'+r.defect+'"',r.recommendation,r.inspectedBy,r.dateInspected].join(',');
-  }).join('\n');
-  var blob=new Blob([csv],{type:'text/csv'});
-  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ICT_Equipment_Inventory_CAR.csv';a.click();
-}
-
-// ══════════════════════════════════════════════
-// FULLSCREEN BUTTON (for Google Sites embed)
-// ══════════════════════════════════════════════
-(function(){
-  var style = document.createElement('style');
-  style.textContent = '#fs-fab{position:fixed;bottom:18px;right:18px;z-index:99999;background:var(--blue);color:#fff;border:none;border-radius:8px;padding:9px 15px;font-size:12.5px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:7px;box-shadow:0 4px 16px rgba(0,0,0,.3);transition:background .2s;font-family:"Barlow",sans-serif}#fs-fab:hover{background:#0057B7}#fs-fab svg{width:16px;height:16px;fill:#fff;flex-shrink:0}';
-  document.head.appendChild(style);
-  var btn = document.createElement('button');
-  btn.id = 'fs-fab';
-  btn.title = 'Toggle Fullscreen';
-  btn.innerHTML = '<svg id="fs-svg" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>Fullscreen';
-  btn.onclick = function(){
-    if(!document.fullscreenElement){
-      document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
-    } else {
-      document.exitFullscreen && document.exitFullscreen();
-    }
-  };
-  document.addEventListener('fullscreenchange', function(){
-    var svg = document.getElementById('fs-svg');
-    var b = document.getElementById('fs-fab');
-    if(document.fullscreenElement){
-      svg.innerHTML='<path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>';
-      b.innerHTML=b.innerHTML.replace('Fullscreen','Exit');
-    } else {
-      svg.innerHTML='<path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>';
-      b.innerHTML=b.innerHTML.replace('Exit','Fullscreen');
-    }
-  });
-  document.body.appendChild(btn);
-})();
-
-function openFull(){
-  window.open(window.location.href,'_blank');
-}
-
-// ══════════════════════════════════════════════════════════════════
-// GOOGLE SHEETS ENGINE  (CORS-safe via corsproxy.io)
-// ══════════════════════════════════════════════════════════════════
-var SAVED_URLS = {};
-var SHEET_KEYS_ALL = ['ict','dashboard','bdmu','bdmu-target','cvs','mc36','grs'];
-
-function sheetLoadSaved() {
-  SHEET_KEYS_ALL.forEach(function(k) {
-    var url = localStorage.getItem('dmis4ps_' + k) || '';
-    SAVED_URLS[k] = url;
-    var inp = document.getElementById(k + '-url-input');
-    if (inp && url) inp.value = url;
-  });
-}
-function sheetSaveUrl(key, url) {
-  SAVED_URLS[key] = url;
-  localStorage.setItem('dmis4ps_' + key, url);
-}
-function sheetRefreshTab(key) {
-  if (SAVED_URLS[key]) {
-    doFetchAndApply(key, SAVED_URLS[key]);
-  } else {
-    var bar = document.getElementById(key + '-sheet-bar');
-    if (bar) bar.style.display = (bar.style.display === 'flex' || bar.style.display === 'block') ? 'none' : 'flex';
-  }
-}
-function sheetConnect(key) {
-  var inp = document.getElementById(key + '-url-input');
-  if (!inp || !inp.value.trim()) { sheetMsg(key, 'Paste a URL first', 'var(--orange)'); return; }
-  var url = inp.value.trim();
-  sheetSaveUrl(key, url);
-  doFetchAndApply(key, url);
-}
-function sheetMsg(key, msg, color) {
-  var el = document.getElementById(key + '-sheet-msg');
-  if (el) { el.textContent = msg; el.style.color = color || 'var(--green)'; }
-}
-function spinIcon(key, on) {
-  var ic = document.getElementById(key + '-spin');
-  if (ic) ic.style.animation = on ? 'spin 0.8s linear infinite' : '';
-}
-function doFetchAndApply(key, rawUrl) {
-  spinIcon(key, true);
-  sheetMsg(key, 'Loading…', 'var(--orange)');
-  var url = 'https://corsproxy.io/?' + encodeURIComponent(rawUrl);
-  fetch(url)
-    .then(function(r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
-    .then(function(text) {
-      spinIcon(key, false);
-      var rows = parseCSV(text);
-      if (!rows.length) throw new Error('Empty — check sheet is published as CSV');
-      sheetMsg(key, '✓ ' + rows.length + ' rows', 'var(--green)');
-      var bar = document.getElementById(key + '-sheet-bar');
-      if (bar) setTimeout(function() { bar.style.display = 'none'; }, 1500);
-      applySheetData(key, rows);
-    })
-    .catch(function(err) {
-      spinIcon(key, false);
-      sheetMsg(key, '✗ ' + err.message, 'var(--red)');
-      var bar = document.getElementById(key + '-sheet-bar');
-      if (bar) bar.style.display = 'flex';
-    });
-}
-function parseCSV(text) {
-  var lines = text.trim().split(/\r?\n/);
-  if (lines.length < 2) return [];
-  var headers = splitCSVRow(lines[0]);
-  var rows = [];
-  for (var i = 1; i < lines.length; i++) {
-    if (!lines[i].trim()) continue;
-    var vals = splitCSVRow(lines[i]);
-    var obj = {};
-    headers.forEach(function(h, idx) { obj[h.trim()] = (vals[idx] || '').trim(); });
-    rows.push(obj);
-  }
-  return rows;
-}
-function splitCSVRow(row) {
-  var result = [], cur = '', inQ = false;
-  for (var i = 0; i < row.length; i++) {
-    var c = row[i];
-    if (c === '"') { inQ = !inQ; }
-    else if (c === ',' && !inQ) { result.push(cur); cur = ''; }
-    else { cur += c; }
-  }
-  result.push(cur);
-  return result;
-}
-function gv(r, keys) { for (var j = 0; j < keys.length; j++) { if (r[keys[j]] !== undefined && r[keys[j]] !== '') return r[keys[j]]; } return ''; }
-function nv(v) { return parseInt((v || '').replace(/,/g, '')) || 0; }
-
-function applySheetData(key, rows) {
-  if (key === 'ict')          applyIctSheet(rows);
-  else if (key === 'cvs')     applyCvsSheet(rows);
-  else if (key === 'mc36')    applyMc36Sheet(rows);
-  else if (key === 'bdmu')    applyBdmuGranteeSheet(rows);
-  else if (key === 'bdmu-target') applyBdmuTargetSheet(rows);
-  else if (key === 'dashboard')   applyKpiSheet(rows);
-  else if (key === 'grs')     applyGrsSheet(rows);
-}
-
-// ── ICT ──
-function applyIctSheet(rows) {
-  var mapped = rows.filter(function(r) { return gv(r, ['PROVINCE','Province','province']); })
-    .map(function(r, i) {
-      return {
-        no: nv(gv(r, ['NO.','No.'])) || (i + 1),
-        province: gv(r, ['PROVINCE','Province','province']),
-        municipality: gv(r, ['MUNICIPALITY','Municipality','municipality']),
-        accountable: gv(r, ['ACCOUNTABLE PERSON','Accountable Person','RECEIVED BY']),
-        propNo: gv(r, ['PROPERTY NO.','Property No.']),
-        details: gv(r, ['DETAILS (BRAND/MODEL/COMP. NAME)','DETAILS','Details','details']),
-        type: gv(r, ['TYPE OF EQUIPMENT (DESKTOP, LAPTOP, PRINTER ETC.)','TYPE OF EQUIPMENT','Type','type']),
-        defect: gv(r, ['DEFECTS / COMPLAINT','DEFECTS/COMPLAINT','Defect','defect']),
-        recommendation: gv(r, ['RECOMMENDATION','Recommendation','recommendation']),
-        inspectedBy: gv(r, ['INSPECTED BY','Inspected By']),
-        dateInspected: gv(r, ['DATE INSPECTED','Date Inspected'])
-      };
-    }).filter(function(r) { return r.province; });
-  if (!mapped.length) return;
-  ICT_DATA = mapped;
-  var dis = ICT_DATA.filter(function(r) { return r.recommendation.toLowerCase().includes('disposal'); }).length;
-  var rep = ICT_DATA.filter(function(r) { return r.recommendation.toLowerCase().includes('repair'); }).length;
-  var oth = ICT_DATA.length - dis - rep;
-  var kp = document.querySelectorAll('#page-ict .kpi-value');
-  if (kp[0]) kp[0].textContent = ICT_DATA.length;
-  if (kp[1]) kp[1].textContent = dis;
-  if (kp[2]) kp[2].textContent = rep;
-  if (kp[3]) kp[3].textContent = oth;
-  filterIctTable(); initIctCharts();
-  showToast('ICT refreshed — ' + ICT_DATA.length + ' records', 'success');
-}
-
-// ── CVS ──
-function applyCvsSheet(rows) {
-  var mapped = rows.filter(function(r) { return gv(r, ['Province','PROVINCE','province']); })
-    .map(function(r) {
-      return {
-        prov: gv(r, ['Province','PROVINCE','province']),
-        city: gv(r, ['Municipality','City/Municipality','MUNICIPALITY']),
-        total: nv(gv(r, ['Total Records','TOTAL RECORDS','Total'])),
-        hasReason: nv(gv(r, ['Has Reason','With Validated Reason'])),
-        noReason: nv(gv(r, ['No Reason','Without Reason'])),
-        casemgmt: nv(gv(r, ['For Case Mgmt','Case Management'])),
-        ip: nv(gv(r, ['IP Count','IP COUNT','IP']))
-      };
-    }).filter(function(r) { return r.prov; });
-  if (!mapped.length) return;
-  CVS_DATA.ALL.provinces = mapped;
-  var t = mapped.reduce(function(a, b) {
-    return { total: a.total + b.total, validated: a.validated + b.hasReason, novalidated: a.novalidated + b.noReason, casemgmt: a.casemgmt + b.casemgmt };
-  }, { total: 0, validated: 0, novalidated: 0, casemgmt: 0 });
-  CVS_DATA.ALL.total = t.total; CVS_DATA.ALL.validated = t.validated;
-  CVS_DATA.ALL.novalidated = t.novalidated; CVS_DATA.ALL.casemgmt = t.casemgmt;
-  updateCVSCharts();
-  showToast('CVS refreshed — ' + mapped.length + ' rows', 'success');
-}
-
-// ── MC36 ──
-function applyMc36Sheet(rows) {
-  var muni = rows.filter(function(r) {
-    return gv(r, ['Province','PROVINCE','province']) && gv(r, ['Municipality','MUNICIPALITY','municipality']);
-  }).map(function(r) {
-    return {
-      province: gv(r, ['Province','PROVINCE','province']),
-      municipality: gv(r, ['Municipality','MUNICIPALITY','municipality']),
-      total: nv(gv(r, ['Total HHs','Total HH'])),
-      mc36: nv(gv(r, ['For MC No.36','MC No.36','MC36'])),
-      exemption1: nv(gv(r, ['Exemption 1','Exemp. 1'])),
-      exemption2: nv(gv(r, ['Exemption 2','Exemp. 2'])),
-      pending: nv(gv(r, ['Pending','PENDING'])),
-      active: nv(gv(r, ['Active','ACTIVE'])),
-      graduated: nv(gv(r, ['Graduated','GRADUATED'])),
-      withNotice: nv(gv(r, ['W/ Notice','With Notice'])),
-      withLetter: nv(gv(r, ['W/ Letter','With Letter'])),
-      nfcFacilitated: nv(gv(r, ['NFC','NFC Facilitated'])),
-      withValidation: nv(gv(r, ['W/ Validation','With Validation']))
-    };
-  }).filter(function(r) { return r.province && r.municipality; });
-  if (!muni.length) return;
-  MC36_MUNI_DATA = muni;
-  var pm = {};
-  muni.forEach(function(r) {
-    if (!pm[r.province]) pm[r.province] = { province: r.province, total: 0, mc36: 0, exemption1: 0, exemption2: 0, pending: 0, active: 0, graduated: 0, delisted: 0, withNotice: 0, withLetter: 0, nfcFacilitated: 0 };
-    ['total','mc36','exemption1','exemption2','pending','active','graduated','withNotice','withLetter','nfcFacilitated'].forEach(function(k) { pm[r.province][k] += r[k]; });
-  });
-  MC36_PROV_DATA = Object.values(pm);
-  initMC36Charts();
-  showToast('MC No.36 refreshed — ' + muni.length + ' municipalities', 'success');
-}
-//i was here
-// ── BDMU Grantee ──
-function applyBdmuGranteeSheet(rows) {
-  var provs = ['Abra','Apayao','Benguet','Baguio City','Ifugao','Kalinga','Mountain Province'];
-  var provShort = ['Abra','Apayao','Benguet','Baguio','Ifugao','Kalinga','Mt. Prov'];
-  var males = [], females = [], ipM = [], ipF = [];
-  var statusMap = {}, setMap = {};
-  var totalM = 0, totalF = 0, totalIP = 0;
-  provs.forEach(function(p) {
-    var r = rows.find(function(row) { return (gv(row, ['Province','PROVINCE','province']) || '').toLowerCase() === p.toLowerCase(); });
-    males.push(r   ? nv(gv(r, ['Male','MALE','male','Male Grantees'])) : 0);
-    females.push(r ? nv(gv(r, ['Female','FEMALE','female','Female Grantees'])) : 0);
-    ipM.push(r     ? nv(gv(r, ['IP Male','IP_MALE','ip_male'])) : 0);
-    ipF.push(r     ? nv(gv(r, ['IP Female','IP_FEMALE','ip_female'])) : 0);
-  });
-  rows.forEach(function(r) {
-    var m = nv(gv(r, ['Male','MALE','male']));
-    var f = nv(gv(r, ['Female','FEMALE','female']));
-    var st = gv(r, ['Client Status','CLIENT STATUS','status','Status']);
-    var se = gv(r, ['Set','SET','set']);
-    if (st) statusMap[st] = (statusMap[st] || 0) + m + f;
-    if (se) setMap[se]    = (setMap[se] || 0) + m + f;
-    totalM += m; totalF += f;
-    totalIP += nv(gv(r, ['IP Male','IP_MALE','ip_male'])) + nv(gv(r, ['IP Female','IP_FEMALE','ip_female']));
-  });
-  var totalHH = totalM + totalF;
-  var hEl = document.getElementById('bdmu-total-hh'), mEl = document.getElementById('bdmu-male'),
-      fEl = document.getElementById('bdmu-female'), ipEl = document.getElementById('bdmu-ip-count');
-  if (hEl) hEl.textContent = totalHH.toLocaleString();
-  if (mEl) mEl.textContent = totalM.toLocaleString();
-  if (fEl) fEl.textContent = totalF.toLocaleString();
-  if (ipEl) ipEl.textContent = totalIP.toLocaleString();
-  rebuildBdmuCharts(provShort, males, females, ipM, ipF, statusMap, setMap);
-  showToast('BDMU Grantee refreshed — ' + rows.length + ' rows', 'success');
-}
-
-// ── BDMU Physical Target ──
-function applyBdmuTargetSheet(rows) {
-  var provs = [], targets = [], actuals = [];
-  var totalTarget = 0, totalActual = 0;
-  rows.forEach(function(r) {
-    var p  = gv(r, ['Province','PROVINCE','province']);
-    var tg = nv(gv(r, ['Physical Target','TARGET','Target','physical_target']));
-    var ac = nv(gv(r, ['Actual','ACTUAL','Active HHs','actual']));
-    if (p) { provs.push(p); targets.push(tg); actuals.push(ac); totalTarget += tg; totalActual += ac; }
-  });
-  var pct  = totalTarget > 0 ? ((totalActual / totalTarget) * 100).toFixed(1) + '%' : '—';
-  var diff = totalTarget - totalActual;
-  var ptEl = document.getElementById('bdmu-pt-total'), acEl = document.getElementById('bdmu-pt-actual'),
-      pcEl = document.getElementById('bdmu-pt-pct'),   vEl  = document.getElementById('bdmu-pt-var');
-  if (ptEl) ptEl.textContent = totalTarget.toLocaleString();
-  if (acEl) acEl.textContent = totalActual.toLocaleString();
-  if (pcEl) pcEl.textContent = pct;
-  if (vEl)  vEl.textContent  = diff.toLocaleString();
-  rebuildTargetChart(provs, targets, actuals);
-  showToast('Physical Target refreshed — ' + rows.length + ' provinces', 'success');
-}
-
-// ── Dashboard KPIs ──
-function applyKpiSheet(rows) {
-  rows.forEach(function(r) {
-    var metric = (gv(r, ['Metric','METRIC','metric']) || '').toLowerCase();
-    var value  = gv(r, ['Value','VALUE','value']);
-    var sub    = gv(r, ['Sub','SUB','Subtitle']);
-    var labels = ['registered hhs','active beneficiaries','compliance rate','grievances resolved'];
-    document.querySelectorAll('#page-dashboard .kpi-card').forEach(function(card, i) {
-      if (metric && (metric.includes(labels[i].split(' ')[0]) || metric === labels[i])) {
-        var ve = card.querySelector('.kpi-value'), se = card.querySelector('.kpi-sub');
-        if (ve && value) ve.textContent = value;
-        if (se && sub)   se.innerHTML   = sub;
-      }
-    });
-  });
-  showToast('Dashboard KPIs refreshed', 'success');
-}
-
-// ── GRS ──
-function applyGrsSheet(rows) {
-  var total    = rows.length;
-  var resolved = rows.filter(function(r) { return gv(r, ['Status','STATUS','status']).toLowerCase().includes('resolv'); }).length;
-  var pending  = rows.filter(function(r) { var s = gv(r, ['Status','STATUS','status']).toLowerCase(); return s.includes('pend') || s.includes('open'); }).length;
-  var escalated= rows.filter(function(r) { return gv(r, ['Status','STATUS','status']).toLowerCase().includes('escalat'); }).length;
-  var kp = document.querySelectorAll('#page-grs .kpi-value');
-  if (kp[0]) kp[0].textContent = total.toLocaleString();
-  if (kp[1]) kp[1].textContent = resolved.toLocaleString();
-  if (kp[2]) kp[2].textContent = pending.toLocaleString();
-  if (kp[3]) kp[3].textContent = escalated.toLocaleString();
-  showToast('GRS refreshed — ' + total + ' records', 'success');
-}
-
-// ── Toast ──
-function showToast(msg, type) {
-  var old = document.getElementById('dmis-toast');
-  if (old) old.remove();
-  var col = { success: '#1B7A3E', warning: '#D46B00', error: '#CE1126', info: '#003087' };
-  var t = document.createElement('div');
-  t.id = 'dmis-toast';
-  t.style.cssText = 'position:fixed;bottom:80px;right:18px;z-index:99998;background:' + (col[type] || '#003087') + ';color:#fff;padding:10px 16px;border-radius:8px;font-size:12.5px;font-weight:600;font-family:Barlow,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.3);max-width:320px;line-height:1.4;animation:fadeUp .3s ease';
-  t.textContent = msg;
-  document.body.appendChild(t);
-  setTimeout(function() { if (t.parentNode) t.remove(); }, 3500);
-}
-
-// ══════════════════════════════════════════════════════════════════
-// BDMU MODULE – Sub-tabs + Charts
-// ══════════════════════════════════════════════════════════════════
-var bdmuCharts = {};
-
-function switchBdmuTab(tab, el) {
-  document.getElementById('bdmu-sub-grantee').style.display = tab === 'grantee' ? 'block' : 'none';
-  document.getElementById('bdmu-sub-target').style.display  = tab === 'target'  ? 'block' : 'none';
-  document.querySelectorAll('.bdmu-tab').forEach(function(b) {
-    b.style.color = 'var(--text-soft)'; b.style.borderBottom = '3px solid transparent'; b.style.fontWeight = '500';
-  });
-  el.style.color = 'var(--blue)'; el.style.borderBottom = '3px solid var(--blue)'; el.style.fontWeight = '700';
-  if (tab === 'target') initBdmuTargetCharts();
-}
-
-function initBdmuGranteeCharts() {
-  rebuildBdmuCharts(
-    ['Abra','Apayao','Benguet','Baguio','Ifugao','Kalinga','Mt. Prov'],
-    [0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],[0,0,0,0,0,0,0],{},{});
-}
-
-function rebuildBdmuCharts(provShort, males, females, ipM, ipF, statusMap, setMap) {
-  var ctx1 = document.getElementById('bdmuProvSexChart');
-  if (ctx1) {
-    if (bdmuCharts.prov) bdmuCharts.prov.destroy();
-    bdmuCharts.prov = new Chart(ctx1, { type:'bar', data:{ labels:provShort,
-      datasets:[{label:'Male',data:males,backgroundColor:'#0057B7',borderRadius:3},{label:'Female',data:females,backgroundColor:'#CE1126',borderRadius:3}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10,family:'Barlow'},boxWidth:12}}},
-        scales:{x:{grid:{display:false},ticks:{font:{size:9,family:'Barlow'}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}}}});
-  }
-  var ipTotals = ipM.map(function(v,i){return v+ipF[i];});
-  var ctx2 = document.getElementById('bdmuIpChart');
-  if (ctx2) {
-    if (bdmuCharts.ip) bdmuCharts.ip.destroy();
-    bdmuCharts.ip = new Chart(ctx2, { type:'doughnut', data:{ labels:provShort, datasets:[{data:ipTotals,
-      backgroundColor:['#003087','#0057B7','#2979E0','#64B5F6','#1B7A3E','#D46B00','#CE1126'],borderWidth:2,borderColor:'#fff'}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9,family:'Barlow'},boxWidth:10}}}}});
-  }
-  var stLabels = Object.keys(statusMap), stVals = stLabels.map(function(k){return statusMap[k];});
-  if (!stLabels.length) { stLabels=['Active','Graduated','Suspended','Delisted']; stVals=[0,0,0,0]; }
-  var ctx3 = document.getElementById('bdmuStatusChart');
-  if (ctx3) {
-    if (bdmuCharts.status) bdmuCharts.status.destroy();
-    bdmuCharts.status = new Chart(ctx3, { type:'bar', data:{ labels:stLabels,
-      datasets:[{data:stVals,backgroundColor:['#1B7A3E','#0057B7','#D46B00','#CE1126','#6A1B9A'],borderRadius:4}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-        scales:{x:{grid:{display:false},ticks:{font:{size:10,family:'Barlow'}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}}}});
-  }
-  var seLabels = Object.keys(setMap), seVals = seLabels.map(function(k){return setMap[k];});
-  if (!seLabels.length) { seLabels=['Set 1','Set 2','Set 3','Set 4','Set 5']; seVals=[0,0,0,0,0]; }
-  var ctx4 = document.getElementById('bdmuSetChart');
-  if (ctx4) {
-    if (bdmuCharts.set) bdmuCharts.set.destroy();
-    bdmuCharts.set = new Chart(ctx4, { type:'doughnut', data:{ labels:seLabels,
-      datasets:[{data:seVals,backgroundColor:['#003087','#0057B7','#2979E0','#1B7A3E','#D46B00','#CE1126'],borderWidth:2,borderColor:'#fff'}]},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10,family:'Barlow'},boxWidth:11}}}}});
-  }
-}
-
-function initBdmuTargetCharts() {
-  rebuildTargetChart(
-    ['Abra','Apayao','Benguet','Baguio City','Ifugao','Kalinga','Mountain Province'],
-    [0,0,0,0,0,0,0],[0,0,0,0,0,0,0]);
-}
-
-function rebuildTargetChart(provs, targets, actuals) {
-  var ctx = document.getElementById('bdmuTargetChart');
-  if (!ctx) return;
-  if (bdmuCharts.target) bdmuCharts.target.destroy();
-  bdmuCharts.target = new Chart(ctx, { type:'bar', data:{ labels:provs,
-    datasets:[
-      {label:'Physical Target',data:targets,backgroundColor:'rgba(0,48,135,.25)',borderColor:'#003087',borderWidth:2,borderRadius:3},
-      {label:'Actual (Active HHs)',data:actuals,backgroundColor:'rgba(27,122,62,.75)',borderRadius:3}
-    ]},
-    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:11,family:'Barlow'},boxWidth:13}}},
-      scales:{x:{grid:{display:false},ticks:{font:{size:9,family:'B--arlow'}}},y:{grid:{color:'rgba(0,0,0,.05)'},ticks:{font:{size:9,family:'Barlow'}}}}}});
-}
-
-// ── Init on DOMContentLoaded ──
-document.addEventListener('DOMContentLoaded', function() { sheetLoadSaved(); });
-
 </script>
 </body>
 </html>
