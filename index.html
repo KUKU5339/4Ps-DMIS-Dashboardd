@@ -7,10 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
-:root{--blue:#003087;--blue-mid:#0057B7;--blue-light:#2979E0;--red:#CE1126;--yellow:#FCD116;--dark:#0A1A3A;--white:#fff;--gray-bg:#F0F4FA;--border:#D6E0F0;--text-main:#1B2A4A;--text-soft:#6B7A9A;--sidebar-w:230px;--header-h:62px;--green:#1B7A3E;--orange:#D46B00;}
+:root{--blue:#003087;--blue-mid:#0057B7;--blue-light:#2979E0;--red:#CE1126;--yellow:#FCD116;--dark:#0A1A3A;--white:#fff;--gray-bg:#F0F4FA;--border:#D6E0F0;--text-main:#1B2A4A;--text-soft:#6B7A9A;--sidebar-w:230px;--green:#1B7A3E;--orange:#D46B00;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);color:var(--text-main)}
-.topbar{display:none}
 .layout{display:flex;margin-top:0;min-height:100vh;position:relative}
 .sidebar{width:52px;flex-shrink:0;background:var(--dark);color:#fff;position:fixed;top:0;left:0;bottom:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;z-index:200;transition:width .3s cubic-bezier(.4,0,.2,1)}
 .sidebar:hover{width:var(--sidebar-w);box-shadow:4px 0 24px rgba(0,0,0,.35)}
@@ -20,8 +19,8 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,.12);border-radius:2px}
 .sidebar-section{padding:14px 0 4px}
 .sidebar-label{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.35);padding:0 16px 5px;white-space:nowrap;overflow:hidden}
-.nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;cursor:pointer;font-size:13px;font-weight:500;color:rgba(255,255,255,.68);border-left:3px solid transparent;transition:all .2s;text-decoration:none;user-select:none;white-space:nowrap;overflow:hidden}
-.nav-item i{width:20px;text-align:center;font-size:14px;flex-shrink:0}
+.nav-item{display:flex;align-items:center;gap:14px;padding:11px 16px;cursor:pointer;font-size:15px;font-weight:500;color:rgba(255,255,255,.68);border-left:3px solid transparent;transition:all .2s;text-decoration:none;user-select:none;white-space:nowrap;overflow:hidden}
+.nav-item i{width:24px;text-align:center;font-size:18px;flex-shrink:0}
 .nav-item:hover{background:rgba(255,255,255,.07);color:#fff;border-left-color:var(--yellow)}
 .nav-item.active{background:rgba(0,87,183,.55);color:#fff;border-left-color:var(--yellow);font-weight:600}
 .sidebar hr{border:none;border-top:1px solid rgba(255,255,255,.08);margin:5px 0}
@@ -31,16 +30,10 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
 .page{display:none;padding:22px;flex:1;animation:fadeUp .35s ease both}
 .page.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.page-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.page-header{margin-bottom:18px}
 .ph-left h2{font-family:'Barlow Condensed',sans-serif;font-size:23px;font-weight:800;color:var(--blue);display:flex;align-items:center;gap:9px}
 .ph-left h2 .ab{width:4px;height:24px;background:var(--red);border-radius:2px;flex-shrink:0}
-.ph-left .bc{font-size:11.5px;color:var(--text-soft);margin-top:3px}
-.card{background:#fff;border-radius:10px;box-shadow:0 1px 5px rgba(0,0,0,.08);overflow:hidden;margin-bottom:16px}
-.card-head{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:#FAFCFF}
-.card-head h3{font-family:'Barlow Condensed',sans-serif;font-size:14.5px;font-weight:700;color:var(--blue);display:flex;align-items:center;gap:7px}
-.card-head h3 i{color:var(--blue-light);font-size:13px}
-.card-tag{font-size:10px;font-weight:700;padding:3px 8px;border-radius:12px;background:#E8F0FB;color:var(--blue-mid)}
-.looker-wrap{background:#fff;border-radius:10px;border:1px solid var(--border);padding:0;overflow:hidden;height:900px;position:relative;margin-top:15px}
+.looker-wrap{background:#fff;border-radius:10px;border:1px solid var(--border);padding:0;overflow:hidden;height:900px;position:relative}
 .looker-wrap iframe{width:100%;height:900px;border:none}
 @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 </style>
@@ -75,14 +68,10 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> ICT – Information &amp; Communications Technology</h2>
-      <div class="bc">Home › ICT &nbsp;|&nbsp; IT Equipment Inventory &amp; System Status</div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> ICT Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe src="https://lookerstudio.google.com/embed/reporting/05bdb7cd-c9ae-4989-85c5-be380d8492dd/page/VVwsF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
+  <div class="looker-wrap">
+    <iframe src="https://lookerstudio.google.com/embed/reporting/05bdb7cd-c9ae-4989-85c5-be380d8492dd/page/VVwsF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -91,20 +80,13 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> BDMU – Beneficiary Data Management Unit</h2>
-      <div class="bc">Home › BDMU</div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> BDMU Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe src="https://lookerstudio.google.com/embed/reporting/c91e2ccf-4367-4a16-8159-0ce85e98a631/page/iOxuF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
+  <div class="looker-wrap">
+    <iframe src="https://lookerstudio.google.com/embed/reporting/c91e2ccf-4367-4a16-8159-0ce85e98a631/page/iOxuF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> BDMU Analytics – Additional View</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe src="https://datastudio.google.com/embed/reporting/10bc3e18-2aa0-4e26-be9b-a92146da6768/page/b2ktF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
+  <div class="looker-wrap" style="margin-top:16px">
+    <iframe src="https://datastudio.google.com/embed/reporting/10bc3e18-2aa0-4e26-be9b-a92146da6768/page/b2ktF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -113,14 +95,10 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> CVS – Compliance Verification System</h2>
-      <div class="bc">Home › CVS &nbsp;|&nbsp; NAS/NASH Tracking + MC No. 36 Consolidated Validation</div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> CVS Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe src="https://lookerstudio.google.com/embed/reporting/0f5e720b-3175-44b5-91a4-c669e2384f18/page/lDwsF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
+  <div class="looker-wrap">
+    <iframe src="https://lookerstudio.google.com/embed/reporting/0f5e720b-3175-44b5-91a4-c669e2384f18/page/lDwsF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -129,14 +107,10 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> GRS – Grievance Redress System</h2>
-      <div class="bc">Home › GRS</div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-chart-line"></i> GRS Analytics – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe src="https://lookerstudio.google.com/embed/reporting/40669b4d-e21f-4093-9b15-d0e8a943e1ec/page/3DbND" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
+  <div class="looker-wrap">
+    <iframe src="https://lookerstudio.google.com/embed/reporting/40669b4d-e21f-4093-9b15-d0e8a943e1ec/page/3DbND" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -145,14 +119,10 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> Frequently Asked Questions</h2>
-      <div class="bc">Home › FAQs</div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-question-circle"></i> FAQs – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe src="https://lookerstudio.google.com/embed/reporting/62772f2c-54a2-4f25-b030-e3458fc10228/page/sp4uF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
+  <div class="looker-wrap">
+    <iframe src="https://lookerstudio.google.com/embed/reporting/62772f2c-54a2-4f25-b030-e3458fc10228/page/sp4uF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -161,14 +131,10 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> Contact Us</h2>
-      <div class="bc">Home › Contact</div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-envelope"></i> Contact Us – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe src="https://lookerstudio.google.com/embed/reporting/f51c11ea-c484-4700-a336-209ae0e07064/page/sp4uF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
+  <div class="looker-wrap">
+    <iframe src="https://lookerstudio.google.com/embed/reporting/f51c11ea-c484-4700-a336-209ae0e07064/page/sp4uF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
 </div>
 
@@ -177,17 +143,11 @@ html,body{height:100%;font-family:'Barlow',sans-serif;background:var(--gray-bg);
   <div class="page-header">
     <div class="ph-left">
       <h2><span class="ab"></span> Organizational Chart – DMIS FO-CAR</h2>
-      <div class="bc">Home › Organizational Chart</div>
     </div>
   </div>
-  <div class="card">
-    <div class="card-head"><h3><i class="fa fa-sitemap"></i> Organizational Chart – Looker Studio</h3><span class="card-tag">Live</span></div>
-    <div class="looker-wrap">
-      <iframe src="https://lookerstudio.google.com/embed/reporting/283adda1-6660-4ae1-91fa-c2f46eeec46d/page/sp4uF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
-    </div>
+  <div class="looker-wrap">
+    <iframe src="https://lookerstudio.google.com/embed/reporting/283adda1-6660-4ae1-91fa-c2f46eeec46d/page/sp4uF" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </div>
-</div>
-
 </div>
 
 </main>
